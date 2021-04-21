@@ -22,6 +22,8 @@ http://<Public-IP-Address>:80
 ```
 
 The following page is accessible on the above URL:
+
+
 ![Screen Shot 2021-04-21 at 11 42 30 AM](https://user-images.githubusercontent.com/44268796/115582453-f9857800-a296-11eb-9e9d-f38ac65a5f64.png)
 
 ## Step 2 — Installing MySQL
