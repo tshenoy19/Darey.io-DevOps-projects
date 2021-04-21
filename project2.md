@@ -166,7 +166,10 @@ try {
 
 ```
 
-Finally, when we access the server with the following command - (http://<Public_domain_or_IP>/todo_list.php) the new table will be queried and displayed on the browser. The screenshots of the final step is below:
+Finally, when we access the server with the following command - (http://<Public_domain_or_IP>/todo_list.php), the new table will be queried and displayed on the browser. The screenshots of the final step is below:
+
+
+
 ![Screen Shot 2021-04-21 at 1 53 53 PM](https://user-images.githubusercontent.com/44268796/115599907-1bd4c100-a2aa-11eb-80c9-98146363a813.png)
 
 
