@@ -119,7 +119,7 @@ LEMP stack is now fully configured.
 ```
 nano /var/www/projectLEMP/info.php
 ```
-```
+```php
 <?php
 phpinfo();
 ```
@@ -145,7 +145,7 @@ This is the final step where we create a database, create a table, populate the 
 
 Then, we create a PHP script (todo_list.php)to connect to the MYSQL database and query for content.
 
-```
+```php
 <?php
 $user = "example_user";
 $password = "password";
