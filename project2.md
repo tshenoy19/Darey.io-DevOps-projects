@@ -13,14 +13,14 @@ sudo apt install nginx
 sudo systemctl status nginx
 ```
 
-We have TCP port 22 open by default on our EC2 machine to access it via SSH, so we need to add a rule to EC2 configuration to open inbound connection through port 80.
+TCP port 22 is open by default on the EC2 machine to access it via SSH. A new rule is added to the EC2 instance to open inbound connection through port 80.
 
-Test if the Nginx server can respond to requests from the Internet. Open a web browser of your choice and try to access following url:
+To test if the Nginx server is accessible over the Internet, open a web browser and try to access following url:
 ```
 http://<Public-IP-Address>:80
 ```
 
-If you see following page, then your web server is now correctly installed and accessible through your firewall.
+The following page is accessible on the above URL:
 ![Screen Shot 2021-04-21 at 11 42 30 AM](https://user-images.githubusercontent.com/44268796/115582453-f9857800-a296-11eb-9e9d-f38ac65a5f64.png)
 
 ## Step 2 — Installing MySQL
@@ -32,7 +32,7 @@ sudo apt install mysql-server
 sudo mysql_secure_installation
 sudo mysql
 ```
-If the installation is successful, then the output would be like this:
+The installation was successful with the following output:
 
 ![Screen Shot 2021-04-21 at 11 49 05 AM](https://user-images.githubusercontent.com/44268796/115583152-a233d780-a297-11eb-9cd5-1f5d0509210c.png)
 
@@ -90,36 +90,31 @@ server {
 }
 ```
 
-Activate your configuration by linking to the config file from Nginx’s sites-enabled directory:
+Activate the configuration by linking to the config file from Nginx’s sites-enabled directory:
 ```
 sudo ln -s /etc/nginx/sites-available/projectLEMP /etc/nginx/sites-enabled/
 ```
-This will tell Nginx to use the configuration next time it is reloaded. You can test your configuration for syntax errors by typing:
-```sudo nginx -t
-```
-We also need to disable default Nginx host that is currently configured to listen on port 80, for this run:
+
+To disable default Nginx host that is currently configured to listen on port 80, the following command is used:
 ```
 sudo unlink /etc/nginx/sites-enabled/default
 ```
-Reload Nginx to apply the changes:
+To reload Nginx server:
 ```
 sudo systemctl reload nginx
 ```
-Your new website is now active, but the web root /var/www/projectLEMP is still empty. Create an index.html file in that location so that we can test that your new server block works as expected:
+/var/www/projectLEMP is still empty. An index.html file is created to test:
 ```
 curl -s http://169.254.169.254/latest/meta-data/public-ipv4) > /var/www/projectLEMP/index.html
 ```
-Now go to your browser and try to open your website URL using IP address:
+To check out the server on browser:
 ```
 http://<Public-IP-Address>:80
 ```
 LEMP stack is now fully configured.
 
 ## Step 5 – Testing PHP with Nginx
-
-Next step is to test and validate that Nginx can correctly hand .php files off to the PHP processor.
-
-You can do this by creating a test PHP file in your document root. Open a new file called info.php within your document root in your text editor:
+ Open a new file called info.php within your document root in your text editor, this helps to validate if the Nginx server can handoff .php files to the PHP processor :
 ```
 nano /var/www/projectLEMP/info.php
 ```
@@ -127,10 +122,13 @@ nano /var/www/projectLEMP/info.php
 <?php
 phpinfo();
 ```
-You can now access this page in your web browser by visiting the domain name or public IP address you’ve set up in your Nginx configuration file, followed by /info.php:
+To see if it worked, type the below command:
 ```
 http://`server_domain_or_IP`/info.php
 ```
+The webpage should look like this:
+
+![Screen Shot 2021-04-21 at 1 28 06 PM](https://user-images.githubusercontent.com/44268796/115595900-7a4b7080-a2a5-11eb-9836-5a5d7b1e932e.png)
 
 
 
