@@ -130,6 +130,44 @@ The webpage should look like this:
 
 ![Screen Shot 2021-04-21 at 1 28 06 PM](https://user-images.githubusercontent.com/44268796/115595900-7a4b7080-a2a5-11eb-9836-5a5d7b1e932e.png)
 
+In order to protect sensitive information on the page, after testing it out above, remove the file:
+```
+sudo rm /var/www/projectLEMP/info.php
+```
+## Step 6 — Retrieving data from MySQL database with PHP
+
+This is the final step where we create a database, create a table, populate the table with data. 
+![Screen Shot 2021-04-21 at 1 35 31 PM](https://user-images.githubusercontent.com/44268796/115599551-c26c9200-a2a9-11eb-832a-b5683625f479.png)
+
+![Screen Shot 2021-04-21 at 1 40 27 PM](https://user-images.githubusercontent.com/44268796/115599636-d4e6cb80-a2a9-11eb-8a14-7eddbd717f55.png)
+
+
+Then, we create a PHP script (todo_list.php)to connect to the MYSQL database and query for content.
+
+```
+<?php
+$user = "example_user";
+$password = "password";
+$database = "example_database";
+$table = "todo_list";
+
+try {
+  $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
+  echo "<h2>TODO</h2><ol>";
+  foreach($db->query("SELECT content FROM $table") as $row) {
+    echo "<li>" . $row['content'] . "</li>";
+  }
+  echo "</ol>";
+} catch (PDOException $e) {
+    print "Error!: " . $e->getMessage() . "<br/>";
+    die();
+}
+
+
+```
+
+Finally, when we access the server with the following command - (http://<Public_domain_or_IP>/todo_list.php) the new table will be queried and displayed on the browser. The screenshots of the final step is below:
+![Screen Shot 2021-04-21 at 1 53 53 PM](https://user-images.githubusercontent.com/44268796/115599907-1bd4c100-a2aa-11eb-80c9-98146363a813.png)
 
 
 
