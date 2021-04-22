@@ -72,15 +72,20 @@ console.log(`Server running on port ${port}`)
 });
 ```
 The server should be running on port 5000 on the terminal
+
+
 ![Screen Shot 2021-04-22 at 7 35 07 AM](https://user-images.githubusercontent.com/44268796/115707911-5471aa80-a33d-11eb-8c65-38590ab80af0.png)
 
 Update the Security Group on the EC2 instance to all Custom TCP traffic on Port 5000:
+
+
 ![Screen Shot 2021-04-22 at 7 38 38 AM](https://user-images.githubusercontent.com/44268796/115708401-ef6a8480-a33d-11eb-8456-4d58b35de1ce.png)
 
 Open the browser and access Port 5000 on the server's public IP address or DNS name:
 ```
 http://<PublicIP-or-PublicDNS>:5000
 ```
+
 ![Screen Shot 2021-04-22 at 7 42 38 AM](https://user-images.githubusercontent.com/44268796/115708707-5425df00-a33e-11eb-8255-2794d1d7ef2e.png)
 
 ### Creating Routes
@@ -237,7 +242,9 @@ app.listen(port, () => {
 console.log(`Server running on port ${port}`)
 });
 ```
+Check if the database is connected with node index.js command
 
+![Screen Shot 2021-04-22 at 5 23 37 PM](https://user-images.githubusercontent.com/44268796/115787178-c83ca300-a38f-11eb-97b0-1e9fa27a84b4.png)
 
 
 
