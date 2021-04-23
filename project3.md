@@ -256,7 +256,7 @@ node index.js
 
 The backend code can now be tested using RESTful API. Install Postman to test the API. 
 
-Create a POST request to the API ### http://<PublicIP-or-PublicDNS>:5000/api/todos
+Create a POST request to the API at http://<PublicIP-or-PublicDNS>:5000/api/todos
  
  
 ![Screen Shot 2021-04-23 at 7 19 41 AM](https://user-images.githubusercontent.com/44268796/115864504-ed1f2d80-a404-11eb-937b-8f632712fb6a.png)
