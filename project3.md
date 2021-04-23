@@ -266,6 +266,44 @@ The backend code can now be tested using RESTful API. Install Postman to test th
 ![Screen Shot 2021-04-23 at 7 20 36 AM](https://user-images.githubusercontent.com/44268796/115864543-fc9e7680-a404-11eb-9eeb-5765adabdff8.png)
 
 
+### Create a GET request on Postman:
+
+
+![Screen Shot 2021-04-23 at 11 07 48 AM](https://user-images.githubusercontent.com/44268796/115891720-65491b80-a424-11eb-8099-d05a7d8fd542.png)
+
+This confirms that the backend is working and responding to API calls.
+
+## Step 2 - Frontend creation
+
+To create the frontend application, install the create-react-app in the same root directory as the backend- Todo
+
+```
+npx create-react-app client
+```
+
+This creates a folder in the Todo directory called 'Client' which will host all the React code.
+
+### Running the React App
+
+Some dependencies need to be installed before testing the React app:
+
+Install Concurrently:
+```
+npm install concurrently --save-dev
+```
+
+Install nodemon:
+```
+npm install nodemon --save-dev
+```
+
+In the package.json file within the Todo directory, replace the existing scripts with the following:
+
+
+![Screen Shot 2021-04-23 at 11 20 31 AM](https://user-images.githubusercontent.com/44268796/115893333-0d131900-a426-11eb-9c5e-08089bd4cb62.png)
+
+
+
 
 
 
