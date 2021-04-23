@@ -242,9 +242,29 @@ app.listen(port, () => {
 console.log(`Server running on port ${port}`)
 });
 ```
-Check if the database is connected with node index.js command
+Check if the database is connected:
+```
+node index.js
+```
+
 
 ![Screen Shot 2021-04-22 at 5 23 37 PM](https://user-images.githubusercontent.com/44268796/115787178-c83ca300-a38f-11eb-97b0-1e9fa27a84b4.png)
+
+
+
+## Testing Backend Code without Frontend using RESTful API
+
+The backend code can now be tested using RESTful API. Install Postman to test the API. 
+
+Create a POST request to the API ### http://<PublicIP-or-PublicDNS>:5000/api/todos
+ 
+ 
+![Screen Shot 2021-04-23 at 7 19 41 AM](https://user-images.githubusercontent.com/44268796/115864504-ed1f2d80-a404-11eb-937b-8f632712fb6a.png)
+ 
+
+
+![Screen Shot 2021-04-23 at 7 20 36 AM](https://user-images.githubusercontent.com/44268796/115864543-fc9e7680-a404-11eb-9eeb-5765adabdff8.png)
+
 
 
 
