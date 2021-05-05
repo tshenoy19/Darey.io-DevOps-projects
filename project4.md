@@ -295,7 +295,7 @@ node server.js
 ![Screen Shot 2021-05-05 at 1 46 22 PM](https://user-images.githubusercontent.com/44268796/117185944-5eb58f00-ada8-11eb-97bd-edc62317365f.png)
 
 
-The Book Register web application can now be accessed using the Public IP address of the instance or the DNS name
+##### The Book Register web application can now be accessed using the Public IP address of the instance or the DNS name.
 
 
 
