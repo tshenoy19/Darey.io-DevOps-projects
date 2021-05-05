@@ -1,6 +1,6 @@
 ## Implementing a MEAN STACK on AWS Cloud
 
-### Objective: Create a simple Book Register web form using MEAN Stack
+### Objective: To create a simple Book Register web form using MEAN Stack
 
 The MEAN stack uses:
 ###### MongoDB- a document database to store and retrieve data
