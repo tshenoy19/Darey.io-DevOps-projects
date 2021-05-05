@@ -3,10 +3,13 @@
 ### Objective: Create a simple Book Register web form using MEAN Stack
 
 The MEAN stack uses:
-MongoDB- a document database to store and retrieve data
-Express- a back-end application framework used to make requests to the database
-Angular- a front-end application framework that handles server and client requests
-Node.js- a JavaScript run-time environment that accepts requests and displays results to the end user
+###### MongoDB- a document database to store and retrieve data
+
+###### Express- a back-end application framework used to make requests to the database
+
+###### Angular- a front-end application framework that handles server and client requests
+
+###### Node.js- a JavaScript run-time environment that accepts requests and displays results to the end user
 
 
 
