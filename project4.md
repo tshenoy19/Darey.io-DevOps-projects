@@ -281,3 +281,55 @@ vi index.html
 ```
 ##### Go back to 'Books' folder
 ```
+cd ..
+```
+##### Start the server
+```
+node server.js
+```
+
+
+##### Edit the Security Group on the Ubuntu instance to allow TCP traffic on Port 3300
+
+
+![Screen Shot 2021-05-05 at 1 46 22 PM](https://user-images.githubusercontent.com/44268796/117185944-5eb58f00-ada8-11eb-97bd-edc62317365f.png)
+
+
+The Book Register web application can now be accessed using the Public IP address of the instance or the DNS name
+
+
+
+![Screen Shot 2021-05-05 at 1 52 07 PM](https://user-images.githubusercontent.com/44268796/117186691-18146480-ada9-11eb-88bc-3bdb0a6038d6.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
