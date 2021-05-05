@@ -1,4 +1,4 @@
-## Creating a MEAN STACK on AWS Cloud
+## Implementing a MEAN STACK on AWS Cloud
 
 ### Objective: Create a simple Book Register web form using MEAN Stack
 
