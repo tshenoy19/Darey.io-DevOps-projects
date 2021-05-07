@@ -36,6 +36,20 @@ sudo mysql
 ![Screen Shot 2021-05-07 at 2 22 21 PM](https://user-images.githubusercontent.com/44268796/117492510-ade1f800-af3f-11eb-9291-3062436b08fb.png)
 
 
+###### Create a remote user for the database
+```
+mysql> CREATE USER 'remote_user'@'%' IDENTIFIED BY 'password';
+```
+###### Create a database
+```
+mysql> CREATE DATABASE <dbname>;
+```
+###### Grant privileges
+```
+mysql> GRANT ALL ON <dbname>.* TO 'remote_user'@'%' WITH GRANT OPTION;
+mysql> FLUSH PRIVILEGES;
+```
+
 
 
 
