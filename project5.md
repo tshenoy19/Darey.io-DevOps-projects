@@ -3,8 +3,8 @@
 
 ##### Step 0: Launch two Linux-based EC2 instances to serve as the Server and the Client
 ```
-Server A name - `mysql-server
-Server B name - `mysql-client
+Server A name - mysql-server
+Server B name - mysql-client
 ```
 
 ##### Step 1: Set up the DB Server - mysql-server
