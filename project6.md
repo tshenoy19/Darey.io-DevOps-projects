@@ -167,8 +167,81 @@ sudo yum module enable php:remi-7.4
 sudo yum install php php-opcache php-gd php-curl php-mysqlnd
 sudo systemctl start php-fpm
 sudo systemctl enable php-fpm
-setsebool -P httpd_execmem 1
+sudo setsebool -P httpd_execmem 1
 ```
+###### Restart Apache
+```
+sudo systemctl restart httpd
+```
+###### Install WordPress and copy it to /var/www/html
+```
+mkdir wordpress
+cd   wordpress
+sudo wget http://wordpress.org/latest.tar.gz
+sudo tar xzvf latest.tar.gz
+sudo rm -rf latest.tar.gz
+sudo cp wordpress/wp-config-sample.php wordpress/wp-config.php
+sudo cp -R wordpress /var/www/html/
+```
+###### Configure Selinux
+```
+sudo chown -R apache:apache /var/www/html/wordpress
+sudo chcon -t httpd_sys_rw_content_t /var/www/html/wordpress -R
+sudo setsebool -P httpd_can_network_connect=1
+```
+
+##### Step 4: Installation of MySQL on db-server
+
+```
+sudo yum update
+sudo yum install mysql-server
+sudo systemctl restart mysqld
+sudo systemctl enable mysqld
+```
+
+##### Step 5: Configuration of db-server to work with WordPress on web-server
+```
+sudo mysql
+```
+```mysql
+CREATE DATABASE wordpress;
+CREATE USER `myuser`@`<Web-Server-Private-IP-Address>` IDENTIFIED BY 'mypass';
+GRANT ALL ON wordpress.* TO 'myuser'@'<Web-Server-Private-IP-Address>';
+FLUSH PRIVILEGES;
+SHOW DATABASES;
+exit
+```
+
+![Screen Shot 2021-05-10 at 4 24 57 PM](https://user-images.githubusercontent.com/44268796/117720119-454b8300-b1ac-11eb-88b5-a43bfb1c2f4a.png)
+
+
+
+
+##### Step 6: Configuration of the WordPress connection to db-server database
+
+###### First, configure the security group on db-server to allow traffic on port 3302 inbound from only the IP address of web-server
+
+###### Install MySQL client on web-server and test the connection to the remote db-server
+```
+sudo yum install mysql-server
+sudo mysql -u admin -p -h <DB-Server-Private-IP-address>
+```
+
+###### Check to see if the connection has been established and the databases can be viewed from web-server
+
+###### Next, configure the security group on web-server to allow TCP traffic on Port 80 from everywhere 0.0.0.0/0
+
+###### The WordPress website can be accessed on http://<Web-Server-Public-IP-Address>/wordpress/
+ 
+ 
+
+
+
+
+
+
+
+
 
 
 
