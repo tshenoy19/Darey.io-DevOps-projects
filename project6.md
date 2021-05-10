@@ -40,6 +40,8 @@ sudo gdisk /dev/xvdh
 ![Screen Shot 2021-05-10 at 10 47 47 AM](https://user-images.githubusercontent.com/44268796/117678212-2aade580-b17d-11eb-918a-0672545b69a2.png)
 
 
+![Screen Shot 2021-05-10 at 10 50 51 AM](https://user-images.githubusercontent.com/44268796/117678653-97c17b00-b17d-11eb-93b7-31ffadc413b0.png)
+
 
 ###### Install lvm2 package
 ```
@@ -55,6 +57,25 @@ sudo pvcreate /dev/xvdf1
 sudo pvcreate /dev/xvdg1
 sudo pvcreate /dev/xvdh1
 ```
+###### Check if the physical volumes have been created
+```
+sudo pvs
+```
+
+![Screen Shot 2021-05-10 at 10 52 49 AM](https://user-images.githubusercontent.com/44268796/117678956-de16da00-b17d-11eb-929b-c08766e67d3d.png)
+
+###### With the ``` vgcreate ``` command, create a volume group of the three physical volumes and name is 'webdata-vg'
+
+```
+sudo vgcreate webdata-vg /dev/xvdh1 /dev/xvdg1 /dev/xvdf1
+```
+
+###### Check if VG has been created
+```
+sudo vgs
+```
+![Screen Shot 2021-05-10 at 10 56 40 AM](https://user-images.githubusercontent.com/44268796/117679583-67c6a780-b17e-11eb-9a6b-0144a34ff664.png)
+
 
 
 
