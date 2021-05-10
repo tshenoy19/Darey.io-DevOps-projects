@@ -37,7 +37,52 @@ sudo gdisk /dev/xvdh
 ```
 
 
-![Screen Shot 2021-05-10 at 10 30 46 AM](https://user-images.githubusercontent.com/44268796/117675703-ce49c680-b17a-11eb-8493-cdb1d9e3bf97.png)
+![Screen Shot 2021-05-10 at 10 47 47 AM](https://user-images.githubusercontent.com/44268796/117678212-2aade580-b17d-11eb-918a-0672545b69a2.png)
+
+
+
+###### Install lvm2 package
+```
+sudo yum install lvm2
+```
+###### Check for available partitions
+```
+sudo lvmdiskscan 
+```
+###### With the ``` pvcreate ``` command, mark each of the three disks as physical volumes to be used by LVM
+```
+sudo pvcreate /dev/xvdf1
+sudo pvcreate /dev/xvdg1
+sudo pvcreate /dev/xvdh1
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
