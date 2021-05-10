@@ -144,6 +144,9 @@ df -h
 
 ![Screen Shot 2021-05-10 at 2 03 57 PM](https://user-images.githubusercontent.com/44268796/117704204-9487b880-b198-11eb-8a57-357b108c55e0.png)
 
+##### Step 2: Create the DB Server
+
+###### Launch a Red Hat EC2 machine and name it db-server. Follow all the steps similar to web-server above. Name the logical volume as 'db-lv' instead of 'app-lv' and it should be mounted on /db directory instead of the /www/var/html directory used previously for web-server
 
 
 
