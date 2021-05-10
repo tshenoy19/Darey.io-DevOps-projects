@@ -131,6 +131,20 @@ sudo blkid
 ![Screen Shot 2021-05-10 at 1 59 08 PM](https://user-images.githubusercontent.com/44268796/117703673-eda31c80-b197-11eb-829b-edf3338e7566.png)
 
 
+###### To test the configuration and reload the daemon:
+```
+sudo mount -a
+sudo systemctl daemon-reload
+```
+
+###### To view and check the final setup, use:
+```
+df -h
+```
+
+![Screen Shot 2021-05-10 at 2 03 57 PM](https://user-images.githubusercontent.com/44268796/117704204-9487b880-b198-11eb-8a57-357b108c55e0.png)
+
+
 
 
 
