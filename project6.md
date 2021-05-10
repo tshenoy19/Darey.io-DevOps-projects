@@ -95,8 +95,40 @@ sudo lsblk
 
 ![Screen Shot 2021-05-10 at 11 24 01 AM](https://user-images.githubusercontent.com/44268796/117683594-3b148f00-b182-11eb-82fc-ff3fbaf76710.png)
 
+###### Format the logical volumes with ext4 filesystem
+```
+sudo mkfs -t ext4 /dev/webdata-vg/apps-lv
+sudo mkfs -t ext4 /dev/webdata-vg/logs-lv
+```
+###### Create two separate directories to store website files and log data
+```
+sudo mkdir -p /var/www/html
+sudo mkdir -p /home/recovery/logs
+```
+###### Mount the  /var/www/html on apps-lv logical volume
+```
+sudo mount /dev/webdata-vg/apps-lv /var/www/html/
+```
+###### With ``` rsync ``` command, backup all the files in the log directory /var/log into /home/recovery/logs
+```
+sudo rsync -av /var/log/. /home/recovery/logs/
+```
+###### Now, mount the /var/logs file onto the data-vg logical volume
+```
+sudo mount /dev/webdata-vg/logs-lv /var/log
+```
+###### Restore the data on the /var/logs file as all the existing data is deleted 
+```
+sudo rsync -av /home/recovery/logs/log/. /var/log
+```
+###### To make the mount configuration persist, make additions to the /etc/fstab file as seen below with the UUIDs:
+```
+sudo blkid
+```
+![Screen Shot 2021-05-10 at 1 50 14 PM](https://user-images.githubusercontent.com/44268796/117702557-a8321f80-b196-11eb-9790-51e3b0f2ebff.png)
 
 
+![Screen Shot 2021-05-10 at 1 59 08 PM](https://user-images.githubusercontent.com/44268796/117703673-eda31c80-b197-11eb-829b-edf3338e7566.png)
 
 
 
