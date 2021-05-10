@@ -148,6 +148,28 @@ df -h
 
 ###### Launch a Red Hat EC2 machine and name it db-server. Follow all the steps similar to web-server above. Name the logical volume as 'db-lv' instead of 'app-lv' and it should be mounted on /db directory instead of the /www/var/html directory used previously for web-server
 
+##### Step 3: Installation of WordPress on web-server
+
+###### Update the repository, then install wget, Apache and dependencies
+```
+sudo yum -y update
+sudo yum -y install wget httpd php php-mysqlnd php-fpm php-json
+```
+###### Start Apache and also install PHP with its dependencies
+```
+sudo systemctl enable httpd
+sudo systemctl start httpd
+sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+sudo yum install yum-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+sudo yum module list php
+sudo yum module reset php
+sudo yum module enable php:remi-7.4
+sudo yum install php php-opcache php-gd php-curl php-mysqlnd
+sudo systemctl start php-fpm
+sudo systemctl enable php-fpm
+setsebool -P httpd_execmem 1
+```
+
 
 
 
