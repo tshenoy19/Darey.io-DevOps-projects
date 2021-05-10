@@ -77,6 +77,27 @@ sudo vgs
 ![Screen Shot 2021-05-10 at 10 56 40 AM](https://user-images.githubusercontent.com/44268796/117679583-67c6a780-b17e-11eb-9a6b-0144a34ff664.png)
 
 
+###### With ``` lvcreate ``` command, create two separate logical volumes, app-lv (to store website data) and logs-lv (to store logs data) and verify the configuration
+```
+sudo lvcreate -n apps-lv -L 14G webdata-vg
+sudo lvcreate -n logs-lv -L 14G webdata-vg
+sudo lvs
+```
+
+![Screen Shot 2021-05-10 at 11 22 27 AM](https://user-images.githubusercontent.com/44268796/117683387-030d4c00-b182-11eb-84ef-4b602cfe1b9f.png)
+
+
+###### Now check to see the entire storage setup
+```
+sudo vgdisplay -v
+sudo lsblk
+```
+
+![Screen Shot 2021-05-10 at 11 24 01 AM](https://user-images.githubusercontent.com/44268796/117683594-3b148f00-b182-11eb-82fc-ff3fbaf76710.png)
+
+
+
+
 
 
 
