@@ -229,11 +229,25 @@ sudo mysql -u admin -p -h <DB-Server-Private-IP-address>
 
 ###### Check to see if the connection has been established and the databases can be viewed from web-server
 
-###### Next, configure the security group on web-server to allow TCP traffic on Port 80 from everywhere 0.0.0.0/0
+![Screen Shot 2021-05-11 at 2 25 57 PM](https://user-images.githubusercontent.com/44268796/117866572-4e4c5b00-b265-11eb-8c98-254f11dead66.png)
+
+
+###### Set permissions so Apache can use Wordpress
+```
+sudo chown -R apache:apache /var/www/html/
+sudo chcon -t httpd_sys_rw_content_t /var/www/html -R
+sudo setsebool -P httpd_can_network_connect=1
+```
+
+###### Enable TCP traffic on webserver into port 80 from anywhere(0.0.0.0)
+
 
 ###### The WordPress website can be accessed on http://<Web-Server-Public-IP-Address>/wordpress/
  
  
+![Screen Shot 2021-05-11 at 2 42 48 PM](https://user-images.githubusercontent.com/44268796/117868080-2a8a1480-b267-11eb-8a79-f2c269081a45.png)
+
+
 
 
 
