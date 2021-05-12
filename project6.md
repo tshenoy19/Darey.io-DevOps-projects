@@ -242,7 +242,7 @@ sudo setsebool -P httpd_can_network_connect=1
 ###### Enable TCP traffic on webserver into port 80 from anywhere(0.0.0.0)
 
 
-###### The WordPress website can be accessed on http://<Web-Server-Public-IP-Address>/wordpress/
+###### The WordPress website can be accessed on the web server's public IP address
  
  
 ![Screen Shot 2021-05-11 at 2 42 48 PM](https://user-images.githubusercontent.com/44268796/117868080-2a8a1480-b267-11eb-8a79-f2c269081a45.png)
