@@ -18,7 +18,7 @@ The project will comprise of the following resources:
 - Storage solution: Red Hat Enterprise Linux 8 + NFS Server
 
 
-#### Step 1: Set up NFS Server
+#### Step 1: Create NFS Server
 
 ##### Create an EC2 instance with RHEL Linux 8 Operating System
 
