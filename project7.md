@@ -18,7 +18,20 @@ The project will comprise of the following resources:
 - Storage solution: Red Hat Enterprise Linux 8 + NFS Server
 
 
-##### Step 1: NFS Server
+#### Step 1: Set up NFS Server
+
+##### Create an EC2 instance with RHEL Linux 8 Operating System
+
+##### Configure LVM on the server: 
+###### Create three logical volumes of 'xfs' format and name them as lv-opt, lv-apps and lv-logs.
+###### Create three mount points for the logical volumes on the /mnt directory: lv-apps on /mnt/apps for webservers; lv-logs on /mnt/logs for webserver logs and lv-opt on /mnt/opt for jenkins server to be used in the next project
+
+
+
+
+
+
+
 
 
 
