@@ -91,7 +91,7 @@ rpcinfo -p | grep nfs
 ![Screen Shot 2021-05-21 at 11 25 38 AM](https://user-images.githubusercontent.com/44268796/119161635-8acb4400-ba27-11eb-9064-420bb62aab99.png)
 
 
-#### Creating and configuring the Database Server
+#### Step 2: Creating and configuring the Database Server
 
 ##### Create an EC2 instance of type Ubuntu 20.04 and install MySQL
 
@@ -110,6 +110,25 @@ Log into MySQL and create a database called 'tooling'
 
 Next, create a database user called webaccess and grant permissions
 Open the /etc/mysql/mysql.conf.d/mysqld.cnf file to edit the bind address to grant access to the 'webaccess' user from the webservers.
+
+#### Step 3: Create and configure three identical webservers
+
+##### Create three EC2 instances with Red Hat Linux 8 operating system
+
+- Install NFS client 
+```
+sudo yum install nfs-utils nfs4-acl-tools -y
+```
+- Create a directory /var/www and mount it to target the NFS server’s export for apps
+```
+sudo mkdir /var/www
+sudo mount -t nfs -o rw,nosuid <NFS-Server-Private-IP-Address>:/mnt/apps /var/www
+```
+
+![Screen Shot 2021-05-21 at 3 17 38 PM](https://user-images.githubusercontent.com/44268796/119187864-e3aad480-ba47-11eb-9cda-225fb86d71ac.png)
+
+
+
 
 
 
