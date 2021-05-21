@@ -91,6 +91,27 @@ rpcinfo -p | grep nfs
 ![Screen Shot 2021-05-21 at 11 25 38 AM](https://user-images.githubusercontent.com/44268796/119161635-8acb4400-ba27-11eb-9064-420bb62aab99.png)
 
 
+#### Creating and configuring the Database Server
+
+##### Create an EC2 instance of type Ubuntu 20.04 and install MySQL
+
+Install MySQL server:
+```
+sudo apt install mysql-server -y
+```
+```
+sudo mysql_secure_installation
+```
+
+Log into MySQL and create a database called 'tooling'
+
+![Screen Shot 2021-05-21 at 1 32 11 PM](https://user-images.githubusercontent.com/44268796/119176470-2618e500-ba39-11eb-9f24-61b23e81b053.png)
+
+
+Next, create a database user called webaccess and grant permissions
+Open the /etc/mysql/mysql.conf.d/mysqld.cnf file to edit the bind address to grant access to the 'webaccess' user from the webservers.
+
+
 
 
 
