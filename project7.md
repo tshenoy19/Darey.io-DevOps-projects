@@ -37,6 +37,10 @@ The project will comprise of the following resources:
 ![Screen Shot 2021-05-21 at 9 56 48 AM](https://user-images.githubusercontent.com/44268796/119149115-328e4500-ba1b-11eb-8691-c8e0c0b3af49.png)
 
 
+![Screen Shot 2021-05-21 at 10 25 53 AM](https://user-images.githubusercontent.com/44268796/119153105-f0ff9900-ba1e-11eb-9157-ad8a510ce83a.png)
+
+
+
 ##### Next step is to install the NFS server on the EC2 instance and activate it
 ```
 sudo yum -y update
@@ -47,6 +51,8 @@ sudo systemctl status nfs-server.service
 ```
 
 ![Screen Shot 2021-05-21 at 10 04 23 AM](https://user-images.githubusercontent.com/44268796/119149917-f4455580-ba1b-11eb-8b53-b8e8f1b89e23.png)
+
+
 
 
 
