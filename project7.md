@@ -128,6 +128,35 @@ sudo mount -t nfs -o rw,nosuid <NFS-Server-Private-IP-Address>:/mnt/apps /var/ww
 ![Screen Shot 2021-05-21 at 3 17 38 PM](https://user-images.githubusercontent.com/44268796/119187864-e3aad480-ba47-11eb-9cda-225fb86d71ac.png)
 
 
+Add the following entry to /etc/fstab file so the changes persist:
+```
+<NFS-Server-Private-IP-Address>:/mnt/apps /var/www nfs defaults 0 0
+```
+Install Apache:
+```
+sudo yum install httpd -y
+sudo systemctl start httpd
+sudo systemctl enable httpd
+sudo systemctl status httpd
+```
+
+Check the /var/html folder to verify that the Apache files and directories are present. Check the /mnt/apps directory on NFS server to verify if the same Apache files and directories are present.
+
+- Mount the log folder for Apache on webserver to NFS folder for /mnt/logs with same steps as above. Update the /etc/fstab and make sure changes persist.
+
+![Screen Shot 2021-05-21 at 3 45 27 PM](https://user-images.githubusercontent.com/44268796/119190816-d7287b00-ba4b-11eb-8787-568e0f137db4.png)
+
+
+- Install git and clone the tooling source code at https://github.com/darey-io/tooling.git
+``` 
+sudo yum install git -y
+git clone https://github.com/darey-io/tooling.git
+```
+
+
+
+
+
 
 
 
