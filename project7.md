@@ -82,7 +82,13 @@ sudo exportfs -arv
 ```
 sudo systemctl restart nfs-server.service
 ```
+##### Check the port currently used by NFS and also edit the security group rules to allow inbound traffic on TCP 111, UDP 111, UDP 2049
+```
+rpcinfo -p | grep nfs
+```
 
+
+![Screen Shot 2021-05-21 at 11 25 38 AM](https://user-images.githubusercontent.com/44268796/119161635-8acb4400-ba27-11eb-9064-420bb62aab99.png)
 
 
 
