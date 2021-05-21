@@ -53,6 +53,50 @@ sudo systemctl status nfs-server.service
 ![Screen Shot 2021-05-21 at 10 04 23 AM](https://user-images.githubusercontent.com/44268796/119149917-f4455580-ba1b-11eb-8b53-b8e8f1b89e23.png)
 
 
+##### Change permissions on NFS server to allow web servers to read, write and execute:
+```
+sudo chown -R nobody: /mnt/apps
+sudo chown -R nobody: /mnt/logs
+sudo chown -R nobody: /mnt/opt
+
+sudo chmod -R 777 /mnt/apps
+sudo chmod -R 777 /mnt/logs
+sudo chmod -R 777 /mnt/opt
+
+sudo systemctl restart nfs-server.service
+```
+
+##### Find the subnet CIDR of the NFS server and allow access to clients within the same subnet:
+```
+sudo vi /etc/exports
+
+/mnt/apps <Subnet-CIDR>(rw,sync,no_all_squash,no_root_squash)
+/mnt/logs <Subnet-CIDR>(rw,sync,no_all_squash,no_root_squash)
+/mnt/opt <Subnet-CIDR>(rw,sync,no_all_squash,no_root_squash)
+
+sudo exportfs -arv
+```
+
+![Screen Shot 2021-05-21 at 11 22 37 AM](https://user-images.githubusercontent.com/44268796/119161029-dc270380-ba26-11eb-9e25-43e13337bba9.png)
+
+```
+sudo systemctl restart nfs-server.service
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
