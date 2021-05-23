@@ -11,7 +11,7 @@ The website will display a dashboard of some of the most useful DevOps tools as 
 - Prometheus
 - Kibana
 
-The project will comprise of the following resources:
+The project will use the following components:
 - AWS as infrastructure
 - Web Server with Red Hat Enterprise Linux 8
 - DB Server with Ubuntu 20.04 and MySQL
@@ -152,6 +152,40 @@ Check the /var/html folder to verify that the Apache files and directories are p
 sudo yum install git -y
 git clone https://github.com/darey-io/tooling.git
 ```
+###### After deploying the tooling repository code to the webserver, the html code is deployed to /var/www/html 
+
+
+![Screen Shot 2021-05-22 at 9 53 40 PM](https://user-images.githubusercontent.com/44268796/119260324-50d17d80-bba0-11eb-9b26-e3cbe1f911e9.png)
+
+
+###### PHP and its dependencies are installed
+
+![Screen Shot 2021-05-22 at 9 56 23 PM](https://user-images.githubusercontent.com/44268796/119260434-bd4c7c80-bba0-11eb-9fcf-f506e8fa0fa5.png)
+
+
+
+![Screen Shot 2021-05-22 at 9 57 32 PM](https://user-images.githubusercontent.com/44268796/119260435-bf164000-bba0-11eb-8f00-f2d30624a70e.png)
+
+
+
+###### On the DB server, a user is created with credentials.
+
+![Screen Shot 2021-05-22 at 9 59 28 PM](https://user-images.githubusercontent.com/44268796/119260438-c0e00380-bba0-11eb-96e3-a341ff24d225.png)
+
+
+###### On the browser, the tooling website is accessible at this point
+
+
+
+
+![Screen Shot 2021-05-22 at 10 00 10 PM](https://user-images.githubusercontent.com/44268796/119260518-1ddbb980-bba1-11eb-847a-5b626e843a46.png)
+
+
+
+
+![Screen Shot 2021-05-22 at 10 00 22 PM](https://user-images.githubusercontent.com/44268796/119260522-203e1380-bba1-11eb-97fd-50a446f26d42.png)
+
+
 
 
 
