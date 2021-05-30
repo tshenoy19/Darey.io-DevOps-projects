@@ -147,8 +147,7 @@ I also noticed how the logs kept adding new entries every time I refreshed the h
   This is internal configuration and thus local to the LB server, they will not be resolvable from other servers internally nor from the internet.
   
   
-  Credits: https://darey.io/dashboard/page/2
-  
+  Credits: https://darey.io
   
   
  
