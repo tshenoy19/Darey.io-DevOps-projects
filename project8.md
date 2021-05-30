@@ -98,11 +98,18 @@ Then, I accessed the logs on each web server:
 ```
 sudo tail -f /var/log/httpd/access_log
 ```
+On Web Server 1:
+
+![Screen Shot 2021-05-30 at 4 04 45 PM](https://user-images.githubusercontent.com/44268796/120118541-17c97800-c161-11eb-8624-fecbb91cb290.png)
+
+On Web Server 2:
 
 ![Screen Shot 2021-05-30 at 4 04 34 PM](https://user-images.githubusercontent.com/44268796/120118539-16984b00-c161-11eb-93b3-705bc020a91b.png)
 
 
-![Screen Shot 2021-05-30 at 4 04 45 PM](https://user-images.githubusercontent.com/44268796/120118541-17c97800-c161-11eb-8624-fecbb91cb290.png)
+
+
+
 
 
 I also noticed how the logs kept adding new entries every time I refreshed the http://<Load-Balancer-Public-IP-Address-or-Public-DNS-Name>/index.php on the web browser. The traffic was distributed between the two web servers. 
