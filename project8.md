@@ -108,11 +108,52 @@ On Web Server 2:
 
 
 
-
-
-
-
 I also noticed how the logs kept adding new entries every time I refreshed the http://<Load-Balancer-Public-IP-Address-or-Public-DNS-Name>/index.php on the web browser. The traffic was distributed between the two web servers. 
+ 
+##### Local DNS Names Resolution:
+ 
+ It can get tedious to maintain a long list of IP addresses for the web servers. We can configure local domain name resolution by adding entries to the /etc/hosts file. We can configure IP address to domain name mapping for the Load Balancer.
+ 
+ ```
+ sudo vi /etc/hosts
+ ```
+ Add the following entries:
+ ```
+ <WebServer1-Private-IP-Address> Web1
+ <WebServer2-Private-IP-Address> Web2
+ ```
+  
+  Update the configuration in the Load Balancer configuration file:
+  ```
+  sudo nano /etc/apache2/sites-available/000-default.conf
+  ```
+  Modify the IP address with the local domain names as follows:
+  ```
+  BalancerMember http://Web1:80 loadfactor=5 timeout=1
+  BalancerMember http://Web2:80 loadfactor=5 timeout=1
+  ```
+  
+  ![Screen Shot 2021-05-30 at 4 24 30 PM](https://user-images.githubusercontent.com/44268796/120119042-860f3a00-c163-11eb-83a3-b07b34a7b723.png)
+
+  
+  Upon using the curl command, the web server is accessible on the load balancer:
+  
+  ```
+  curl http://Web1
+  ```
+  
+  ![Screen Shot 2021-05-30 at 4 28 57 PM](https://user-images.githubusercontent.com/44268796/120119159-24030480-c164-11eb-8ca4-13884986b87e.png)
+  
+  This is internal configuration and thus local to the LB server, they will not be resolvable from other servers internally nor from the internet.
+  
+  
+  Credits: https://darey.io/dashboard/page/2
+  
+  
+  
+ 
+ 
+
 
  
  
