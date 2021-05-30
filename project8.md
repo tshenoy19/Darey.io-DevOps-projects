@@ -17,7 +17,13 @@ This project builds upon project 7 further by adding a Load Balancer to distribu
 
 #### Configuring an Apache Load Balancer
 
-##### Step 1: Create an Ubuntu Server 20.04 EC2 instance and name it as "apache-lb" The setup on AWS should look like this: 
+#### Step 1: Create an Ubuntu Server 20.04 EC2 instance and name it as "apache-lb" 
+The setup on AWS should look like this: 
+
+![Screen Shot 2021-05-30 at 3 33 20 PM](https://user-images.githubusercontent.com/44268796/120117691-5f013a00-c15c-11eb-9466-1ae366aa7707.png)
+
+
+
 
 
 
