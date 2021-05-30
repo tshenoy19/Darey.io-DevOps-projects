@@ -12,3 +12,14 @@ This project builds upon project 7 further by adding a Load Balancer to distribu
 3. One RHEL8 NFS server
 
 
+![Screen Shot 2021-05-30 at 3 25 54 PM](https://user-images.githubusercontent.com/44268796/120117479-5d834200-c15b-11eb-8e62-83823a06e7b0.png)
+
+
+#### Configuring an Apache Load Balancer
+
+##### Step 1: Create an Ubuntu Server 20.04 EC2 instance and name it as "apache-lb" The setup on AWS should look like this: 
+
+
+
+
+
