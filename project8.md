@@ -92,8 +92,20 @@ The tooling website is now accessible through the Load Balancer
 ![Screen Shot 2021-05-30 at 3 53 33 PM](https://user-images.githubusercontent.com/44268796/120118294-bf45ab00-c15f-11eb-9960-65e9c3d4b328.png)
 
 
+For project 7, I mounted /var/log/httpd/ from the Web Servers to the NFS server. I unmounted them and created a separate directory for each web server.
+Then, I accessed the logs on each web server:
+
+```
+sudo tail -f /var/log/httpd/access_log
+```
+
+![Screen Shot 2021-05-30 at 4 04 34 PM](https://user-images.githubusercontent.com/44268796/120118539-16984b00-c161-11eb-93b3-705bc020a91b.png)
 
 
+![Screen Shot 2021-05-30 at 4 04 45 PM](https://user-images.githubusercontent.com/44268796/120118541-17c97800-c161-11eb-8624-fecbb91cb290.png)
+
+
+I also noticed how the logs kept adding new entries every time I refreshed the http://<Load-Balancer-Public-IP-Address-or-Public-DNS-Name>/index.php on the web browser. The traffic was distributed between the two web servers. 
 
  
  
