@@ -74,6 +74,22 @@ sudo vi /etc/apache2/sites-available/000-default.conf
 sudo systemctl restart apache2
 ```
 
+##### Verify the configuration to see if the Load Balancer is serving as the entry point for allowing traffic into and out of the two web servers. Type the Public IP address or DNS name of the load balancer in the browser as follows:
+
+```
+http://<Load-Balancer-Public-IP-Address-or-Public-DNS-Name>/index.php
+```
+
+The tooling website is now accessible through the Load Balancer
+
+
+
+![Screen Shot 2021-05-30 at 3 52 52 PM](https://user-images.githubusercontent.com/44268796/120118292-be147e00-c15f-11eb-9320-c33125da3e58.png)
+
+
+
+
+![Screen Shot 2021-05-30 at 3 53 33 PM](https://user-images.githubusercontent.com/44268796/120118294-bf45ab00-c15f-11eb-9960-65e9c3d4b328.png)
 
 
 
