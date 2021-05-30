@@ -46,10 +46,33 @@ sudo a2enmod lbmethod_bytraffic
 sudo systemctl restart apache2
 ```
 
+Ensure that Apache2 is up and running:
+
+![Screen Shot 2021-05-30 at 3 44 45 PM](https://user-images.githubusercontent.com/44268796/120117968-0632a100-c15e-11eb-89ad-b2eadbdf13f7.png)
 
 
+#### Step 3: Configure Load Balancer:
 
+```
+sudo vi /etc/apache2/sites-available/000-default.conf
 
+#Add this configuration into this section <VirtualHost *:80>  </VirtualHost>
+
+<Proxy "balancer://mycluster">
+               BalancerMember http://<WebServer1-Private-IP-Address>:80 loadfactor=5 timeout=1
+               BalancerMember http://<WebServer2-Private-IP-Address>:80 loadfactor=5 timeout=1
+               ProxySet lbmethod=bytraffic
+               # ProxySet lbmethod=byrequests
+        </Proxy>
+
+        ProxyPreserveHost On
+        ProxyPass / balancer://mycluster/
+        ProxyPassReverse / balancer://mycluster/
+
+#Restart apache server
+
+sudo systemctl restart apache2
+```
 
 
 
