@@ -59,6 +59,10 @@ The Jenkins setup is now complete.
 ![Screen Shot 2021-05-31 at 2 51 41 PM](https://user-images.githubusercontent.com/44268796/120231594-b87e6d00-c21f-11eb-8f08-9d55feea32ae.png)
 
 
+#### Step 2 - Configure Jenkins to retrieve source codes from GitHub using Webhooks
+
+
+
 
 
 
