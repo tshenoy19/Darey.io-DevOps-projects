@@ -112,6 +112,26 @@ The changes to the GitHub master branch automatically trigger a new build on the
 
 #### Step 3 - Configure Jenkins to copy files to NFS server via SSH
 
+The next step is to copy the artifacts to the NFS server to /mnt/apps directory. For this, a plugin called "Publish over SSH" can be used. 
+
+###### Install “Publish Over SSH” plugin 
+On main dashboard select “Manage Jenkins” and choose “Manage Plugins” menu item.
+
+On “Available” tab search for “Publish Over SSH” plugin and install it:
+
+###### Configure the job/project to copy artifacts over to NFS server
+
+On main dashboard select “Manage Jenkins” and choose “Configure System” menu item.
+
+Scroll down to Publish over SSH plugin configuration section and configure it to be able to connect to your NFS server:
+
+Provide a private key (content of .pem file that you use to connect to NFS server via SSH/Putty)
+Arbitrary name
+Hostname - can be private IP address of your NFS server
+Username - ec2-user (since NFS server is based on EC2 with RHEL 8)
+Remote directory - /mnt/apps since our Web Servers use it as a mointing point to retrieve files from the NFS server
+Test the configuration and make sure the connection returns Success. Remember, that TCP port 22 on NFS server must be open to receive SSH connections.
+
 
 
 
