@@ -141,6 +141,12 @@ Configure it to send all files produced by the build into the previously defined
 
 
 
+Save this configuration and change something in README.MD file in your GitHub Tooling repository.
+
+At this point. when I check Jenkins, I encountered a permission denied error:
+
+![Screen Shot 2021-06-01 at 11 13 07 AM](https://user-images.githubusercontent.com/44268796/120347616-72caae80-c2ca-11eb-9058-8394c3050add.png)
+
 
 
 
