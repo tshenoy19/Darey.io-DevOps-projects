@@ -106,6 +106,9 @@ Configure “Post-build Actions” to archive all the files - files resulted fro
 
 The changes to the GitHub master branch automatically trigger a new build on the Jenkins server and the artifacts are updated and archived. The updated artifacts can also be accessible at ``` ls /var/lib/jenkins/jobs/tooling_github/builds/<build_number>/archive/ ```
 
+![Screen Shot 2021-06-01 at 9 55 29 AM](https://user-images.githubusercontent.com/44268796/120335485-80c70200-c2bf-11eb-827e-fc9cd3fc319d.png)
+
+
 
 #### Step 3 - Configure Jenkins to copy files to NFS server via SSH
 
