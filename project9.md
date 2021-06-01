@@ -148,8 +148,23 @@ At this point. when I check Jenkins, I encountered a permission denied error:
 ![Screen Shot 2021-06-01 at 11 13 07 AM](https://user-images.githubusercontent.com/44268796/120347616-72caae80-c2ca-11eb-9058-8394c3050add.png)
 
 
+Debugging: I tried changing the ownership of /mnt/apps directory on the NSF server:
+```
+sudo chown -R ec2-user:ec2-user /mnt/apps
+```
+
+This did not help. Then I tried changing the ownership of the /var/www on both webservers:
+```
+sudo chown -R ec2-user:ec2-user /var/www
+```
+
+This was the problem. The Build was successful upon running the above command. 
 
 
+
+![Screen Shot 2021-06-01 at 7 19 16 PM](https://user-images.githubusercontent.com/44268796/120401845-d1b21700-c30e-11eb-9f2f-3d7120c8b9a2.png)
+
+Credits: http://darey.io
 
 
 
