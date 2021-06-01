@@ -133,6 +133,11 @@ Remote directory - /mnt/apps since our Web Servers use it as a mointing point to
 Test the configuration and make sure the connection returns Success. Remember, that TCP port 22 on NFS server must be open to receive SSH connections.
 
 
+###### Save the configuration, open your Jenkins job/project configuration page and add another one “Post-build Action”
+
+Configure it to send all files produced by the build into the previously defined remote directory. In our case we want to copy all files and directories - so we use **. 
+
+![Screen Shot 2021-06-01 at 10 26 21 AM](https://user-images.githubusercontent.com/44268796/120340237-d1405e80-c2c3-11eb-88a5-af10a938793c.png)
 
 
 
