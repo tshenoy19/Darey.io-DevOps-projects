@@ -104,6 +104,11 @@ Configure “Post-build Actions” to archive all the files - files resulted fro
 ![Screen Shot 2021-06-01 at 9 09 43 AM](https://user-images.githubusercontent.com/44268796/120328729-1ca13f80-c2b9-11eb-83fb-cf551dc490ac.png)
 
 
+The changes to the GitHub master branch automatically trigger a new build on the Jenkins server and the artifacts are updated and archived. The updated artifacts can also be accessible at ls /var/lib/jenkins/jobs/tooling_github/builds/<build_number>/archive/
+
+
+
+
 
 
 
