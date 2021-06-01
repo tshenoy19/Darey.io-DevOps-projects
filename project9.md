@@ -68,7 +68,7 @@ First step is to enable webhooks in the GitHub repository settings:
 ![Screen Shot 2021-05-31 at 2 59 43 PM](https://user-images.githubusercontent.com/44268796/120315514-72bab680-c2aa-11eb-8ecf-094434a49fbb.png)
 
 
-Next, on the Jenkins web console, click “New Item” and create a “Freestyle project”
+Next, on the Jenkins web console, click “New Item” and create a “Freestyle project” and name it "tooling_github"
 
 ![Screen Shot 2021-05-31 at 3 00 46 PM](https://user-images.githubusercontent.com/44268796/120315725-a8f83600-c2aa-11eb-8450-62ae2cf0f3a5.png)
 
@@ -86,6 +86,29 @@ Configure the project to connect with your GitHub repository by entering the URL
 The Workspace for the first job has retrieved all the files/directories from the GitHub repository and stored it locally.
 
 ![Screen Shot 2021-06-01 at 7 31 19 AM](https://user-images.githubusercontent.com/44268796/120316395-5ec38480-c2ab-11eb-88f2-4ddc9ec59f78.png)
+
+
+This build is triggered only when activated manually. 
+
+###### Adding additional configurations to the project "tooling_github"
+
+Click “Configure” your job/project and add these two configurations: 
+
+Configure triggering the job from GitHub webhook:
+
+![Screen Shot 2021-06-01 at 9 06 38 AM](https://user-images.githubusercontent.com/44268796/120328290-ae5c7d00-c2b8-11eb-9d8f-c705b4a6ea82.png)
+
+
+Configure “Post-build Actions” to archive all the files - files resulted from a build are called “artifacts”
+
+![Screen Shot 2021-06-01 at 9 09 43 AM](https://user-images.githubusercontent.com/44268796/120328729-1ca13f80-c2b9-11eb-83fb-cf551dc490ac.png)
+
+
+
+
+
+
+
 
 
 
