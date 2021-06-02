@@ -89,11 +89,25 @@ sudo systemctl status nginx
 To obtain a valid SSL certificate, a domain name needs to be registered. The following steps were taken:
 
 - Registered a domain name with Godaddy.com
+
+![Screen Shot 2021-06-02 at 10 08 00 AM](https://user-images.githubusercontent.com/44268796/120495135-6c037080-c38a-11eb-8280-8bfa87dfe6f6.png)
+
 - Assigned an Elastic IP to the Nginx LB server and associated the domain name with this Elastic IP
+
+![Screen Shot 2021-06-02 at 10 07 22 AM](https://user-images.githubusercontent.com/44268796/120495043-54c48300-c38a-11eb-9b37-c2fb717be48f.png)
+
 - Updated a record in the domain name registrar to point to the Nginx LB using Elastic IP address
 
+![Screen Shot 2021-06-02 at 10 16 18 AM](https://user-images.githubusercontent.com/44268796/120496462-943f9f00-c38b-11eb-9bd5-4a05c739e3bd.png)
 
+###### Configure Nginx to recognize your new domain name
+
+Update your nginx.conf with server_name www.<your-domain-name.com> instead of server_name www.domain.com.
 Check that the Web Servers can be reached from the browser using new domain name using HTTP protocol - http://<your-domain-name.com>
+
+###### Install certbot and request for an SSL/TLS certificate
+
+
 
 
 
