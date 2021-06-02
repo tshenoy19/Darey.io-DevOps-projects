@@ -125,7 +125,52 @@ sudo snap install --classic certbot
 ![Screen Shot 2021-06-02 at 10 39 51 AM](https://user-images.githubusercontent.com/44268796/120500475-de764f80-c38e-11eb-9700-601f024b347a.png)
 
 
+Request the SSL certificate. Choose the domain that the certificate is to be issued for, domain name will be looked up from nginx.conf.
 
+```
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+sudo certbot --nginx
+```
+
+![Screen Shot 2021-06-02 at 10 44 42 AM](https://user-images.githubusercontent.com/44268796/120501356-8be96300-c38f-11eb-956a-ae5cb756c050.png)
+
+The web solution should now be securely accessible at https://<your-domain-name.com>
+
+![Screen Shot 2021-06-02 at 10 46 08 AM](https://user-images.githubusercontent.com/44268796/120501616-bf2bf200-c38f-11eb-8969-ad43213d04f1.png)
+
+Access the website by using HTTPS protocol (that uses TCP port 443) and see a padlock pictogram in the browser’s search string. Click on the padlock icon to find the details of the certificate issued for the website.
+
+
+
+![Screen Shot 2021-06-02 at 10 49 01 AM](https://user-images.githubusercontent.com/44268796/120502138-2cd81e00-c390-11eb-8819-9e048dba30db.png)
+
+###### Set up periodical renewal of your SSL/TLS certificate
+
+By default, LetsEncrypt certificate is valid for 90 days, so it is recommended to renew it at least every 60 days or more frequently. Test the renewal command in dry-run mode:
+
+```
+sudo certbot renew --dry-run
+```
+
+![Screen Shot 2021-06-02 at 10 54 34 AM](https://user-images.githubusercontent.com/44268796/120503012-ecc56b00-c390-11eb-86d0-a5494bd3bb4d.png)
+
+
+###### Setting up a cronjob for automatic renewal of the SSL certificate
+
+Best pracice is to have a scheduled job that to run renew command periodically. Configure a cronjob to run the command twice a day.
+To do so, edit the crontab file with the following command:
+
+```
+crontab -e
+```
+
+Choose nano as the editor and add the following line:
+```
+* */12 * * *   root /usr/bin/certbot renew > /dev/null 2>&1
+```
+
+Credits:
+https://darey.io/
 
 
 
