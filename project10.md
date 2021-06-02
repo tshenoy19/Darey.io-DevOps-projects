@@ -86,6 +86,16 @@ sudo systemctl status nginx
 
 #### Register a new domain name and configure secured connection using SSL/TLS certificates
 
+To obtain a valid SSL certificate, a domain name needs to be registered. The following steps were taken:
+
+- Registered a domain name with Godaddy.com
+- Assigned an Elastic IP to the Nginx LB server and associated the domain name with this Elastic IP
+- Updated a record in the domain name registrar to point to the Nginx LB using Elastic IP address
+
+
+Check that the Web Servers can be reached from the browser using new domain name using HTTP protocol - http://<your-domain-name.com>
+
+
 
 
 
