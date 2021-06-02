@@ -103,9 +103,28 @@ To obtain a valid SSL certificate, a domain name needs to be registered. The fol
 ###### Configure Nginx to recognize your new domain name
 
 Update your nginx.conf with server_name www.<your-domain-name.com> instead of server_name www.domain.com.
-Check that the Web Servers can be reached from the browser using new domain name using HTTP protocol - http://<your-domain-name.com>
+Check that the tooling application can be reached from the browser using new domain name using HTTP protocol - http://<your-domain-name.com>
 
 ###### Install certbot and request for an SSL/TLS certificate
+
+Before installing certbot, ensure that the snapd service is active and running
+
+```
+sudo apt update 
+sudo apt install snapd 
+sudo systemctl status snapd
+```
+
+![Screen Shot 2021-06-02 at 10 38 18 AM](https://user-images.githubusercontent.com/44268796/120500190-ab33c080-c38e-11eb-9cf8-87b640367b45.png)
+
+Install certbot
+```
+sudo snap install --classic certbot
+```
+
+![Screen Shot 2021-06-02 at 10 39 51 AM](https://user-images.githubusercontent.com/44268796/120500475-de764f80-c38e-11eb-9700-601f024b347a.png)
+
+
 
 
 
