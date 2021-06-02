@@ -81,6 +81,8 @@ sudo systemctl status nginx
 ![Screen Shot 2021-06-02 at 7 24 52 AM](https://user-images.githubusercontent.com/44268796/120472236-a1e92a80-c373-11eb-9a6d-65124ea928e0.png)
 
 
+#### Register a new domain name and configure secured connection using SSL/TLS certificates
+
 
 
 
