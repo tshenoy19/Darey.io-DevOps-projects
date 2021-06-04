@@ -36,13 +36,25 @@ ansible --version
 ##### 4. Configure Jenkins build job to save the repository content every time any changes are made:
 
 - Create a new Freestyle project ansible in Jenkins and point it to the ‘ansible-config-mgt’ repository.
+
+![Screen Shot 2021-06-04 at 10 12 24 AM](https://user-images.githubusercontent.com/44268796/120814936-5d998e00-c51d-11eb-8c43-944d1872e9ec.png)
+
+![Screen Shot 2021-06-04 at 10 16 04 AM](https://user-images.githubusercontent.com/44268796/120815510-e1ec1100-c51d-11eb-8f37-d4b35a3f1e83.png)
+
 - Configure Webhook in GitHub and set webhook to trigger ansible build.
+
+![Screen Shot 2021-06-04 at 10 17 42 AM](https://user-images.githubusercontent.com/44268796/120815732-1b248100-c51e-11eb-92e6-7828151b0756.png)
+
 - Configure a Post-build job to save all (**)files using the same steps as Project 9.
+- 
 - Test the setup by making some change in README.MD file in master branch and make sure that builds starts automatically and Jenkins saves the files (build artifacts) in following folder:
 
 ```
 ls /var/lib/jenkins/jobs/ansible/builds/<build_number>/archive/
 ```
+The build failed many times. After trying many different configuration changes, I was finally able to get the build to be successful by changing the branch specifier to */main instead of */master
+
+![Screen Shot 2021-06-04 at 10 40 38 AM](https://user-images.githubusercontent.com/44268796/120819250-612f1400-c521-11eb-89ee-81ea4e991837.png)
 
 
 
