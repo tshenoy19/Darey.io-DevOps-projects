@@ -52,7 +52,7 @@ ansible --version
 ```
 ls /var/lib/jenkins/jobs/ansible/builds/<build_number>/archive/
 ```
-The build failed many times. After trying many different configuration changes, I was finally able to get the build to be successful by changing the branch specifier to */main instead of */master. Another change was that I had to update the Jenkins URL address with the new public IP address of the server as I had restarted the server since last time. 
+###### The build failed many times. After trying many different configuration changes, I was finally able to get the build to be successful by changing the branch specifier to */main instead of */master. Another change was that I had to update the Jenkins URL address with the new public IP address of the server as I had restarted the server since last time. Assigning an Elastic IP address to the Jenkins server would also fix this issue. 
 
 ![Screen Shot 2021-06-04 at 10 40 38 AM](https://user-images.githubusercontent.com/44268796/120819250-612f1400-c521-11eb-89ee-81ea4e991837.png)
 
@@ -62,6 +62,22 @@ The build failed many times. After trying many different configuration changes, 
 The architecture of the setup so far looks like the diagram below:
 
 ![Screen Shot 2021-06-04 at 10 45 12 AM](https://user-images.githubusercontent.com/44268796/120819865-fd591b00-c521-11eb-9f89-d45b6003077a.png)
+
+
+#### Step 2 - Prepare the development environment using Visual Studio Code
+
+Next step is to install a versatile Integrated development environment (IDE) or Source-code Editor. The IDE used in this project is Visual Studio Code (VSC). Configure it and connect it to the GitHub respository created for this project (https://code.visualstudio.com/docs/editor/github).
+
+![Screen Shot 2021-06-04 at 11 22 41 AM](https://user-images.githubusercontent.com/44268796/120825252-3051dd80-c527-11eb-903f-eea76510bbea.png)
+
+![Screen Shot 2021-06-04 at 11 24 32 AM](https://user-images.githubusercontent.com/44268796/120825765-b66e2400-c527-11eb-9044-7e3890fd4c74.png)
+
+![Screen Shot 2021-06-04 at 11 26 21 AM](https://user-images.githubusercontent.com/44268796/120825770-b79f5100-c527-11eb-96e7-3e2913f1c7c6.png)
+
+
+
+
+
 
 
 
