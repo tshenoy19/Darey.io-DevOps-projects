@@ -52,9 +52,14 @@ ansible --version
 ```
 ls /var/lib/jenkins/jobs/ansible/builds/<build_number>/archive/
 ```
-The build failed many times. After trying many different configuration changes, I was finally able to get the build to be successful by changing the branch specifier to */main instead of */master
+The build failed many times. After trying many different configuration changes, I was finally able to get the build to be successful by changing the branch specifier to */main instead of */master. Another change was that I had to update the Jenkins URL address with the new public IP address of the server as I had restarted the server since last time. 
 
 ![Screen Shot 2021-06-04 at 10 40 38 AM](https://user-images.githubusercontent.com/44268796/120819250-612f1400-c521-11eb-89ee-81ea4e991837.png)
+
+![Screen Shot 2021-06-04 at 10 42 13 AM](https://user-images.githubusercontent.com/44268796/120819393-87ed4a80-c521-11eb-9f85-66d2be3a11fe.png)
+
+
+
 
 
 
