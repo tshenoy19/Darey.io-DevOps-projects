@@ -59,6 +59,11 @@ The build failed many times. After trying many different configuration changes, 
 ![Screen Shot 2021-06-04 at 10 42 13 AM](https://user-images.githubusercontent.com/44268796/120819393-87ed4a80-c521-11eb-9f85-66d2be3a11fe.png)
 
 
+The architecture of the setup so far looks like the diagram below:
+
+![Screen Shot 2021-06-04 at 10 45 12 AM](https://user-images.githubusercontent.com/44268796/120819865-fd591b00-c521-11eb-9f89-d45b6003077a.png)
+
+
 
 
 
