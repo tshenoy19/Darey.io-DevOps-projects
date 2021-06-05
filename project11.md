@@ -105,6 +105,40 @@ touch dev.yml staging.yml uat.yml prod.yml
 
 ![Screen Shot 2021-06-05 at 11 41 52 AM](https://user-images.githubusercontent.com/44268796/120897269-3a411280-c5f3-11eb-8cfc-7d25f8994638.png)
 
+#### Step 4 - Set up an Ansible Inventory
+
+An Ansible inventory file defines the hosts and groups of hosts upon which commands, modules, and tasks in a playbook operate. The intention is to execute Linux commands on remote hosts and ensure that it is the intended configuration on a particular server that occurs. It is important to have a way to organize our hosts in such an Inventory.
+
+Save below inventory structure in the inventory/dev file to start configuring the development servers. Ensure to replace the IP addresses with the actual IP addresses of the setup.
+
+Note: Ansible uses TCP port 22 by default, which means it needs to ssh into target servers from Jenkins-Ansible host - for this copy the private (.pem) key to the server. Change permissions to the private key with chmod 400 key.pem, otherwise EC2 will not accept the key. Import the key into ssh-agent:
+
+```
+eval `ssh-agent -s`
+ssh-add <path-to-private-key>
+```
+
+![Screen Shot 2021-06-05 at 1 47 46 PM](https://user-images.githubusercontent.com/44268796/120900760-9f513400-c604-11eb-9c2a-22b1cc65d212.png)
+
+In this setup, the Load Balancer user is ubuntu and user for RHEL-based servers is ec2-user.
+
+Update the inventory/dev.yml file with this snippet of code:
+```
+[nfs]
+<NFS-Server-Private-IP-Address> ansible_ssh_user='ec2-user'
+
+[webservers]
+<Web-Server1-Private-IP-Address> ansible_ssh_user='ec2-user'
+<Web-Server2-Private-IP-Address> ansible_ssh_user='ec2-user'
+
+[db]
+<Database-Private-IP-Address> ansible_ssh_user='ec2-user' 
+
+[lb]
+<Load-Balancer-Private-IP-Address> ansible_ssh_user='ubuntu'
+```
+
+
 
 
 
