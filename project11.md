@@ -138,7 +138,38 @@ Update the inventory/dev.yml file with this snippet of code:
 <Load-Balancer-Private-IP-Address> ansible_ssh_user='ubuntu'
 ```
 
+![Screen Shot 2021-06-05 at 1 59 44 PM](https://user-images.githubusercontent.com/44268796/120901026-4bdfe580-c606-11eb-8555-0c4cdc55d8f2.png)
 
+#### Step 5 - Create a Common Playbook
+
+The common.yml playbook will contain configuration code for repeatable, re-usable, and multi-machine tasks that is common to systems within the infrastructure.
+
+Update the playbooks/common.yml file with following code:
+
+```yml
+---
+- name: update web, nfs and db servers
+  hosts: webservers, nfs, db
+  remote_user: ec2-user
+  become: yes
+  become_user: root
+  tasks:
+  - name: ensure wireshark is at the latest version
+    yum:
+      name: wireshark
+      state: latest
+
+- name: update LB server
+  hosts: lb
+  remote_user: ubuntu
+  become: yes
+  become_user: root
+  tasks:
+  - name: ensure wireshark is at the latest version
+    apt:
+      name: wireshark
+      state: latest
+  ```
 
 
 
