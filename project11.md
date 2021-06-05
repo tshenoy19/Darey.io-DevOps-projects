@@ -68,11 +68,7 @@ The architecture of the setup so far looks like the diagram below:
 
 Next step is to install a versatile Integrated development environment (IDE) or Source-code Editor. The IDE used in this project is Visual Studio Code (VSC). Configure it and connect it to the GitHub respository created for this project (https://code.visualstudio.com/docs/editor/github).
 
-![Screen Shot 2021-06-04 at 11 22 41 AM](https://user-images.githubusercontent.com/44268796/120825252-3051dd80-c527-11eb-903f-eea76510bbea.png)
 
-![Screen Shot 2021-06-04 at 11 24 32 AM](https://user-images.githubusercontent.com/44268796/120825765-b66e2400-c527-11eb-9044-7e3890fd4c74.png)
-
-![Screen Shot 2021-06-04 at 11 26 21 AM](https://user-images.githubusercontent.com/44268796/120825770-b79f5100-c527-11eb-96e7-3e2913f1c7c6.png)
 
 
 
