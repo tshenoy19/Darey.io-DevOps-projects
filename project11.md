@@ -69,6 +69,9 @@ The architecture of the setup so far looks like the diagram below:
 Next step is to install a versatile Integrated development environment (IDE) or Source-code Editor. The IDE used in this project is Visual Studio Code (VSC). Configure it and connect it to the GitHub respository created for this project (https://code.visualstudio.com/docs/editor/github).
 
 
+![Screen Shot 2021-06-05 at 11 09 36 AM](https://user-images.githubusercontent.com/44268796/120896210-8d649680-c5ee-11eb-8c62-44493b2ffc8b.png)
+
+#### Step 3 - Begin Ansible Development
 
 
 
