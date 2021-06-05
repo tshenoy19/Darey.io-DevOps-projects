@@ -73,6 +73,41 @@ Next step is to install a versatile Integrated development environment (IDE) or 
 
 #### Step 3 - Begin Ansible Development
 
+In the ansible-config-mgt GitHub repository, create a new branch that will be used for development of a new feature - ansible-newfeature. 
+
+![Screen Shot 2021-06-05 at 11 33 00 AM](https://user-images.githubusercontent.com/44268796/120896947-c9e5c180-c5f1-11eb-8755-20d12ddc5a1b.png)
+
+
+1. Checkout the newly created feature branch to your local machine and start building your code and directory structure
+
+![Screen Shot 2021-06-05 at 11 30 41 AM](https://user-images.githubusercontent.com/44268796/120896878-78d5cd80-c5f1-11eb-9354-ec1f11ccaeda.png)
+
+
+2. Create a directory and name it playbooks - it will be used to store all your playbook files. Also, create a directory and name it inventory - it will be used to keep your hosts organised.
+
+![Screen Shot 2021-06-05 at 11 37 01 AM](https://user-images.githubusercontent.com/44268796/120897045-5a240680-c5f2-11eb-9f4a-2528cded1678.png)
+
+
+3. Within the playbooks folder, create your first playbook, and name it common.yml.
+```
+cd playbooks
+touch common.yml
+```
+4.  Within the inventory folder, create an inventory file (.yml) for each environment (Development, Staging Testing and Production) dev, staging, uat, and prod respectively.
+```
+cd inventory
+touch dev.yml staging.yml uat.yml prod.yml
+```
+
+
+![Screen Shot 2021-06-05 at 11 41 39 AM](https://user-images.githubusercontent.com/44268796/120897237-0ebe2800-c5f3-11eb-8be8-9919da91b7f0.png)
+
+
+![Screen Shot 2021-06-05 at 11 41 52 AM](https://user-images.githubusercontent.com/44268796/120897269-3a411280-c5f3-11eb-8cfc-7d25f8994638.png)
+
+
+
+
 
 
 
