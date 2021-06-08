@@ -9,7 +9,7 @@ The project will focus on developing Ansible scripts to simulate the use of a Ju
 - Install and configure Ansible client to act as a Jump Server/Bastion Host
 - Create a simple Ansible playbook to automate servers configuration
 
-#### Step 1 - Install and configure Ansible on EC2 Instance
+#### Step 1 - Install and configure Ansible on EC2 Instance:
 
 ##### 1. Update Name tag on the Jenkins EC2 Instance to Jenkins-Ansible. This server will be used to run the playbooks.
 
