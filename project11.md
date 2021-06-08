@@ -140,6 +140,10 @@ Update the inventory/dev.yml file with this snippet of code:
 
 ![Screen Shot 2021-06-08 at 11 26 37 AM](https://user-images.githubusercontent.com/44268796/121213703-77eca800-c84c-11eb-8adc-d1c50b8b7373.png)
 
+
+![Screen Shot 2021-06-08 at 1 32 04 PM](https://user-images.githubusercontent.com/44268796/121231039-eb4ae580-c85d-11eb-8a38-0c0f5aae9f7b.png)
+
+
 #### Step 5 - Create a Common Playbook
 
 The common.yml playbook will contain configuration code for repeatable, re-usable, and multi-machine tasks that is common to systems within the infrastructure.
@@ -171,7 +175,7 @@ Update the playbooks/common.yml file with following code:
       state: latest
   ```
 
-
+![Screen Shot 2021-06-08 at 2 03 59 PM](https://user-images.githubusercontent.com/44268796/121235031-67dfc300-c862-11eb-966b-292274575e89.png)
 
 
 
