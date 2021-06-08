@@ -138,7 +138,7 @@ Update the inventory/dev.yml file with this snippet of code:
 <Load-Balancer-Private-IP-Address> ansible_ssh_user='ubuntu'
 ```
 
-![Screen Shot 2021-06-05 at 1 59 44 PM](https://user-images.githubusercontent.com/44268796/120901026-4bdfe580-c606-11eb-8555-0c4cdc55d8f2.png)
+![Screen Shot 2021-06-08 at 11 26 37 AM](https://user-images.githubusercontent.com/44268796/121213703-77eca800-c84c-11eb-8adc-d1c50b8b7373.png)
 
 #### Step 5 - Create a Common Playbook
 
