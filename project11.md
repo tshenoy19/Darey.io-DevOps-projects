@@ -118,7 +118,10 @@ eval `ssh-agent -s`
 ssh-add <path-to-private-key>
 ```
 
-![Screen Shot 2021-06-05 at 1 47 46 PM](https://user-images.githubusercontent.com/44268796/120900760-9f513400-c604-11eb-9c2a-22b1cc65d212.png)
+##### Blocker: It was a huge learning experience to figure out how to transfer files from local machine to EC2 instance and also to set up the permissions and key pair transfer to the Ansible master in order to be able to connect with the host servers. I saved a copy of the pem file in the ansible-config-mgt folder and added the path to the inventory file. 
+
+![Screen Shot 2021-06-09 at 10 07 44 AM](https://user-images.githubusercontent.com/44268796/121371086-41c22d80-c90b-11eb-8ae8-fae4fee70ee0.png)
+
 
 In this setup, the Load Balancer user is ubuntu and user for RHEL-based servers is ec2-user.
 
@@ -138,10 +141,6 @@ Update the inventory/dev.yml file with this snippet of code:
 <Load-Balancer-Private-IP-Address> ansible_ssh_user='ubuntu'
 ```
 
-![Screen Shot 2021-06-08 at 11 26 37 AM](https://user-images.githubusercontent.com/44268796/121213703-77eca800-c84c-11eb-8adc-d1c50b8b7373.png)
-
-
-![Screen Shot 2021-06-08 at 1 32 04 PM](https://user-images.githubusercontent.com/44268796/121231039-eb4ae580-c85d-11eb-8a38-0c0f5aae9f7b.png)
 
 
 #### Step 5 - Create a Common Playbook
