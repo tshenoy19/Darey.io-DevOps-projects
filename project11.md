@@ -225,7 +225,9 @@ ansible-playbook -i inventory/dev.yml playbooks/common.yml
 ![Screen Shot 2021-06-09 at 11 20 01 AM](https://user-images.githubusercontent.com/44268796/121382477-a5048d80-c914-11eb-9e42-d3db7713a902.png)
 
 
+The architecture at the end of this project looks like the diagram below:
 
+![Screen Shot 2021-06-09 at 11 06 28 AM](https://user-images.githubusercontent.com/44268796/121382853-00cf1680-c915-11eb-9585-4eb4d07cb3fa.png)
 
 
 
