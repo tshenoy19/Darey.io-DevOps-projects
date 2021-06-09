@@ -245,8 +245,6 @@ The common.yml playbook was updated with additonal instructions to create a dire
 
 
 
-This project was a great learning experience. It gives an insight into how Jenkins can be used as an effective CI/CD tool as well as how Ansible helps to automate tasks efficiently. The project also helped solidify my GitHub skills. 
-
 
 Credits: (https://darey.io/)
 
