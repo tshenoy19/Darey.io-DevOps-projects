@@ -230,7 +230,18 @@ The architecture at the end of this project looks like the diagram below:
 ![Screen Shot 2021-06-09 at 11 22 28 AM](https://user-images.githubusercontent.com/44268796/121383171-3e33a400-c915-11eb-8227-3d3c457a865c.png)
 
 
+Additional Ansible Exercises:
 
+- Create a directory and a file inside it
+- Change timezone on all servers
+- Run some shell script
+
+The common.yml playbook was updated with additonal instructions to create a directory called 'test-directory' and also change the timezone to Asia/Tokyo on all servers.
+
+
+![Screen Shot 2021-06-09 at 3 41 15 PM](https://user-images.githubusercontent.com/44268796/121419191-b1e7a800-c939-11eb-8f56-e3010bb157fc.png)
+
+![Screen Shot 2021-06-09 at 3 42 43 PM](https://user-images.githubusercontent.com/44268796/121419202-b3b16b80-c939-11eb-99f7-a3270822a102.png)
 
 
 
