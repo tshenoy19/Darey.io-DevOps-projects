@@ -128,19 +128,20 @@ In this setup, the Load Balancer user is ubuntu and user for RHEL-based servers 
 Update the inventory/dev.yml file with this snippet of code:
 ```
 [nfs]
-<NFS-Server-Private-IP-Address> ansible_ssh_user='ec2-user'
+<NFS-Server-Private-IP-Address> ansible_ssh_user='ec2-user' ansible_ssh_private_key_file=<path-to-.pem-private-key>
 
 [webservers]
-<Web-Server1-Private-IP-Address> ansible_ssh_user='ec2-user'
-<Web-Server2-Private-IP-Address> ansible_ssh_user='ec2-user'
+<Web-Server1-Private-IP-Address> ansible_ssh_user='ec2-user' ansible_ssh_private_key_file=<path-to-.pem-private-key>
+<Web-Server2-Private-IP-Address> ansible_ssh_user='ec2-user' ansible_ssh_private_key_file=<path-to-.pem-private-key>
 
 [db]
-<Database-Private-IP-Address> ansible_ssh_user='ec2-user' 
+<Database-Private-IP-Address> ansible_ssh_user='ubuntu' ansible_ssh_private_key_file=<path-to-.pem-private-key>
 
 [lb]
-<Load-Balancer-Private-IP-Address> ansible_ssh_user='ubuntu'
+<Load-Balancer-Private-IP-Address> ansible_ssh_user='ubuntu' ansible_ssh_private_key_file=<path-to-.pem-private-key>
 ```
 
+![Screen Shot 2021-06-09 at 10 20 13 AM](https://user-images.githubusercontent.com/44268796/121372426-49360680-c90c-11eb-807f-8560b42e6531.png)
 
 
 #### Step 5 - Create a Common Playbook
