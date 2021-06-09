@@ -177,12 +177,52 @@ Update the playbooks/common.yml file with following code:
 
 ![Screen Shot 2021-06-09 at 10 23 34 AM](https://user-images.githubusercontent.com/44268796/121373097-cceff300-c90c-11eb-9659-d6bb5a44366c.png)
 
+This playbook is divided into two parts, each of them is intended to perform the same task: install wireshark utility (or make sure it is updated to the latest version) on the RHEL 8 and Ubuntu servers. It uses root user to perform this task and respective package manager: yum for RHEL 8 and apt for Ubuntu.
+
+#### Step 6 - Update GIT with the latest code
+
+Now all of the directories and files live on the machine and the changes need to be pushed to GitHub.
+
+The changes have been made in a separate branch, so a pull request needs to be raised, the branch needs to be peer reviewed and merged to the master branch.
+
+Commit the code into GitHub:
+```
+git status
+
+git add <selected files>
+
+git commit -m "commit message"
+```
+
+![Screen Shot 2021-06-09 at 10 32 16 AM](https://user-images.githubusercontent.com/44268796/121374642-0ecd6900-c90e-11eb-9ed8-889df48efac5.png)
+
+![Screen Shot 2021-06-09 at 10 32 51 AM](https://user-images.githubusercontent.com/44268796/121374650-10972c80-c90e-11eb-9e6b-6412e102e4be.png)
 
 
+##### Integrating the code into the Master branch after reviewing it
+
+1. Create a Pull request (PR).
+2. Review the code and configuration from a different perspective.
+3. If everything looks okay, merge the code to the master branch.
+4. Head back on the terminal, checkout from the feature branch into the master, and pull down the latest changes.
 
 
+![Screen Shot 2021-06-09 at 10 42 34 AM](https://user-images.githubusercontent.com/44268796/121376309-69b39000-c90f-11eb-88c0-2335992cbe2e.png)
+
+![Screen Shot 2021-06-09 at 11 03 06 AM](https://user-images.githubusercontent.com/44268796/121379712-4c33f580-c912-11eb-8ac6-8484e0f70fb2.png)
+
+With the update to GitHub repository, Jenkins automatically triggered a new build and all the changes were updated in the workspace.
+
+![Screen Shot 2021-06-09 at 11 06 28 AM](https://user-images.githubusercontent.com/44268796/121380309-c3698980-c912-11eb-8da5-04ae27b6b0ce.png)
 
 
+Run the playbook to execute the commands on the host servers:
+
+```
+ansible-playbook -i inventory/dev.yml playbooks/common.yml
+```
+
+![Screen Shot 2021-06-09 at 11 20 01 AM](https://user-images.githubusercontent.com/44268796/121382477-a5048d80-c914-11eb-9e42-d3db7713a902.png)
 
 
 
