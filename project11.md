@@ -152,8 +152,8 @@ Update the playbooks/common.yml file with following code:
 
 ```yml
 ---
-- name: update web, nfs and db servers
-  hosts: webservers, nfs, db
+- name: update web, nfs servers
+  hosts: webservers, nfs
   remote_user: ec2-user
   become: yes
   become_user: root
@@ -163,8 +163,8 @@ Update the playbooks/common.yml file with following code:
       name: wireshark
       state: latest
 
-- name: update LB server
-  hosts: lb
+- name: update LB and db server
+  hosts: lb, db
   remote_user: ubuntu
   become: yes
   become_user: root
@@ -175,7 +175,7 @@ Update the playbooks/common.yml file with following code:
       state: latest
   ```
 
-![Screen Shot 2021-06-08 at 2 03 59 PM](https://user-images.githubusercontent.com/44268796/121235031-67dfc300-c862-11eb-966b-292274575e89.png)
+![Screen Shot 2021-06-09 at 10 23 34 AM](https://user-images.githubusercontent.com/44268796/121373097-cceff300-c90c-11eb-9659-d6bb5a44366c.png)
 
 
 
