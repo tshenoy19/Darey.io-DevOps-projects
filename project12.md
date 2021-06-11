@@ -121,6 +121,7 @@ sudo ansible-playbook -i /home/ubuntu/ansible/ansible-config-mgt/inventory/dev.y
 
 ![Screen Shot 2021-06-11 at 11 27 02 AM](https://user-images.githubusercontent.com/44268796/121710826-f4c78e00-caa7-11eb-8e70-9ec0f14169a8.png)
 
+##### Step 3 - Configure UAT Webservers with a role ‘Webserver’
 
 At this point, the dev environment is nice and clean. In order to keep it that way, configure 2 new Web Servers as uat. Tasks could be written to configure Web Servers in the same playbook, but it would be messy. Instead, it would be best to use a dedicated role to make the configuration reusable.
 
