@@ -61,12 +61,22 @@ Hence, breaking tasks up into different files is an excellent way to organize co
 
 To see the code re-use in action, other playbooks will be imported in this step.
 
-Within playbooks folder, create a new file and name it site.yml - This file will now be considered as an entry point into the entire infrastructure configuration. Other playbooks will be included here as a reference. In other words, site.yml will become a parent to all other playbooks that will be developed including common.yml that was created previously. 
+1. Within playbooks folder, create a new file and name it site.yml - This file will now be considered as an entry point into the entire infrastructure configuration. Other playbooks will be included here as a reference. In other words, site.yml will become a parent to all other playbooks that will be developed including common.yml that was created previously. 
 
-Create a new folder in root of the repository and name it static-assignments. The static-assignments folder is where all other children playbooks will be stored. This is merely for easy organization of the work. It is not an Ansible-specific concept so organization of the playbooks is entirely up to the developer.
+2. Create a new folder in root of the repository and name it static-assignments. The static-assignments folder is where all other children playbooks will be stored. This is merely for easy organization of the work. It is not an Ansible-specific concept so organization of the playbooks is entirely up to the developer.
 
-Move common.yml file into the newly created static-assignments folder.
-Inside site.yml file, import common.yml playbook.
+The directory structure should look like this:
+
+
+![Screen Shot 2021-06-11 at 11 01 18 AM](https://user-images.githubusercontent.com/44268796/121707235-5be34380-caa4-11eb-9492-fef97f6f5649.png)
+
+3. Move common.yml file into the newly created static-assignments folder. Inside site.yml file, import common.yml playbook with the following code:
+```yml
+---
+- hosts: all
+- import_playbook: ../static-assignments/common.yml
+```
+
 
 
 
