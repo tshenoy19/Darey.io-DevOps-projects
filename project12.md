@@ -128,9 +128,113 @@ At this point, the dev environment is nice and clean. In order to keep it that w
 Launch 2 fresh EC2 instances using RHEL 8 image, which will serve as the uat servers, so name them accordingly - Web1-UAT and Web2-UAT.
 
 To create a role, create a directory called roles/, relative to the playbook file or in /etc/ansible/ directory.
-There are two ways how you can create this folder structure:
 
 Use an Ansible utility called ansible-galaxy inside ansible-config-mgt/roles directory (create roles directory upfront)
+```
+mkdir roles
+cd roles
+ansible-galaxy init webserver
+```
+
+![Screen Shot 2021-06-11 at 1 56 20 PM](https://user-images.githubusercontent.com/44268796/121729754-d0c27780-cabc-11eb-8e8c-ac953de2f34b.png)
+
+The entire folder structure should look like below. For this project, tests, files, and vars folders can be removed from the roles/ directory.
+```
+└── webserver
+    ├── README.md
+    ├── defaults
+    │   └── main.yml
+    ├── files
+    ├── handlers
+    │   └── main.yml
+    ├── meta
+    │   └── main.yml
+    ├── tasks
+    │   └── main.yml
+    ├── templates
+    ├── tests
+    │   ├── inventory
+    │   └── test.yml
+    └── vars
+        └── main.yml
+   ```
+   
+   After deleting the above folders, the directory structure should look like this:
+   ```
+   └── webserver
+    ├── README.md
+    ├── defaults
+    │   └── main.yml
+    ├── handlers
+    │   └── main.yml
+    ├── meta
+    │   └── main.yml
+    ├── tasks
+    │   └── main.yml
+    └── templates
+```
+
+- Update the inventory ansible-config-mgt/inventory/uat.yml file with IP addresses of the 2 UAT Web servers as follows:
+
+```
+<Web1-UAT-Server-Private-IP-Address> ansible_ssh_user='ec2-user' ansible_ssh_private_key_file=<path-to-.pem-private-key>
+<Web2-UAT-Server-Private-IP-Address> ansible_ssh_user='ec2-user' ansible_ssh_private_key_file=<path-to-.pem-private-key>
+```
+In /etc/ansible/ansible.cfg file, uncomment roles_path string and provide a full path to the roles directory roles_path = /home/ubuntu/ansible-config-mgt/roles, so Ansible could know where to find configured roles.
+
+It is time to start adding some logic to the webserver role. Go into tasks directory, and within the main.yml file, start writing configuration tasks to do the following:
+
+1. Install and configure Apache (httpd service)
+2. Clone Tooling website from GitHub https://github.com/<your-name>/tooling.git.
+3. Ensure the tooling website code is deployed to /var/www/html on each of 2 UAT Web servers.
+4. Make sure httpd service is started
+  
+ The main.yml file may consist of following tasks:
+ ```yml
+  ---
+- name: install apache
+  become: true
+  ansible.builtin.yum:
+    name: "httpd"
+    state: present
+
+- name: install git
+  become: true
+  ansible.builtin.yum:
+    name: "git"
+    state: present
+
+- name: clone a repo
+  become: true
+  ansible.builtin.git:
+    repo: https://github.com/<your-name>/tooling.git
+    dest: /var/www/html
+    force: yes
+
+- name: copy html content to one level up
+  become: true
+  command: cp -r /var/www/html/html/ /var/www/
+
+- name: Start service httpd, if not started
+  become: true
+  ansible.builtin.service:
+    name: httpd
+    state: started
+
+- name: recursively remove /var/www/html/html/ directory
+  become: true
+  ansible.builtin.file:
+    path: /var/www/html/html
+    state: absent
+```
+  
+  ![Screen Shot 2021-06-11 at 2 15 18 PM](https://user-images.githubusercontent.com/44268796/121731852-7545b900-cabf-11eb-94bd-45e95c8051c3.png)
+  
+  
+ #### Step 4 - Reference ‘Webserver’ role
+  
+
+  
 
 
 
