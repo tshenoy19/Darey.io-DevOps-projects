@@ -12,3 +12,42 @@ Refactoring is a general term in computer programming. It means making changes t
 In this project, the primary objective is to improve the Ansible code by reorganizing things around a little bit but the overall state of the infrastructure remains the same.
 
 ##### Step 1 - Jenkins job enhancement
+
+With the configuration so far, every change made creates a separate directory on Jenkins, which can get tedious and also consume more space. 
+In this step, a new Jenkins job will be created to enhance the configuration.
+
+1. On the jenkins-ansible server, create a new directory called 'ansible-config-artifact'. This directory will store the artifacts from all subsequent builds. 
+```
+sudo mkdir /home/ubuntu/ansible-config-artifact
+```
+Change permissions to this directory, so Jenkins could save files there 
+```
+chmod -R 0777 /home/ubuntu/ansible-config-artifact
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
