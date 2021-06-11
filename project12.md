@@ -286,12 +286,12 @@ http://<Web2-UAT-Server-Public-IP-or-Public-DNS-Name>/index.php
 ![Screen Shot 2021-06-11 at 2 45 26 PM](https://user-images.githubusercontent.com/44268796/121735132-b4760900-cac3-11eb-9a93-1e0d31705814.png)
 
 
-Now, the architecture looks like this:
+The architecture at the end of this project looks like this:
 
 ![Screen Shot 2021-06-11 at 2 44 05 PM](https://user-images.githubusercontent.com/44268796/121734990-8264a700-cac3-11eb-8a95-d83bb81e2a61.png)
   
   
-
+Credits: (https://darey.io)
 
 
 
