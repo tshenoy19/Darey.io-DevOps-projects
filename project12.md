@@ -231,8 +231,36 @@ It is time to start adding some logic to the webserver role. Go into tasks direc
   ![Screen Shot 2021-06-11 at 2 15 18 PM](https://user-images.githubusercontent.com/44268796/121731852-7545b900-cabf-11eb-94bd-45e95c8051c3.png)
   
   
- #### Step 4 - Reference ‘Webserver’ role
+#### Step 4 - Reference ‘Webserver’ role
   
+Within the static-assignments folder, create a new assignment for uat-webservers uat-webservers.yml. This is where the role will be referenced.
+
+```yml
+  ---
+- hosts: uat-webservers
+  roles:
+     - webserver
+```
+  
+The entry point to the ansible configuration is the site.yml file. Therefore, the uat-webservers.yml role should be referenced inside site.yml.
+
+```yml
+---
+- hosts: all
+- import_playbook: ../static-assignments/common.yml
+
+- hosts: uat-webservers
+- import_playbook: ../static-assignments/uat-webservers.yml
+```
+  
+  
+##### Step 5 - Commit & Test
+Commit the changes, create a Pull Request and merge them to master branch, ensure that webhook triggered two consequent Jenkins jobs, they ran successfully and copied all the files to the Jenkins-Ansible server into /home/ubuntu/ansible-config-mgt/ directory.
+
+Now run the playbook against the uat inventory:
+```yml
+sudo ansible-playbook -i /home/ubuntu/ansible/ansible-config-mgt/inventory/uat.yml /home/ubuntu/ansible/ansible-config-mgt/playbooks/site.yaml
+```
 
   
 
