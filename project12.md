@@ -47,6 +47,29 @@ If both Jenkins jobs have completed one after another - all the files will be in
 
 ![Screen Shot 2021-06-11 at 10 35 07 AM](https://user-images.githubusercontent.com/44268796/121703327-b37fb000-caa0-11eb-8773-045a3be1825b.png)
 
+Now the Jenkins pipeline is more neat and clean.
+
+##### Refactor Ansible code by importing other playbooks into site.yml
+
+Before refactoring the code, checkout to a new branch from the main/master branch and name it 'refactor'. Ensure that all the directories and files are present.
+
+![Screen Shot 2021-06-11 at 10 41 42 AM](https://user-images.githubusercontent.com/44268796/121704284-9eefe780-caa1-11eb-9021-bab17a892859.png)
+
+In Project 11, all the tasks were written in a single playbook common.yml, but it is pretty simple set of instructions for only 2 types of OS. However, if there are many more tasks, this playbook will need to be applied to different servers with different requirements. This means that the entire playbook will need to be reviewed to find the tasks that might be applicable and also to make sure new tasks are added to meet the requirements of a larger infrastructure. This could get very time consuming and would not be appreciated by other members of the DevOps team. It would be difficult to use the playbook.
+
+Hence, breaking tasks up into different files is an excellent way to organize complex sets of tasks and reuse them.
+
+To see the code re-use in action, other playbooks will be imported in this step.
+
+Within playbooks folder, create a new file and name it site.yml - This file will now be considered as an entry point into the entire infrastructure configuration. Other playbooks will be included here as a reference. In other words, site.yml will become a parent to all other playbooks that will be developed including common.yml that was created previously. 
+
+Create a new folder in root of the repository and name it static-assignments. The static-assignments folder is where all other children playbooks will be stored. This is merely for easy organization of the work. It is not an Ansible-specific concept so organization of the playbooks is entirely up to the developer.
+
+Move common.yml file into the newly created static-assignments folder.
+Inside site.yml file, import common.yml playbook.
+
+
+
 
 
 
