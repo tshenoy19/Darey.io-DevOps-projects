@@ -119,6 +119,8 @@ Update site.yml with - import_playbook: ../static-assignments/common-del.yml ins
 sudo ansible-playbook -i /home/ubuntu/ansible/ansible-config-mgt/inventory/dev.yml /home/ubuntu/ansible/ansible-config-mgt/playbooks/site.yml
 ```
 
+![Screen Shot 2021-06-11 at 11 27 02 AM](https://user-images.githubusercontent.com/44268796/121710826-f4c78e00-caa7-11eb-8e70-9ec0f14169a8.png)
+
 
 
 
