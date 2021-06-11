@@ -122,6 +122,14 @@ sudo ansible-playbook -i /home/ubuntu/ansible/ansible-config-mgt/inventory/dev.y
 ![Screen Shot 2021-06-11 at 11 27 02 AM](https://user-images.githubusercontent.com/44268796/121710826-f4c78e00-caa7-11eb-8e70-9ec0f14169a8.png)
 
 
+At this point, the dev environment is nice and clean. In order to keep it that way, configure 2 new Web Servers as uat. Tasks could be written to configure Web Servers in the same playbook, but it would be messy. Instead, it would be best to use a dedicated role to make the configuration reusable.
+
+Launch 2 fresh EC2 instances using RHEL 8 image, which will serve as the uat servers, so name them accordingly - Web1-UAT and Web2-UAT.
+
+To create a role, create a directory called roles/, relative to the playbook file or in /etc/ansible/ directory.
+There are two ways how you can create this folder structure:
+
+Use an Ansible utility called ansible-galaxy inside ansible-config-mgt/roles directory (create roles directory upfront)
 
 
 
