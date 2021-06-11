@@ -256,12 +256,40 @@ The entry point to the ansible configuration is the site.yml file. Therefore, th
   
 ##### Step 5 - Commit & Test
 Commit the changes, create a Pull Request and merge them to master branch, ensure that webhook triggered two consequent Jenkins jobs, they ran successfully and copied all the files to the Jenkins-Ansible server into /home/ubuntu/ansible-config-mgt/ directory.
+  
+![Screen Shot 2021-06-11 at 2 34 37 PM](https://user-images.githubusercontent.com/44268796/121733971-277e8000-cac2-11eb-8c32-da688112f2b2.png)
+  
+
 
 Now run the playbook against the uat inventory:
+  
 ```yml
-sudo ansible-playbook -i /home/ubuntu/ansible/ansible-config-mgt/inventory/uat.yml /home/ubuntu/ansible/ansible-config-mgt/playbooks/site.yaml
+sudo ansible-playbook -i /home/ubuntu/ansible/ansible-config-mgt/inventory/uat.yml /home/ubuntu/ansible/ansible-config-mgt/playbooks/site.yml
 ```
+  
+![Screen Shot 2021-06-11 at 2 56 03 PM](https://user-images.githubusercontent.com/44268796/121736149-2dc22b80-cac5-11eb-9f74-e23038e836b0.png)  
+  
+  
+  
+Both the UAT Web servers are configured now and can be reached from the browser:
+```
+http://<Web1-UAT-Server-Public-IP-or-Public-DNS-Name>/index.php
+```
+or
+```
+http://<Web2-UAT-Server-Public-IP-or-Public-DNS-Name>/index.php
+```
+  
+![Screen Shot 2021-06-11 at 2 45 34 PM](https://user-images.githubusercontent.com/44268796/121735123-b049eb80-cac3-11eb-8818-6d04bdb78811.png)
 
+
+![Screen Shot 2021-06-11 at 2 45 26 PM](https://user-images.githubusercontent.com/44268796/121735132-b4760900-cac3-11eb-9a93-1e0d31705814.png)
+
+
+Now, the architecture looks like this:
+
+![Screen Shot 2021-06-11 at 2 44 05 PM](https://user-images.githubusercontent.com/44268796/121734990-8264a700-cac3-11eb-8a95-d83bb81e2a61.png)
+  
   
 
 
