@@ -9,6 +9,6 @@ For better understanding or Ansible artifacts re-use, refer to [ansible docs](ht
 
 Refactoring is a general term in computer programming. It means making changes to the source code without changing expected behaviour of the software. The main idea of refactoring is to enhance code readability, increase maintainability and extensibility, reduce complexity, add proper comments without affecting the logic.
 
-In this project, the primary objective is to improve the Ansible code by moving things around a little bit but the overall state of the infrastructure remains the same.
+In this project, the primary objective is to improve the Ansible code by reorganizing things around a little bit but the overall state of the infrastructure remains the same.
 
 ##### Step 1 - Jenkins job enhancement
