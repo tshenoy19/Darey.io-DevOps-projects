@@ -169,9 +169,23 @@ git push --set-upstream origin roles-feature
 
 Create a Pull Request and merge it to main branch on GitHub.
 
+#### Load Balancer roles
 
+In order to be able to choose which Load Balancer to use, Nginx or Apache, we will need to have two roles:
 
+1. Nginx
+2. Apache
 
+- With the experience gained from the projects on Ansible so far, it is understood that roles could either be developed or recreated easily from available roles in the community. 
+- After deciding on the roles, update both static-assignment and site.yml files to refer the roles.
+
+Important Hints:
+
+- Since both Nginx and Apache load balancer cannot be used together, add a condition to enable either one - this is where the use of variables is handy.
+- Declare a variable in defaults/main.yml file inside the Nginx and Apache roles. Name each variables enable_nginx_lb and enable_apache_lb respectively.
+- Set both values to false like this enable_nginx_lb: false and enable_apache_lb: false.
+- Declare another variable in both roles load_balancer_is_required and set its value to false as well
+- Update both assignment and site.yml files respectively
 
 
 
