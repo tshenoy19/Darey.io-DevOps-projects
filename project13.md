@@ -100,6 +100,27 @@ Special variables {{ playbook_dir }} and {{ inventory_file }} are used in the ab
 The variables are included using a loop. with_first_found implies that, looping through the list of files, the first one found is used. This is good practice so that the default values can be set in case an environment specific env file does not exist.
 
 
+#### Update site.yml with dynamic assignments
+
+Update site.yml file to make use of the dynamic assignment. (At this point, testing cannot be done yet. This is just setting the stage for what is to come).
+
+site.yml should now look like this:
+```
+---
+- name: Include dynamic variables 
+  hosts: all
+  tasks:
+    - import_playbook: ../static-assignments/common.yml 
+    - include_playbook: ../dynamic-assignments/env-vars.yml
+  tags:
+    - always
+
+- name: Webserver assignment
+  hosts: webservers
+    - import_playbook: ../static-assignments/webservers.yml
+```
+
+![Screen Shot 2021-06-14 at 11 19 27 AM](https://user-images.githubusercontent.com/44268796/121916714-669b1400-cd02-11eb-9157-b0447d9e95f8.png)
 
 
 
