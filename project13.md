@@ -122,6 +122,31 @@ site.yml should now look like this:
 
 ![Screen Shot 2021-06-14 at 11 19 27 AM](https://user-images.githubusercontent.com/44268796/121916714-669b1400-cd02-11eb-9157-b0447d9e95f8.png)
 
+#### Community Roles
+
+It is time to create a role for MySQL database - it should install the MySQL package, create a database and configure users. There are tons of roles that have already been developed by other open source engineers. These roles are actually production ready, and dynamic to accomodate most of Linux flavours. With Ansible Galaxy again, we can simply download a ready to use ansible role. 
+
+#### Download Mysql Ansible Role
+
+Browse the available community roles [here](https://galaxy.ansible.com/home)
+
+This project will make use of a MySQL role developed by [geerlingguy](https://galaxy.ansible.com/geerlingguy/mysql).
+
+On Jenkins-Ansible server make sure that git is installed with git --version, then go to ‘ansible-config-mgt’ directory and run:
+```
+git init
+git pull https://github.com/<your-name>/ansible-config-mgt.git
+git remote add origin https://github.com/<your-name>/ansible-config-mgt.git
+git branch roles-feature
+git switch roles-feature
+```
+
+
+![Screen Shot 2021-06-14 at 11 37 50 AM](https://user-images.githubusercontent.com/44268796/121919367-f5109500-cd04-11eb-9e3d-6c260876bd6c.png)
+
+
+
+
 
 
 
