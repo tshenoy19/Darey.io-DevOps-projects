@@ -71,7 +71,7 @@ The layout should now look like this:
 
 
 Paste the instruction below into the env-vars.yml file:
-```
+```yml
 ---
 - name: collate variables from env specific file, if it exists
   include_vars: "{{ item }}"
@@ -105,7 +105,7 @@ The variables are included using a loop. with_first_found implies that, looping 
 Update site.yml file to make use of the dynamic assignment. (At this point, testing cannot be done yet. This is just setting the stage for what is to come).
 
 site.yml should now look like this:
-```
+```yml
 ---
 - name: Include dynamic variables 
   hosts: all
@@ -143,6 +143,14 @@ git switch roles-feature
 
 
 ![Screen Shot 2021-06-14 at 11 37 50 AM](https://user-images.githubusercontent.com/44268796/121919367-f5109500-cd04-11eb-9e3d-6c260876bd6c.png)
+
+Inside roles directory, create a new MySQL role with ansible-galaxy install geerlingguy.mysql and rename the folder to mysql:
+```
+ansible-galaxy install geerlingguy.mysql
+mv geerlingguy.mysql/ mysql
+```
+
+![Screen Shot 2021-06-14 at 11 52 53 AM](https://user-images.githubusercontent.com/44268796/121921500-0f4b7280-cd07-11eb-9efb-b1ff8085288c.png)
 
 
 
