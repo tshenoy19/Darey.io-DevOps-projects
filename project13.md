@@ -229,9 +229,11 @@ Now the env-vars\uat.yml file can be used to define which loadbalancer to use in
 
 - The same must work with apache LB, so it can be switched by setting respective environmental variable to true and other to false.
 
+![Screen Shot 2021-06-14 at 3 43 19 PM](https://user-images.githubusercontent.com/44268796/121950165-47fb4400-cd27-11eb-86a9-72e60f3cc742.png)
+
 - To test this, update inventory for each environment and run Ansible against each environment.
 
-![Screen Shot 2021-06-14 at 3 43 19 PM](https://user-images.githubusercontent.com/44268796/121950165-47fb4400-cd27-11eb-86a9-72e60f3cc742.png)
+Credits: (https://darey.io)
 
 
 
