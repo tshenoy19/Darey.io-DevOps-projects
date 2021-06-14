@@ -222,7 +222,16 @@ Update site.yml file with the following code:
 
 Now the env-vars\uat.yml file can be used to define which loadbalancer to use in UAT environment by setting respective environmental variable to true.
 
-Activate load balancer, and enable nginx by setting these in the respective environment’s env-vars file.
+- Activate load balancer, and enable nginx by setting these in the respective environment’s env-vars file.
+
+![Screen Shot 2021-06-14 at 3 38 45 PM](https://user-images.githubusercontent.com/44268796/121949580-9e1bb780-cd26-11eb-92ae-6d568ed8c85e.png)
+
+
+- The same must work with apache LB, so it can be switched by setting respective environmental variable to true and other to false.
+
+- To test this, update inventory for each environment and run Ansible against each environment.
+
+![Screen Shot 2021-06-14 at 3 43 19 PM](https://user-images.githubusercontent.com/44268796/121950165-47fb4400-cd27-11eb-86a9-72e60f3cc742.png)
 
 
 
