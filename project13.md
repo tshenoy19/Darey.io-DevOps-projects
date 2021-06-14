@@ -161,7 +161,13 @@ Read README.md file, and edit roles configuration to use correct credentials for
 
 Now it is time to upload the changes into GitHub:
 
+```
+git add .
+git commit -m "Commit new role files into GitHub"
+git push --set-upstream origin roles-feature
+```
 
+Create a Pull Request and merge it to main branch on GitHub.
 
 
 
