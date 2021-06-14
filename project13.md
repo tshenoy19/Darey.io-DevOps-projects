@@ -67,6 +67,38 @@ The layout should now look like this:
     └── webservers.yml
 ```
 
+![Screen Shot 2021-06-14 at 10 11 26 AM](https://user-images.githubusercontent.com/44268796/121906214-e3c18b80-ccf8-11eb-9c3a-1873f196b1ef.png)
+
+
+Paste the instruction below into the env-vars.yml file:
+```
+---
+- name: collate variables from env specific file, if it exists
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ playbook_dir }}/../env_vars/{{ "{{ inventory_file }}.yml"
+    - "{{ playbook_dir }}/../env_vars/default.yml"
+  tags:
+    - always
+```
+
+Three things to note from the above code:
+
+The 'include_vars' syntax has been used instead of include. This is because Ansible developers decided to separate different features of the module. From Ansible version 2.8, the include module is deprecated and variants of include_* must be used. These are:
+
+include_role
+include_tasks
+include_vars
+
+In the same version, variants of import were also introduced, such as:
+
+import_role
+import_tasks
+
+Special variables {{ playbook_dir }} and {{ inventory_file }} are used in the above code. {{ playbook_dir }} will help Ansible to determine the location of the running playbook, and from there navigate to other path on the filesystem. {{ inventory_file }} on the other hand will dynamically resolve to the name of the inventory file being used, then append .yml, so that it picks up the required file within the env-vars folder.
+
+The variables are included using a loop. with_first_found implies that, looping through the list of files, the first one found is used. This is good practice so that the default values can be set in case an environment specific env file does not exist.
+
 
 
 
