@@ -18,5 +18,86 @@ Note: For most projects, static assignments are preferred as they are more relia
 
 #### Introducing Dynamic Assignment Into the structure
 
+In the ```https://github.com/<your-name>/ansible-config-mgt GitHub repository ```, start a new branch and call it dynamic-assignments.
+  
+![Screen Shot 2021-06-14 at 9 58 45 AM](https://user-images.githubusercontent.com/44268796/121904430-2bdfae80-ccf7-11eb-9a99-2de7ff17268a.png)
+
+
+Create a new folder, name it dynamic-assignments. Then inside this folder, create a new file and name it env-vars.yml. site.yml will be instructed to include this playbook later. 
+
+GitHub will have the following structure at this point:
+```
+├── dynamic-assignments
+│   └── env-vars.yml
+├── inventory
+│   └── dev
+    └── stage
+    └── uat
+    └── prod
+└── playbooks
+    └── site.yml
+└── roles (optional folder)
+    └──...(optional subfolders & files)
+└── static-assignments
+    └── common.yml
+```
+
+Since Ansible will be used to configure multiple environments and each of these environments will have certain unique attributes, such as servername, ip-address etc., there has to be a way to set values to variables per specific environment.
+
+Create a folder to keep each environment’s variables file and name it as env-vars. Then for each environment, create new YAML files which will be used to set variables.
+
+The layout should now look like this:
+```
+├── dynamic-assignments
+│   └── env-vars.yml
+├── env-vars
+    └── dev.yml
+    └── stage.yml
+    └── uat.yml
+    └── prod.yml
+├── inventory
+    └── dev
+    └── stage
+    └── uat
+    └── prod
+├── playbooks
+    └── site.yml
+└── static-assignments
+    └── common.yml
+    └── webservers.yml
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
