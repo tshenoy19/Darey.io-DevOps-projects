@@ -152,7 +152,14 @@ mv geerlingguy.mysql/ mysql
 
 ![Screen Shot 2021-06-14 at 11 52 53 AM](https://user-images.githubusercontent.com/44268796/121921500-0f4b7280-cd07-11eb-9efb-b1ff8085288c.png)
 
+Read README.md file, and edit roles configuration to use correct credentials for MySQL required for the tooling website. The main.yml file in the defaults folder of roles directory is edited as follows:
 
+
+![Screen Shot 2021-06-14 at 12 03 55 PM](https://user-images.githubusercontent.com/44268796/121923280-c3013200-cd08-11eb-96b6-df413f3805ff.png)
+
+
+
+Now it is time to upload the changes into GitHub:
 
 
 
