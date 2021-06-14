@@ -14,3 +14,9 @@ When the import module is used, all statements are pre-processed at the time pla
 
 On the other hand, when include module is used, all statements are processed only during execution of the playbook. After the statements are parsed, any changes to the statements encountered during execution will be used.
 
+Note: For most projects, static assignments are preferred as they are more reliable. Dynamic assignments can be challenging in the debugging process. However, they can be useful for environment specific variables as in this project.
+
+#### Introducing Dynamic Assignment Into the structure
+
+
+
