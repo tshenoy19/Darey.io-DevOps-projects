@@ -177,7 +177,12 @@ In order to be able to choose which Load Balancer to use, Nginx or Apache, we wi
 2. Apache
 
 - With the experience gained from the projects on Ansible so far, it is understood that roles could either be developed or recreated easily from available roles in the community. 
-- After deciding on the roles, update both static-assignment and site.yml files to refer the roles.
+
+![Screen Shot 2021-06-14 at 2 12 32 PM](https://user-images.githubusercontent.com/44268796/121939067-91916200-cd1a-11eb-9f86-f4aac4378082.png)
+
+
+
+- After creating the roles, update both static-assignment and site.yml files to refer the roles.
 
 Important Hints:
 
@@ -187,10 +192,37 @@ Important Hints:
 - Declare another variable in both roles load_balancer_is_required and set its value to false as well
 - Update both assignment and site.yml files respectively
 
+On main.yml in Nginx:
+
+![Screen Shot 2021-06-14 at 2 23 16 PM](https://user-images.githubusercontent.com/44268796/121940409-13ce5600-cd1c-11eb-82db-173fc1fb3509.png)
 
 
+On main.yml in Apache:
+
+![Screen Shot 2021-06-14 at 2 25 48 PM](https://user-images.githubusercontent.com/44268796/121940833-850e0900-cd1c-11eb-9f45-c8d5fd141bb6.png)
+
+Create loadbalancers.yml file in static-assignments folder and copy the following code:
+```
+- hosts: lb
+  roles:
+    - { role: nginx, when: enable_nginx_lb and load_balancer_is_required }
+    - { role: apache, when: enable_apache_lb and load_balancer_is_required }
+```
+
+Update site.yml file with the following code:
+```
+- name: Loadbalancers assignment
+       hosts: lb
+         - import_playbook: ../static-assignments/loadbalancers.yml
+        when: load_balancer_is_required 
+```
+
+![Screen Shot 2021-06-14 at 2 32 24 PM](https://user-images.githubusercontent.com/44268796/121941519-63615180-cd1d-11eb-910c-a4d68d487686.png)
 
 
+Now the env-vars\uat.yml file can be used to define which loadbalancer to use in UAT environment by setting respective environmental variable to true.
+
+Activate load balancer, and enable nginx by setting these in the respective environment’s env-vars file.
 
 
 
