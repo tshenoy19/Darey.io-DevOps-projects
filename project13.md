@@ -253,11 +253,31 @@ Blockers: The playbook was not running and there were errors in the env-vars.yml
       tags:
         - always
   ```
+  
+  In addition, the code on site.yml was edited to:
+  
+  ```yml
+  ---
+- hosts: all
+- name:  dynamic variables 
+  import_playbook: ../static-assignments/common.yml 
+  include: ../dynamic-assignments/env-vars.yml
+  tags:
+    - always
+
+- hosts: webservers
+- name: Webserver assignment
+  import_playbook: ../static-assignments/uat-webservers.yml
+```
+
   Another change was to rename the files under the inventory folder by removing the .yml extension:
   
   ![Screen Shot 2021-06-18 at 11 52 00 AM](https://user-images.githubusercontent.com/44268796/122587249-99f3e080-d02b-11eb-92f8-cdd52d0362d4.png)
 
   After the above changes, the playbook executed successfully across all the servers. 
+  
+  ![Screen Shot 2021-06-18 at 11 55 46 AM](https://user-images.githubusercontent.com/44268796/122587864-59489700-d02c-11eb-90b0-c63bf30447e3.png)
+
 
 
 
