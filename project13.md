@@ -233,7 +233,7 @@ Now the env-vars\uat.yml file can be used to define which loadbalancer to use in
 
 - To test this, update inventory for each environment and run Ansible against each environment.
 
-Blockers: The playbook was not running and there were errors in the env-vars.yml file. With the help of the mentorship team at Darey.io, I made changes to the env-vars.yml file. I updated the file with the following code:
+Blockers: The playbook was not running and there were errors in the env-vars.yml file. With the help of the mentorship team at Darey.io, I incorporated some changes to the env-vars.yml file. I updated the file with the following code:
 
 ```yml
 ---
