@@ -46,6 +46,9 @@ Make DNS entries to create a subdomain for each of the environments below. For e
 └── uat
 ```
 
+![Screen Shot 2021-06-21 at 1 47 44 PM](https://user-images.githubusercontent.com/44268796/122805646-59000400-d297-11eb-8487-ef7037c293e3.png)
+
+
 ##### ci inventory file:
 ```
 [jenkins]
@@ -60,6 +63,9 @@ Make DNS entries to create a subdomain for each of the environments below. For e
 [artifact_repository]
 <Artifact_repository-Private-IP-Address>
 ```
+
+![Screen Shot 2021-06-21 at 1 50 29 PM](https://user-images.githubusercontent.com/44268796/122805882-a67c7100-d297-11eb-8aa5-4dce8d18f2a7.png)
+
 
 ##### dev Inventory file
 ```
@@ -79,6 +85,7 @@ ansible_python_interpreter=/usr/bin/python
 [db]
 <DB-Server-Private-IP-Address>
 ```
+![Screen Shot 2021-06-21 at 1 52 40 PM](https://user-images.githubusercontent.com/44268796/122806137-f5c2a180-d297-11eb-9650-e5af1d021c5e.png)
 
 ##### pentest inventory file:
 ```
@@ -92,6 +99,8 @@ pentest-tooling
 [pentest-tooling]
 <Pentest-for-Tooling-Private-IP-Address>
 ```
+![Screen Shot 2021-06-21 at 1 53 10 PM](https://user-images.githubusercontent.com/44268796/122806183-06731780-d298-11eb-9e2a-ea8aee208e3a.png)
+
 
 
 
