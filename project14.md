@@ -16,3 +16,15 @@ Both SIT - For System Integration Testing and UAT - User Acceptance Testing do n
 In this project, Nginx will serve as a reverse proxy for the sites and tools. Each environment setup is represented in the below table and diagrams.
 
 
+![Screen Shot 2021-06-21 at 6 52 27 AM](https://user-images.githubusercontent.com/44268796/122751022-3f41cb00-d25d-11eb-842e-c63b405d13c6.png)
+
+
+![Screen Shot 2021-06-21 at 6 54 02 AM](https://user-images.githubusercontent.com/44268796/122751242-7fa14900-d25d-11eb-8a38-a3a6d897d085.png)
+
+
+![Screen Shot 2021-06-21 at 6 54 56 AM](https://user-images.githubusercontent.com/44268796/122751316-9c3d8100-d25d-11eb-9fb7-9199496265a0.png)
+
+
+
+
+
