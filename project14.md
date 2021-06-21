@@ -108,6 +108,19 @@ The db group has a slightly different configuration. It uses a RedHat/Centos Lin
 
 With another Ansible concept called group_vars, it is possible to declare and set variables for each group of servers created in the inventory file. For example, if there are variables that are common between both pentest-todo and pentest-tooling, rather than setting these variables in many places, simply use the group_vars for pentest. Since in the inventory file it has been created as pentest:children, Ansible recognizes this and simply applies that variable to both children.
 
+#### Ansible Roles for CI Environment
+
+Add two roles to Ansible:
+
+- [SonarQube](https://www.sonarqube.org)
+- [Artifactory](https://jfrog.com/artifactory/)
+
+SonarQube is an open-source platform developed by SonarSource for continuous inspection of code quality, it is used to perform automatic reviews with static analysis of code to detect bugs, code smells, and security vulnerabilities. 
+
+Artifactory is a product by JFrog that serves as a binary repository manager. The binary repository is a natural extension to the source code repository, in that the outcome of the build process is stored. It can be used for certain other automations. But in this project, it will be used to manage our build artifacts.
+
+
+
 
 
 
