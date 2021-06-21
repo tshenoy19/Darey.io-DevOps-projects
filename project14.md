@@ -79,7 +79,7 @@ Make DNS entries to create a subdomain for each of the environments below. For e
 <Nginx-Private-IP-Address>
 
 [db:vars]
-ansible_user=ec2-user
+ansible_user=ubuntu
 ansible_python_interpreter=/usr/bin/python
 
 [db]
@@ -100,6 +100,13 @@ pentest-tooling
 <Pentest-for-Tooling-Private-IP-Address>
 ```
 ![Screen Shot 2021-06-21 at 1 53 10 PM](https://user-images.githubusercontent.com/44268796/122806183-06731780-d298-11eb-9e2a-ea8aee208e3a.png)
+
+
+In the pentest inventory file, a new concept 'pentest:children' has been introduced. This is because the group called 'pentest' covers Ansible execution against both pentest-todo and pentest-tooling simultaneously. But at the same time, this provides flexibility to run specific Ansible tasks against an individual group.
+
+The db group has a slightly different configuration. It uses a RedHat/Centos Linux distro. Others are based on Ubuntu (in this case user is ubuntu). Therefore, the user required for connectivity and path to python interpreter are different.   
+
+With another Ansible concept called group_vars, it is possible to declare and set variables for each group of servers created in the inventory file. For example, if there are variables that are common between both pentest-todo and pentest-tooling, rather than setting these variables in many places, simply use the group_vars for pentest. Since in the inventory file it has been created as pentest:children, Ansible recognizes this and simply applies that variable to both children.
 
 
 
