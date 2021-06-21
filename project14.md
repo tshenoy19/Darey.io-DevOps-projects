@@ -31,6 +31,71 @@ Make DNS entries to create a subdomain for each of the environments below. For e
 
 ![Screen Shot 2021-06-21 at 7 01 52 AM](https://user-images.githubusercontent.com/44268796/122752128-909e8a00-d25e-11eb-9c21-9b3888f1fc8b.png)
 
+#### Step 1: Setup
+
+
+##### The Ansible directory should look like this:
+
+```
+├── ci
+├── dev
+├── pentest
+├── pre-prod
+├── prod
+├── sit
+└── uat
+```
+
+##### ci inventory file:
+```
+[jenkins]
+<Jenkins-Private-IP-Address>
+
+[nginx]
+<Nginx-Private-IP-Address>
+
+[sonarqube]
+<SonarQube-Private-IP-Address>
+
+[artifact_repository]
+<Artifact_repository-Private-IP-Address>
+```
+
+##### dev Inventory file
+```
+[tooling]
+<Tooling-Web-Server-Private-IP-Address>
+
+[todo]
+<Todo-Web-Server-Private-IP-Address>
+
+[nginx]
+<Nginx-Private-IP-Address>
+
+[db:vars]
+ansible_user=ec2-user
+ansible_python_interpreter=/usr/bin/python
+
+[db]
+<DB-Server-Private-IP-Address>
+```
+
+##### pentest inventory file:
+```
+[pentest:children]
+pentest-todo
+pentest-tooling
+
+[pentest-todo]
+<Pentest-for-Todo-Private-IP-Address>
+
+[pentest-tooling]
+<Pentest-for-Tooling-Private-IP-Address>
+```
+
+
+
+
 
 
 
