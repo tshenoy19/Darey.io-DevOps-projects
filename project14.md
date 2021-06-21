@@ -1,3 +1,4 @@
+
 ### Experience Continuous Integration with Jenkins | Ansible | Artifactory | SonarQube | PHP
 
 #### Set Up
@@ -114,6 +115,9 @@ Add two roles to Ansible:
 
 - [SonarQube](https://www.sonarqube.org)
 - [Artifactory](https://jfrog.com/artifactory/)
+
+![Screen Shot 2021-06-21 at 2 50 13 PM](https://user-images.githubusercontent.com/44268796/122812690-ff500780-d29f-11eb-9c6e-f9da6c8a5e0f.png)
+
 
 SonarQube is an open-source platform developed by SonarSource for continuous inspection of code quality, it is used to perform automatic reviews with static analysis of code to detect bugs, code smells, and security vulnerabilities. 
 
