@@ -133,6 +133,12 @@ To do this,
 - Create a new pipeline 
 
 
+![Screen Shot 2021-06-21 at 3 57 58 PM](https://user-images.githubusercontent.com/44268796/122820307-750ca100-d2a9-11eb-9b1c-584fee8e5ef7.png)
+
+Select GitHub
+
+![Screen Shot 2021-06-21 at 3 58 36 PM](https://user-images.githubusercontent.com/44268796/122820414-92da0600-d2a9-11eb-96cf-bb86969d3555.png)
+
 
 
 
