@@ -135,9 +135,56 @@ To do this,
 
 ![Screen Shot 2021-06-21 at 3 57 58 PM](https://user-images.githubusercontent.com/44268796/122820307-750ca100-d2a9-11eb-9b1c-584fee8e5ef7.png)
 
-Select GitHub
+
+
+##### Select GitHub:
 
 ![Screen Shot 2021-06-21 at 3 58 36 PM](https://user-images.githubusercontent.com/44268796/122820414-92da0600-d2a9-11eb-96cf-bb86969d3555.png)
+
+
+
+##### Connect Jenkins with GitHub:
+
+![Screen Shot 2021-06-21 at 4 01 07 PM](https://user-images.githubusercontent.com/44268796/122820705-e6e4ea80-d2a9-11eb-9c59-93a79946f56c.png)
+
+
+
+##### Login to GitHub & Generate an Access Token:
+
+![Screen Shot 2021-06-21 at 4 01 58 PM](https://user-images.githubusercontent.com/44268796/122820800-0419b900-d2aa-11eb-8786-b9f76db966ec.png)
+
+![Screen Shot 2021-06-21 at 4 03 04 PM](https://user-images.githubusercontent.com/44268796/122820915-2b708600-d2aa-11eb-85f1-36ead7419eaa.png)
+
+
+
+##### Copy Access Token, paste it on Jenkins UI and connect:
+
+![Screen Shot 2021-06-21 at 4 04 40 PM](https://user-images.githubusercontent.com/44268796/122821084-65418c80-d2aa-11eb-9e11-c032613a67ce.png)
+
+
+
+##### Select ansible-cnfg-mgt from the list of available repositories. Create a new pipeline:
+
+![Screen Shot 2021-06-21 at 4 08 58 PM](https://user-images.githubusercontent.com/44268796/122821651-1cd69e80-d2ab-11eb-80c8-79bfd847623b.png)
+
+At this point, there is no Jenkinsfile in the Ansible repository, so Blue Ocean will attempt to give guidance to create one. The Jenkins file will be created manually. click on Administration to exit the Blue Ocean console.
+
+![Screen Shot 2021-06-21 at 4 13 15 PM](https://user-images.githubusercontent.com/44268796/122822054-979fb980-d2ab-11eb-9a7f-b176e2e5161f.png)
+
+
+The newly created pipeline is now accessible on the Dashboard and takes the name of the repository:
+
+![Screen Shot 2021-06-21 at 4 15 12 PM](https://user-images.githubusercontent.com/44268796/122822284-dd5c8200-d2ab-11eb-879a-e5506ebcc56f.png)
+
+
+
+
+
+
+
+
+
+
 
 
 
