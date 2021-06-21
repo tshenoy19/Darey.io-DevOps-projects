@@ -25,6 +25,42 @@ In this project, Nginx will serve as a reverse proxy for the sites and tools. Ea
 ![Screen Shot 2021-06-21 at 6 54 56 AM](https://user-images.githubusercontent.com/44268796/122751316-9c3d8100-d25d-11eb-9fb7-9199496265a0.png)
 
 
+##### DNS Requirements
+
+Make DNS entries to create a subdomain for each of the environments below. For example, assuming the primary domain name is <domainname.com>, the subdomain for Sonarqube could be sonar.infradev.<domainname.com>.
+
+![Screen Shot 2021-06-21 at 7 01 52 AM](https://user-images.githubusercontent.com/44268796/122752128-909e8a00-d25e-11eb-9c21-9b3888f1fc8b.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
