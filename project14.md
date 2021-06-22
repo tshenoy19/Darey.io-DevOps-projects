@@ -176,6 +176,51 @@ The newly created pipeline is now accessible on the Dashboard and takes the name
 
 ![Screen Shot 2021-06-21 at 4 15 12 PM](https://user-images.githubusercontent.com/44268796/122822284-dd5c8200-d2ab-11eb-879a-e5506ebcc56f.png)
 
+##### Create Jenkinsfile
+In the ansible directory, create a folder called 'deploy' and inside the folder, create a file called 'Jenkinsfile'
+
+
+![Screen Shot 2021-06-22 at 6 54 47 AM](https://user-images.githubusercontent.com/44268796/122912833-bee79c80-d326-11eb-9f29-b0ac9a8cad46.png)
+
+Add the code snippet below to start building the Jenkinsfile gradually. This pipeline currently has just one stage called Build, and the only thing we are doing is using the shell script module to echo Building Stage.
+
+```
+pipeline {
+    agent any
+
+
+  stages {
+    stage('Build') {
+      steps {
+        script {
+          sh 'echo "Building Stage"'
+        }
+      }
+    }
+    }
+}
+```
+
+Now go back into the Ansible pipeline in Jenkins, and select configure:
+
+![Screen Shot 2021-06-22 at 7 07 52 AM](https://user-images.githubusercontent.com/44268796/122914365-919bee00-d328-11eb-99d2-d18c0836c46b.png)
+
+Scroll down to Build Configuration section and specify the location of the Jenkinsfile at deploy/Jenkinsfile:
+
+![Screen Shot 2021-06-22 at 7 09 17 AM](https://user-images.githubusercontent.com/44268796/122914579-c5771380-d328-11eb-8d13-e43268629fa4.png)
+
+To make the new branch show up in Jenkins, Jenkins needs to scan the repository. Click on the “Administration” button. Navigate to the Ansible project and click on “Scan repository now". Refresh the page and both branches will start building automatically. Go into Blue Ocean and see both branches there too. 
+
+
+![Screen Shot 2021-06-22 at 7 16 01 AM](https://user-images.githubusercontent.com/44268796/122915394-b5abff00-d329-11eb-88aa-ec6f11ce4589.png)
+
+Back to the pipeline again, this time click “Build now”:
+
+![Screen Shot 2021-06-22 at 7 23 16 AM](https://user-images.githubusercontent.com/44268796/122916288-b85b2400-d32a-11eb-9773-1368b2377683.png)
+
+
+
+
 
 
 
