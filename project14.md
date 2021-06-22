@@ -295,7 +295,9 @@ To make the new branch show up in Jenkins, scan the repository by clicking on th
 ![Screen Shot 2021-06-22 at 11 30 19 AM](https://user-images.githubusercontent.com/44268796/122954190-3af4db00-d34d-11eb-93fa-7fa12175639c.png)
 
 
+#### Running Ansible Playbook from Jenkins
 
+After seeing how a typical Jenkins pipeline is created, it is time to create an actual Ansible deployment.
 
 
 
