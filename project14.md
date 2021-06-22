@@ -277,7 +277,20 @@ To make the new branch show up in Jenkins, scan the repository by clicking on th
 ![Screen Shot 2021-06-22 at 10 45 25 AM](https://user-images.githubusercontent.com/44268796/122945970-f6664100-d346-11eb-9779-7a0f4348af93.png)
 
 
+-  Create a pull request to merge the latest code into the `main branch`
+-  After merging the `PR`, go back into your terminal and switch into the `main` branch
+-  Pull the latest change
 
+
+##### Create a complete pipeline by adding new stages to the above configuration:
+
+- Create a new branch, add more stages into the Jenkins file to simulate below phases. (Just add an `echo` command as in `build` and `test` stages)
+   1. Package 
+   2. Deploy 
+   3. Clean up
+
+- Verify in Blue Ocean that all the stages are working, then merge the feature branch to the main branch
+- Eventually, the main branch should have a successful pipeline like this in blue ocean
 
 
 
