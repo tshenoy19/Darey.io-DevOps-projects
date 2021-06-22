@@ -219,6 +219,25 @@ Back to the pipeline again, this time click “Build now”:
 ![Screen Shot 2021-06-22 at 7 23 16 AM](https://user-images.githubusercontent.com/44268796/122916288-b85b2400-d32a-11eb-9773-1368b2377683.png)
 
 
+This will trigger a build and the effect of our basic Jenkinsfile configuration will be displayed on the console output of the build.
+
+To really appreciate and feel the difference of Cloud Blue UI, trigger the build again from Blue Ocean interface.
+
+1. Click on Blue Ocean 
+
+![Screen Shot 2021-06-22 at 10 21 44 AM](https://user-images.githubusercontent.com/44268796/122941720-a639af80-d343-11eb-8c47-137831fd20a6.png)
+
+
+2. Select the project and click on the Play button against the branch
+
+![Screen Shot 2021-06-22 at 10 23 10 AM](https://user-images.githubusercontent.com/44268796/122941972-d97c3e80-d343-11eb-9d4d-b768d511e6fc.png)
+
+This pipeline is a multibranch one. This means, if there were more than one branch in GitHub, Jenkins would have scanned the repository to discover them all and it is possible to be able to trigger a build for each branch.
+
+To see this in action:
+
+Create a new git branch and name it feature/jenkinspipeline-stages
+Currently we only have the Build stage. Let us add another stage called Test. Paste the code snippet below and push the new changes to GitHub.
 
 
 
