@@ -292,6 +292,12 @@ To make the new branch show up in Jenkins, scan the repository by clicking on th
 - Verify in Blue Ocean that all the stages are working, then merge the feature branch to the main branch
 - Eventually, the main branch should have a successful pipeline like this in blue ocean
 
+![Screen Shot 2021-06-22 at 11 30 19 AM](https://user-images.githubusercontent.com/44268796/122954190-3af4db00-d34d-11eb-93fa-7fa12175639c.png)
+
+
+
+
+
 
 
 
