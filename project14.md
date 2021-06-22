@@ -236,25 +236,45 @@ This pipeline is a multibranch one. This means, if there were more than one bran
 
 To see this in action:
 
-Create a new git branch and name it feature/jenkinspipeline-stages
-Currently we only have the Build stage. Let us add another stage called Test. Paste the code snippet below and push the new changes to GitHub.
+- Create a new git branch and name it- feature/jenkinspipeline-stages
+```
+git checkout -b feature/jenkinspipeline-stages
+```
+
+- At this point, there is just one stage: Building Stage. Add another stage called Test. Paste the code snippet below and push the new changes to GitHub.
+```
+pipeline {
+    agent any
+
+  stages {
+    stage('Build') {
+      steps {
+        script {
+          sh 'echo "Building Stage"'
+        }
+      }
+    }
+
+    stage('Test') {
+      steps {
+        script {
+          sh 'echo "Testing Stage"'
+        }
+      }
+    }
+    }
+}
+```
+
+![Screen Shot 2021-06-22 at 10 38 01 AM](https://user-images.githubusercontent.com/44268796/122944559-ee59d180-d345-11eb-915c-49bc119f4890.png)
 
 
+To make the new branch show up in Jenkins, scan the repository by clicking on the “Administration” button. Navigate to the Ansible project and click on “Scan repository now”. Refresh the page and both branches will start building automatically. Go into Blue Ocean and see both branches there too. 
+
+![Screen Shot 2021-06-22 at 10 43 12 AM](https://user-images.githubusercontent.com/44268796/122945683-bc953a80-d346-11eb-9bc0-b3beb972e7c1.png)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+![Screen Shot 2021-06-22 at 10 45 25 AM](https://user-images.githubusercontent.com/44268796/122945970-f6664100-d346-11eb-9779-7a0f4348af93.png)
 
 
 
