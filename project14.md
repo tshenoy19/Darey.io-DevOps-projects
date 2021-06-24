@@ -324,9 +324,9 @@ sudo apt install ansible -y
 
 
 
-Credits: 
-- (https://darey.io)
-- (https://www.youtube.com/watch?v=PRpEbFZi7nI)
+Resources: 
+- https://darey.io
+- https://www.youtube.com/watch?v=PRpEbFZi7nI
 
 
 
