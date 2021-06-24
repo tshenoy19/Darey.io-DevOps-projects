@@ -299,15 +299,34 @@ To make the new branch show up in Jenkins, scan the repository by clicking on th
 
 After seeing how a typical Jenkins pipeline is created, it is time to create an actual Ansible deployment.
 
-1. Install Ansible on Jenkins
+- Install Ansible on Jenkins
 ```
 sudo apt install ansible -y
 ```
-2. Install Ansible plugin in Jenkins UI
+- Install Ansible plugin in Jenkins UI
 
 ![Screen Shot 2021-06-23 at 2 24 06 PM](https://user-images.githubusercontent.com/44268796/123148876-acf12100-d42e-11eb-9ca9-b6287ea40160.png)
 
+- Add Ansible in the Global Tools Configuration after installing the plugin. Specify a name and also the path:
 
+
+![Screen Shot 2021-06-24 at 10 11 06 AM](https://user-images.githubusercontent.com/44268796/123277888-7ff74980-d4d4-11eb-92b2-2df48b4d6a6c.png)
+
+- Create Jenkinsfile from scratch. (Delete all the current contents and start all over to get Ansible to run successfully):
+
+
+
+
+
+
+
+
+
+
+
+Credits: 
+- (https://darey.io)
+- (https://www.youtube.com/watch?v=PRpEbFZi7nI)
 
 
 
