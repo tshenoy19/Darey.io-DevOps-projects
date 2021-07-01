@@ -47,7 +47,7 @@ Make DNS entries to create a subdomain for each of the environments below. For e
 └── uat
 ```
 
-![Screen Shot 2021-06-21 at 1 47 44 PM](https://user-images.githubusercontent.com/44268796/122805646-59000400-d297-11eb-8487-ef7037c293e3.png)
+![Screen Shot 2021-07-01 at 10 02 43 AM](https://user-images.githubusercontent.com/44268796/124137307-8d23b380-da53-11eb-82c7-dde18e8b164f.png)
 
 
 ##### ci inventory file:
