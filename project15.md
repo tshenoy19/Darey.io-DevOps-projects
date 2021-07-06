@@ -74,6 +74,37 @@ There are few requirements that must be met before starting the project:
 - Data Layer: Access to the Data layer, which is comprised of Amazon Relational Database Service (RDS) and Amazon Elastic File System (EFS) must be carefully designed - only webservers should be able to connect to RDS, while Nginx and Webservers will have access to EFS Mountpoint.
   
 ![Screen Shot 2021-07-06 at 2 59 35 PM](https://user-images.githubusercontent.com/44268796/124653018-cc467000-de6a-11eb-915b-94cb0466e022.png)
+  
+#### Proceed With Compute Resources
+
+Configure compute resources inside the VPC. The recources related to compute are:
+
+- EC2 Instances
+- Launch Templates
+- Target Groups
+- Autoscaling Groups
+- TLS Certificates
+- Application Load Balancers (ALB)
+  
+#### Set Up Compute Resources for Nginx
+  
+##### Provision EC2 Instances for Nginx
+
+Create an EC2 Instance based on CentOS Amazon Machine Image (AMI) in any 2 Availability Zones (AZ) in any AWS Region (it is recommended to use the Region that is closest to customers). Use EC2 instance of T2 family (e.g. t2.micro or similar)
+  
+Ensure that it has the following software installed:
+- python
+- ntp
+- net-tools
+- vim
+- wget
+- telnet
+- epel-release
+- htop
+  
+Create an AMI out of the EC2 instance
+  
+  
 
   
   
