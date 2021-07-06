@@ -86,6 +86,12 @@ Configure compute resources inside the VPC. The recources related to compute are
 - TLS Certificates
 - Application Load Balancers (ALB)
   
+Configure the Public Subnets as follows so the instances can be assigned a public IPv4 address:
+- In the left navigation pane, choose Subnets.
+- Select the public subnet for the VPC. By default, the name created by the VPC wizard is Public subnet.
+- Choose Actions, Modify auto-assign IP settings.
+- Select the Enable auto-assign public IPv4 address check box, and then choose Save.
+  
 #### Set Up Compute Resources for Nginx
   
 ##### Provision EC2 Instances for Nginx
