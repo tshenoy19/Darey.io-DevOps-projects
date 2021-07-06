@@ -108,9 +108,32 @@ Ensure that it has the following software installed:
 - epel-release
 - htop
   
-Create an AMI out of the EC2 instance
+##### Create an AMI out of the EC2 instance
   
-![Screen Shot 2021-07-06 at 4 22 52 PM](https://user-images.githubusercontent.com/44268796/124662148-6cee5d00-de76-11eb-8db9-ae79578411d0.png)
+![Screen Shot 2021-07-06 at 4 25 16 PM](https://user-images.githubusercontent.com/44268796/124662376-c22a6e80-de76-11eb-9a2e-160ca195ce3e.png)
+  
+##### Prepare Launch Template For Nginx (One Per Subnet)
+  
+1. Make use of the AMI to set up a launch template
+2. Ensure the Instances are launched into a public subnet
+3. Assign appropriate security group
+4. Configure Userdata to update yum package repository and install nginx:
+```
+#!/bin/bash
+yum update -y
+yum install -y nginx
+systemctl start nginx
+systemctl enable nginx
+```
+  
+![Screen Shot 2021-07-06 at 4 30 26 PM](https://user-images.githubusercontent.com/44268796/124662967-7a581700-de77-11eb-8636-5e318091191c.png)
+  
+
+
+
+
+  
+
 
   
   
