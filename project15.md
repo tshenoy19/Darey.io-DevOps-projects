@@ -25,5 +25,52 @@ There are few requirements that must be met before starting the project:
 6. Login to the newly created AWS account using the new email address.
 7. Create a free domain name for the fictitious company at Freenom domain registrar [here](https://www.freenom.com/en/index.html?lang=en).
 8. Create a hosted zone in AWS, and map it to your free domain from Freenom. Watch how to do that [here](https://www.youtube.com/watch?v=IjcHp94Hq8A)
+  
+![Screen Shot 2021-07-06 at 12 59 27 PM](https://user-images.githubusercontent.com/44268796/124639367-12df9e80-de5a-11eb-9eb9-a19cf30382d8.png)
+
+#### Set Up a Virtual Private Network (VPC)
+  
+###### Always make reference to the architectural diagram and ensure that the configuration is aligned with it.
+
+1. Create a VPC
+2. Create subnets as shown in the architecture
+3. Create a route table and associate it with public subnets
+4. Create a route table and associate it with private subnets
+5. Create an Internet Gateway
+6. Edit a route in public route table, and associate it with the Internet Gateway. (This is what allows a public subnet to be accessible from the Internet)
+7. Create 3 Elastic IPs
+8. Create a Nat Gateway and assign one of the Elastic IPs (*The other 2 will be used by Bastion hosts)
+9. Create a Security Group for:
+ - Nginx Servers: Access to Nginx should only be allowed from a Application Load balancer (ALB). At this point, a load balancer has not been created, therefore  the rules will be updatedlater. For now, just create it and put some dummy records as a place holder.
+- Bastion Servers: Access to the Bastion servers should be allowed only from workstations that need to SSH into the bastion servers. Hence,  use the workstation public IP address. To get this information, simply go to terminal and type curl www.canhazip.com
+- Application Load Balancer: ALB will be available from the Internet
+- Webservers: Access to Webservers should only be allowed from the Nginx servers. Since the servers have not been created yet, just put some dummy records as a place holder for now.
+- Data Layer: Access to the Data layer, which is comprised of Amazon Relational Database Service (RDS) and Amazon Elastic File System (EFS) must be carefully designed - only webservers should be able to connect to RDS, while Nginx and Webservers will have access to EFS Mountpoint.
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
   
