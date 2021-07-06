@@ -128,6 +128,34 @@ systemctl enable nginx
   
 ![Screen Shot 2021-07-06 at 4 30 26 PM](https://user-images.githubusercontent.com/44268796/124662967-7a581700-de77-11eb-8636-5e318091191c.png)
   
+![Screen Shot 2021-07-06 at 4 41 16 PM](https://user-images.githubusercontent.com/44268796/124664130-fd2da180-de78-11eb-93b2-7398da8cb747.png)
+  
+##### Configure Target Groups
+
+1. Select Instances as the target type
+2. Ensure the protocol HTTPS on secure TLS port 443
+3. Ensure that the health check path is /healthstatus
+4. Register Nginx Instances as targets
+5. Ensure that health check passes for the target group
+  
+![Screen Shot 2021-07-06 at 4 44 25 PM](https://user-images.githubusercontent.com/44268796/124664427-6f9e8180-de79-11eb-8a00-85f3d96942b0.png)
+
+##### Configure Autoscaling For Nginx
+
+1. Select the right launch template
+2. Select the VPC
+3. Select both public subnets
+4. Enable Application Load Balancer for the Auto Scaling Group (ASG)
+5. Select the target group you created before
+6. Ensure that the health checks are for both EC2 and ALB
+7. The desired capacity is 2
+8. Minimum capacity is 2
+9. Maximum capacity is 4
+10. Set scale out if CPU utilization reaches 90%
+11.Ensure there is an SNS topic to send scaling notifications
+
+
+  
 
 
 
