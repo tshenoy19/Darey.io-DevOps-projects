@@ -14,7 +14,14 @@ There are few requirements that must be met before starting the project:
 2. Create an AWS Master account. (Also known as Root Account)
 3. Within the Root account, create a sub-account and name it DevOps. (A different email address is required to complete this)
 4. Within the Root account, create an AWS Organization Unit (OU). Name it Dev. (The Dev resources will be launched in there)
+  
+  ![Screen Shot 2021-07-06 at 10 32 00 AM](https://user-images.githubusercontent.com/44268796/124619159-67791e80-de46-11eb-859b-335259da025f.png)
+
 5. Move the DevOps account into the Dev OU.
+  
+  ![Screen Shot 2021-07-06 at 10 40 15 AM](https://user-images.githubusercontent.com/44268796/124619324-8f688200-de46-11eb-8b90-a7768b45bd2f.png)
+
+
 6. Login to the newly created AWS account using the new email address.
 7. Create a free domain name for the fictitious company at Freenom domain registrar [here](https://www.freenom.com/en/index.html?lang=en).
 8. Create a hosted zone in AWS, and map it to your free domain from Freenom. Watch how to do that [here](https://www.youtube.com/watch?v=IjcHp94Hq8A)
