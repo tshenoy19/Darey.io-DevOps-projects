@@ -42,13 +42,25 @@ There are few requirements that must be met before starting the project:
 
   
 3. Create a route table and associate it with public subnets
-  
- 
 4. Create a route table and associate it with private subnets
+  
+  ![Screen Shot 2021-07-06 at 2 25 16 PM](https://user-images.githubusercontent.com/44268796/124649058-ffd2cb80-de65-11eb-88c6-25047134b849.png)
+
 5. Create an Internet Gateway
-6. Edit a route in public route table, and associate it with the Internet Gateway. (This is what allows a public subnet to be accessible from the Internet)
+  
+  ![Screen Shot 2021-07-06 at 2 27 05 PM](https://user-images.githubusercontent.com/44268796/124649252-3f011c80-de66-11eb-9592-c63a0651d9a9.png)
+
+6. Edit a route in public route table, and associate it with the Internet Gateway. (This is what allows a public subnet to be accessible from the Internet). specify 0.0.0.0/0 in the Destination box, and select the internet gateway ID in the Target list
+  
+  ![Screen Shot 2021-07-06 at 2 33 37 PM](https://user-images.githubusercontent.com/44268796/124649952-29d8bd80-de67-11eb-84ee-df1fe3d6be31.png)
+
 7. Create 3 Elastic IPs
-8. Create a Nat Gateway and assign one of the Elastic IPs (*The other 2 will be used by Bastion hosts)
+8. Create a Nat Gateway and assign one of the Elastic IPs (*The other 2 will be used by Bastion hosts). Add a new route on the private route table to configure destination as 0.0.0.0/0 and target as NAT Gateway.
+  
+  ![Screen Shot 2021-07-06 at 2 42 07 PM](https://user-images.githubusercontent.com/44268796/124651057-783a8c00-de68-11eb-877e-145460872307.png)
+
+  ![Screen Shot 2021-07-06 at 2 44 00 PM](https://user-images.githubusercontent.com/44268796/124651207-a029ef80-de68-11eb-97ae-94577d356690.png)
+
 9. Create a Security Group for:
  - Nginx Servers: Access to Nginx should only be allowed from a Application Load balancer (ALB). At this point, a load balancer has not been created, therefore  the rules will be updatedlater. For now, just create it and put some dummy records as a place holder.
 - Bastion Servers: Access to the Bastion servers should be allowed only from workstations that need to SSH into the bastion servers. Hence,  use the workstation public IP address. To get this information, simply go to terminal and type curl www.canhazip.com
