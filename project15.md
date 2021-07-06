@@ -110,6 +110,9 @@ Ensure that it has the following software installed:
   
 Create an AMI out of the EC2 instance
   
+![Screen Shot 2021-07-06 at 4 22 52 PM](https://user-images.githubusercontent.com/44268796/124662148-6cee5d00-de76-11eb-8db9-ae79578411d0.png)
+
+  
   
 
   
