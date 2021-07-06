@@ -33,8 +33,17 @@ There are few requirements that must be met before starting the project:
 ###### Always make reference to the architectural diagram and ensure that the configuration is aligned with it.
 
 1. Create a VPC
+  
+  ![Screen Shot 2021-07-06 at 1 43 05 PM](https://user-images.githubusercontent.com/44268796/124644353-27269a00-de60-11eb-9693-50f6a2913f4f.png)
+
 2. Create subnets as shown in the architecture
+  
+  ![Screen Shot 2021-07-06 at 1 55 08 PM](https://user-images.githubusercontent.com/44268796/124645734-c8622000-de61-11eb-99f9-b0313e97cce8.png)
+
+  
 3. Create a route table and associate it with public subnets
+  
+ 
 4. Create a route table and associate it with private subnets
 5. Create an Internet Gateway
 6. Edit a route in public route table, and associate it with the Internet Gateway. (This is what allows a public subnet to be accessible from the Internet)
