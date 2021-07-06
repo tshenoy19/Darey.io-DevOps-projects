@@ -10,7 +10,7 @@ Cost, Security, and Scalability are the major requirements for this project. Hen
   
 There are few requirements that must be met before starting the project:
 
-1. Properly configure your AWS account and Organization Unit. Use this [video](https://www.youtube.com/watch?v=9PQYCc_20-Q) to implement the setup.
+1. Properly configure the AWS account and Organization Unit. Use this [video](https://www.youtube.com/watch?v=9PQYCc_20-Q) to implement the setup.
 2. Create an AWS Master account. (Also known as Root Account)
 3. Within the Root account, create a sub-account and name it DevOps. (A different email address is required to complete this)
 4. Within the Root account, create an AWS Organization Unit (OU). Name it Dev. (The Dev resources will be launched in there)
