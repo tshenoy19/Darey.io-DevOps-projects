@@ -159,6 +159,49 @@ systemctl enable nginx
 
 ![Screen Shot 2021-07-07 at 10 24 46 AM](https://user-images.githubusercontent.com/44268796/124776642-9ad2b080-df0d-11eb-86e5-44278d07c490.png)
   
+  
+#### Set Up Compute Resources for Bastion
+
+##### Provision the EC2 Instances for Bastion
+
+1. Create an EC2 Instance based on RHEL 8 Amazon Machine Image (AMI) per each Availability Zone in the same Region and same AZ where you created Nginx server
+2. Ensure that it has the following software installed
+- python
+- ntp
+- net-tools
+- vim
+- wget
+- telnet
+- epel-release
+- htop
+3. Associate an Elastic IP with each of the Bastion EC2 Instances
+4. Create an AMI out of the EC2 instance
+
+##### Prepare Launch Template For Bastion (One per subnet)
+
+1. Make use of the AMI to set up a launch template
+2. Ensure the Instances are launched into a public subnet
+3. Assign appropriate security group
+4. Configure Userdata to update yum package repository and install Ansible and git
+5. Configure Target Groups
+6. Select Instances as the target type
+7. Ensure the protocol is TCP on port 22
+8. Register Bastion Instances as targets
+8. Ensure that health check passes for the target group
+  
+##### Configure Autoscaling For Bastion
+1. Select the right launch template
+2. Select the VPC
+3. Select both public subnets
+4. Enable Application Load Balancer for the AutoScalingGroup (ASG)
+5. Select the target group you created before
+6. Ensure that you have health checks for both EC2 and ALB
+7. The desired capacity is 2
+8. Minimum capacity is 2
+9. Maximum capacity is 4
+10. Set scale out if CPU utilization reaches 90%
+11. Ensure there is an SNS topic to send scaling notifications
+
 
 
 
