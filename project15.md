@@ -153,6 +153,14 @@ systemctl enable nginx
 9. Maximum capacity is 4
 10. Set scale out if CPU utilization reaches 90%
 11.Ensure there is an SNS topic to send scaling notifications
+  
+  
+![Screen Shot 2021-07-07 at 10 21 57 AM](https://user-images.githubusercontent.com/44268796/124776111-2dbf1b00-df0d-11eb-8ccb-66e2adee397b.png)
+
+![Screen Shot 2021-07-07 at 10 24 46 AM](https://user-images.githubusercontent.com/44268796/124776642-9ad2b080-df0d-11eb-86e5-44278d07c490.png)
+  
+
+
 
 
   
