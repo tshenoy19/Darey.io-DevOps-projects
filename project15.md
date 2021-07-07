@@ -213,7 +213,45 @@ yum install -y ansible git
   
 ![Screen Shot 2021-07-07 at 11 30 33 AM](https://user-images.githubusercontent.com/44268796/124787753-c017ec80-df16-11eb-9fa6-9b55f1868ea3.png)
   
+#### Set Up Compute Resources for Webservers
   
+##### Provision the EC2 Instances for Webservers
+
+We will need to create 2 separate launch templates for both the WordPress and Tooling websites
+
+Create an EC2 Instance (Centos) each for WordPress and Tooling websites per Availability Zone (in the same Region).
+Ensure that it has the following software installed:
+- python
+- ntp
+- net-tools
+- vim
+- wget
+- telnet
+- epel-release
+- htop
+- php
+
+Create an AMI out of the EC2 instance
+  
+##### Prepare Launch Template For Webservers (One per subnet)
+1. Make use of the AMI to set up a launch template
+2. Ensure the Instances are launched into a public subnet
+3. Assign appropriate security group
+4. Configure Userdata to update yum package repository and install wordpress (Only required on the WordPress launch template)
+  
+```
+#!/bin/bash
+yum update -y
+yum install -y httpd
+systemctl start httpd
+systemctl enable httpd
+yum install -y git
+yum install -y mysql
+yum install -y php php-fpm php-mysqlnd
+wget http://wordpress.org/latest.tar.gz
+tar xzvf latest.tar.gz
+systemctl restart httpd
+```
 
   
 
