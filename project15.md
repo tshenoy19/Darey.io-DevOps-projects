@@ -177,12 +177,21 @@ systemctl enable nginx
 3. Associate an Elastic IP with each of the Bastion EC2 Instances
 4. Create an AMI out of the EC2 instance
 
+![Screen Shot 2021-07-07 at 11 13 57 AM](https://user-images.githubusercontent.com/44268796/124784962-6f06f900-df14-11eb-87dc-2500625514a5.png)
+  
+
 ##### Prepare Launch Template For Bastion (One per subnet)
 
 1. Make use of the AMI to set up a launch template
 2. Ensure the Instances are launched into a public subnet
 3. Assign appropriate security group
 4. Configure Userdata to update yum package repository and install Ansible and git
+```
+#!/bin/bash
+yum update -y
+yum install -y ansible git
+```
+
 5. Configure Target Groups
 6. Select Instances as the target type
 7. Ensure the protocol is TCP on port 22
@@ -201,6 +210,14 @@ systemctl enable nginx
 9. Maximum capacity is 4
 10. Set scale out if CPU utilization reaches 90%
 11. Ensure there is an SNS topic to send scaling notifications
+  
+![Screen Shot 2021-07-07 at 11 30 33 AM](https://user-images.githubusercontent.com/44268796/124787753-c017ec80-df16-11eb-9fa6-9b55f1868ea3.png)
+  
+  
+
+  
+
+
 
 
 
