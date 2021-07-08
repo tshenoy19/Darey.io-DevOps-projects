@@ -108,6 +108,25 @@ Ensure that it has the following software installed:
 - epel-release
 - htop
   
+A shell script with the below installation commands would be useful as the same software will be needed to be installed on many servers in this project. 
+  
+```
+sudo yum install python3
+sudo dnf install chrony
+sudo systemctl start chronyd
+sudo systemctl status chronyd
+sudo systemctl enable chronyd
+sudo yum install net-tools
+sudo yum install vim
+sudo yum install wget
+sudo yum install telnet
+sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+sudo dnf update
+sudo rpm -qa | grep epel
+sudo dnf --disablerepo="*" --enablerepo="epel" list available
+sudo dnf install htop
+```
+  
 ##### Create an AMI out of the EC2 instance
   
 ![Screen Shot 2021-07-06 at 4 25 16 PM](https://user-images.githubusercontent.com/44268796/124662376-c22a6e80-de76-11eb-9a2e-160ca195ce3e.png)
@@ -181,22 +200,25 @@ systemctl enable nginx
   
 
 ##### Prepare Launch Template For Bastion (One per subnet)
-
-1. Make use of the AMI to set up a launch template
-2. Ensure the Instances are launched into a public subnet
-3. Assign appropriate security group
-4. Configure Userdata to update yum package repository and install Ansible and git
+- Make use of the AMI to set up a launch template
+- Ensure the Instances are launched into a public subnet
+- Assign appropriate security group
+- Configure Userdata to update yum package repository and install Ansible and git
 ```
 #!/bin/bash
 yum update -y
 yum install -y ansible git
 ```
 
-5. Configure Target Groups
-6. Select Instances as the target type
-7. Ensure the protocol is TCP on port 22
-8. Register Bastion Instances as targets
-8. Ensure that health check passes for the target group
+![Screen Shot 2021-07-08 at 11 29 49 AM](https://user-images.githubusercontent.com/44268796/124949715-d178fb80-dfdf-11eb-9004-6f38a175c803.png)
+
+##### Configure Target Groups
+- Select Instances as the target type
+- Ensure the protocol is TCP on port 22
+- Register Bastion Instances as targets
+- Ensure that health check passes for the target group
+  
+![Screen Shot 2021-07-08 at 11 33 57 AM](https://user-images.githubusercontent.com/44268796/124950446-6b40a880-dfe0-11eb-91f0-8f6a5a939819.png)
   
 ##### Configure Autoscaling For Bastion
 1. Select the right launch template
@@ -233,12 +255,16 @@ Ensure that it has the following software installed:
 
 Create an AMI out of the EC2 instance
   
+![Screen Shot 2021-07-08 at 2 03 57 PM](https://user-images.githubusercontent.com/44268796/124969999-6508f700-dff5-11eb-8265-dc84705a28f2.png)
+
+  
 ##### Prepare Launch Template For Webservers (One per subnet)
 1. Make use of the AMI to set up a launch template
 2. Ensure the Instances are launched into a public subnet
 3. Assign appropriate security group
 4. Configure Userdata to update yum package repository and install wordpress (Only required on the WordPress launch template)
-  
+
+The user data for the WordPress webserver launch template is below:
 ```
 #!/bin/bash
 yum update -y
@@ -253,7 +279,24 @@ tar xzvf latest.tar.gz
 systemctl restart httpd
 ```
 
+
+Repeat the same steps for launch template for the Tooling server with the user data below:
+```
+#!/bin/bash
+yum update -y
+yum install -y httpd
+systemctl start httpd
+systemctl enable httpd
+yum install -y git
+yum install -y mysql
+yum install -y php php-{mysqlnd,cli,gd,common,mbstring,fpm,json}
+systemctl restart httpd
+```
   
+![Screen Shot 2021-07-08 at 2 11 30 PM](https://user-images.githubusercontent.com/44268796/124970822-671f8580-dff6-11eb-97d6-0fc531ae5e2e.png)
+  
+  
+
 
 
 
