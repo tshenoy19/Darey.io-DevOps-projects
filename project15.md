@@ -27,6 +27,18 @@ There are few requirements that must be met before starting the project:
 8. Create a hosted zone in AWS, and map it to your free domain from Freenom. Watch how to do that [here](https://www.youtube.com/watch?v=IjcHp94Hq8A)
   
 ![Screen Shot 2021-07-06 at 12 59 27 PM](https://user-images.githubusercontent.com/44268796/124639367-12df9e80-de5a-11eb-9eb9-a19cf30382d8.png)
+  
+#### TLS Certificates From Amazon Certificate Manager (ACM)
+
+TLS certificates are required to handle secured connectivity to the Application Load Balancers (ALB).
+- Navigate to AWS ACM
+- Request a public wildcard certificate for the domain name previously registered
+- Use DNS to validate the domain name
+- Tag the resource
+  
+![Screen Shot 2021-07-08 at 2 14 30 PM](https://user-images.githubusercontent.com/44268796/124971124-d2695780-dff6-11eb-804e-ad6ba1879657.png)
+
+
 
 #### Set Up a Virtual Private Network (VPC)
   
@@ -294,8 +306,9 @@ systemctl restart httpd
 ```
   
 ![Screen Shot 2021-07-08 at 2 11 30 PM](https://user-images.githubusercontent.com/44268796/124970822-671f8580-dff6-11eb-97d6-0fc531ae5e2e.png)
-  
-  
+ 
+
+ 
 
 
 
