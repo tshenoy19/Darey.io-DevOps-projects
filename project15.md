@@ -331,13 +331,20 @@ NOTE: This process must be repeated for both WordPress and Tooling websites.
   
 ![Screen Shot 2021-07-08 at 2 45 32 PM](https://user-images.githubusercontent.com/44268796/124974743-27a76800-dffb-11eb-97cf-7be7ace9b622.png)
 
+#### Setup EFS
+  
+This project utilizes EFS service and mount filesystems on the Nginx and Webservers to store data.
 
+1. Create an EFS filesystem
+2. Create an EFS mount target per AZ in the VPC, associate it with both subnets dedicated for data layer
+3. Associate the Security groups created earlier for data layer.
+4. Create an EFS access point. (Give it a name and leave all other settings as default)
  
+![Screen Shot 2021-07-08 at 2 57 17 PM](https://user-images.githubusercontent.com/44268796/124976085-cbddde80-dffc-11eb-9f8e-00af28c0a1bd.png)
 
+![Screen Shot 2021-07-08 at 2 58 30 PM](https://user-images.githubusercontent.com/44268796/124976209-f760c900-dffc-11eb-9769-0570cbb71eb1.png)
 
-
-
-
+#### Setup RDS
 
 
 
