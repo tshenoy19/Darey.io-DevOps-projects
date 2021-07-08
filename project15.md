@@ -306,7 +306,31 @@ systemctl restart httpd
 ```
   
 ![Screen Shot 2021-07-08 at 2 11 30 PM](https://user-images.githubusercontent.com/44268796/124970822-671f8580-dff6-11eb-97d6-0fc531ae5e2e.png)
+  
+##### Create two separate Target Groups for WordPress servers and Tooling servers
+  
+![Screen Shot 2021-07-08 at 2 34 03 PM](https://user-images.githubusercontent.com/44268796/124973545-a9969180-dff9-11eb-94c5-a630738e8494.png)
+
  
+##### Application Load Balancer To Route Traffic To Web Servers
+
+Since the webservers are configured for auto-scaling, there is going to be a problem if servers get dynamically scalled out or in. Nginx will not know about the new IP addresses, or the ones that get removed. Hence, Nginx will not know where to direct the traffic.
+
+To solve this problem, we must use a load balancer. But this time, it will be an internal load balancer. Not Internet facing since the webservers are within a private subnet, and we do not want direct access to them.
+
+- Create an Internal ALB
+- Ensure that it listens on HTTPS protocol (TCP port 443)
+- Ensure the ALB is created within the appropriate VPC | AZ | Subnets
+- Choose the Certificate from ACM
+- Select Security Group
+- Select webserver Instances as the target group
+- Ensure that health check passes for the target group
+NOTE: This process must be repeated for both WordPress and Tooling websites.
+  
+![Screen Shot 2021-07-08 at 2 46 16 PM](https://user-images.githubusercontent.com/44268796/124974832-4443a000-dffb-11eb-9eb8-1d9ed00cd1d7.png) 
+  
+![Screen Shot 2021-07-08 at 2 45 32 PM](https://user-images.githubusercontent.com/44268796/124974743-27a76800-dffb-11eb-97cf-7be7ace9b622.png)
+
 
  
 
