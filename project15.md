@@ -346,18 +346,42 @@ This project utilizes EFS service and mount filesystems on the Nginx and Webserv
 
 #### Setup RDS
   
+##### Create a KMS key from Key Management Service (KMS) to be used to encrypt the database instance
+
+- On IAM, create two AWS Service roles for RDS administrative privileges- A Service Role for RDS and another Role for RDS monitoring
+- On KMS Console, choose Symmetric and Click Next. Assign an Alias. 
+- Select the two roles to assign administrative RDS privileges
+- Click Create Key
+  
+![Screen Shot 2021-07-09 at 11 33 52 AM](https://user-images.githubusercontent.com/44268796/125103360-457fd600-e0aa-11eb-969b-92c952b64d62.png)
+
+![Screen Shot 2021-07-09 at 11 34 37 AM](https://user-images.githubusercontent.com/44268796/125103384-4a448a00-e0aa-11eb-8e96-d42bc9af7c02.png)
+ 
 ##### Create DB Subnet Group
   
 On the RDS Management Console, create a DB subnet group with two private subnets in the two Availability Zones
   
 ![Screen Shot 2021-07-09 at 10 29 12 AM](https://user-images.githubusercontent.com/44268796/125093820-b4583180-e0a0-11eb-8fed-3b505be60066.png)
   
+##### Create RDS
+- Click on Create Database
+- Select MySQL
+- Choose Dev/Test from the Templates
+- Enter a name for the DB 
+- Create Master username and passsword
+- Choose the smallest possible instance to keep the costs low (db.t3.micro etc.,)
+- Select "Do not create a standby instance" option
+- Select the VPC, select the subnet group that was created earlier and the database security group
+- Scroll down to Additional configuration
+- Enter initial database name (but i'll personally recommend you connect to it from your webservers and create required databases)
+- Leave everything else, scroll down to Encryption and select the KMS key you created
+- Scroll down and click Create database
+
+
+  
 
   
   
-##### Create a KMS key from Key Management Service (KMS) to be used to encrypt the database instance
-  
-On KMS Console, choose Symmetric and Click Next. Assign an Alias. 
 
   
 
