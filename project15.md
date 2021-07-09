@@ -377,6 +377,7 @@ On the RDS Management Console, create a DB subnet group with two private subnets
 - Leave everything else, scroll down to Encryption and select the KMS key you created
 - Scroll down and click Create database
 
+![Screen Shot 2021-07-09 at 11 43 27 AM](https://user-images.githubusercontent.com/44268796/125104000-ea9aae80-e0aa-11eb-8b00-6a12d9e0a81a.png)
 
   
 
