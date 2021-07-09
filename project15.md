@@ -346,6 +346,15 @@ This project utilizes EFS service and mount filesystems on the Nginx and Webserv
 
 #### Setup RDS
   
+##### Create DB Subnet Group
+  
+On the RDS Management Console, create a DB subnet group with two private subnets in the two Availability Zones
+  
+![Screen Shot 2021-07-09 at 10 29 12 AM](https://user-images.githubusercontent.com/44268796/125093820-b4583180-e0a0-11eb-8fed-3b505be60066.png)
+  
+
+  
+  
 ##### Create a KMS key from Key Management Service (KMS) to be used to encrypt the database instance
   
 On KMS Console, choose Symmetric and Click Next. Assign an Alias. 
