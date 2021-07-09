@@ -345,6 +345,13 @@ This project utilizes EFS service and mount filesystems on the Nginx and Webserv
 ![Screen Shot 2021-07-08 at 2 58 30 PM](https://user-images.githubusercontent.com/44268796/124976209-f760c900-dffc-11eb-9769-0570cbb71eb1.png)
 
 #### Setup RDS
+  
+##### Create a KMS key from Key Management Service (KMS) to be used to encrypt the database instance
+  
+On KMS Console, choose Symmetric and Click Next. Assign an Alias. 
+
+  
+
 
 
 
