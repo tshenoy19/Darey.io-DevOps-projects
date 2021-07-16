@@ -151,10 +151,25 @@ sudo dnf install htop
 4. Configure Userdata to update yum package repository and install nginx:
 ```
 #!/bin/bash
-yum update -y
+yum install -y  https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+yum install -y yum-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
 yum install -y nginx
 systemctl start nginx
 systemctl enable nginx
+yum module reset php -y
+yum module enable php:remi-7.4 -y
+yum install -y php php7.4-zip php-common php-mbstring php-opcache php-intl php-xml php-gd php-curl php-mysqlnd php-fpm php-json
+systemctl start php-fpm
+systemctl enable php-fpm
+yum install -y git
+git clone https://github.com/tshenoy19/project15-conf.git
+mv project15-conf/reverse /etc/nginx/
+mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf-distro
+cd /etc/nginx/
+touch nginx.conf
+sed -n 'w nginx.conf' reverse
+rm -rf reverse
+systemctl restart nginx
 ```
   
 ![Screen Shot 2021-07-06 at 4 30 26 PM](https://user-images.githubusercontent.com/44268796/124662967-7a581700-de77-11eb-8636-5e318091191c.png)
@@ -218,8 +233,11 @@ systemctl enable nginx
 - Configure Userdata to update yum package repository and install Ansible and git
 ```
 #!/bin/bash
-yum update -y
-yum install -y ansible git
+yum install -y  https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+yum install -y yum-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+yum install -y mysql
+yum install -y git
+yum install -y ansible
 ```
 
 ![Screen Shot 2021-07-08 at 11 29 49 AM](https://user-images.githubusercontent.com/44268796/124949715-d178fb80-dfdf-11eb-9004-6f38a175c803.png)
