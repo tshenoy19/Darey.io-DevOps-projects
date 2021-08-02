@@ -403,7 +403,8 @@ In MySQL, create a database called "toolingdb"
 ```
 CREATE DATABASE toolingdb; 
 ```
-[Screen Shot 2021-08-02 at 4 50 20 PM](https://user-images.githubusercontent.com/44268796/127922107-687a76bf-5147-4e21-9d81-7e69166c9b35.png)
+![Screen Shot 2021-08-02 at 4 59 58 PM](https://user-images.githubusercontent.com/44268796/127923252-d233acd2-df1f-4a22-86ee-e5fb67dc66e5.png)
+
 
 ##### Create WordPress Auto Scaling Group:
 - Choose the WordPress launch template and two private subnets (1 and 2)
