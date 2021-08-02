@@ -360,7 +360,7 @@ yum module enable php:remi-7.4 -y
 yum install -y php php-common php-mbstring php-opcache php-intl php-xml php-gd php-curl php-mysqlnd php-fpm php-json
 systemctl start php-fpm
 systemctl enable php-fpm
-git clone https://github.com/tshenoy19/tooling.git
+git clone https://github.com/Livingstone95/tooling-1.git
 mkdir /var/www/html
 cp -R /tooling-1/html/*  /var/www/html/
 cd /tooling-1
@@ -372,6 +372,14 @@ chcon -t httpd_sys_rw_content_t /var/www/html/ -R
 systemctl restart httpd
 ```
 
+![Screen Shot 2021-08-02 at 4 29 03 PM](https://user-images.githubusercontent.com/44268796/127919843-35d16af8-7776-4267-a69c-e95ac4d7c896.png)
+                                                                                                                    
+ 
+                                                                                                                    
+                                                                                                                    
+                                                                                                                    
+                                                                                                                    
+                                                                                                                
 
   
 
