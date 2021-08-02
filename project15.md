@@ -44,7 +44,7 @@ TLS certificates are required to handle secured connectivity to the Application 
   
 ###### Always make reference to the architectural diagram and ensure that the configuration is aligned with it.
 
-1. Create a VPC
+1. Create a VPC and also enbale DNS Hostname resolution for the VPC
   
   ![Screen Shot 2021-07-06 at 1 43 05 PM](https://user-images.githubusercontent.com/44268796/124644353-27269a00-de60-11eb-9693-50f6a2913f4f.png)
 
@@ -58,7 +58,7 @@ TLS certificates are required to handle secured connectivity to the Application 
   
   ![Screen Shot 2021-07-06 at 2 25 16 PM](https://user-images.githubusercontent.com/44268796/124649058-ffd2cb80-de65-11eb-88c6-25047134b849.png)
 
-5. Create an Internet Gateway
+5. Create an Internet Gateway and attach it to the VPC
   
   ![Screen Shot 2021-07-06 at 2 27 05 PM](https://user-images.githubusercontent.com/44268796/124649252-3f011c80-de66-11eb-9592-c63a0651d9a9.png)
 
