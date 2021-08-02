@@ -314,7 +314,65 @@ rm -rf /project15-config
 ```
 The above repository in the userdata was forked from https://github.com/Livingstone95/ACS-project-config.git and renamed. 
   
-The reverse.conf file was modified to use the custom server name and internal load balancer DNS name.
+The reverse.conf file was modified to use the custom server name and internal load balancer DNS name. Since the Nginx servers will be acting as reverse proxy and directing traffic to the internal load balancer, this configuration is necessary. 
+  
+##### Create Webserver launch template:
+Choose the Webserver AMI, private subnet and webserver security group. Create a network interface. Edit the userdata with custom values (update with the DB endpoint, username, password, accesspoint for WordPress in EFS):
+```
+#!/bin/bash
+mkdir /var/www/
+sudo mount -t efs -o tls,accesspoint=fsap-02c90e388298bf523 fs-c88ec07c:/ /var/www/
+yum install -y httpd 
+systemctl start httpd
+systemctl enable httpd
+yum module reset php -y
+yum module enable php:remi-7.4 -y
+yum install -y php php-common php-mbstring php-opcache php-intl php-xml php-gd php-curl php-mysqlnd php-fpm php-json
+systemctl start php-fpm
+systemctl enable php-fpm
+wget http://wordpress.org/latest.tar.gz
+tar xzvf latest.tar.gz
+rm -rf latest.tar.gz
+cp wordpress/wp-config-sample.php wordpress/wp-config.php
+mkdir /var/www/html/
+cp -R /wordpress/* /var/www/html/
+cd /var/www/html/
+touch healthstatus
+sed -i "s/localhost/project15-database.ca3bnrom1lfd.us-east-1.rds.amazonaws.com/g" wp-config.php 
+sed -i "s/username_here/project15admin/g" wp-config.php 
+sed -i "s/password_here/admin12345/g" wp-config.php 
+sed -i "s/database_name_here/project15-database/g" wp-config.php 
+chcon -t httpd_sys_rw_content_t /var/www/html/ -R
+systemctl restart httpd
+```
+
+##### Create the Tooling Launch Template
+Select the AMI, private subnet and security group, create the network interface and add the following userdata (update with access point for tooling in EFS) :
+```
+#!/bin/bash
+mkdir /var/www/
+sudo mount -t efs -o tls,accesspoint=fsap-0b3bcf0a84845df2c fs-c88ec07c:/ /var/www/
+yum install -y httpd 
+systemctl start httpd
+systemctl enable httpd
+yum module reset php -y
+yum module enable php:remi-7.4 -y
+yum install -y php php-common php-mbstring php-opcache php-intl php-xml php-gd php-curl php-mysqlnd php-fpm php-json
+systemctl start php-fpm
+systemctl enable php-fpm
+git clone https://github.com/tshenoy19/tooling.git
+mkdir /var/www/html
+cp -R /tooling-1/html/*  /var/www/html/
+cd /tooling-1
+mysql -h project15-database.ca3bnrom1lfd.us-east-1.rds.amazonaws.com -u project15admin -p toolingdb < tooling-db.sql
+cd /var/www/html/
+touch healthstatus
+sed -i "s/$db = mysqli_connect('mysql.tooling.svc.cluster.local', 'admin', 'admin', 'tooling');/$db = mysqli_connect('project15-database.ca3bnrom1lfd.us-east-1.rds.amazonaws.com ', 'project15admin', 'admin12345', 'toolingdb');/g" functions.php
+chcon -t httpd_sys_rw_content_t /var/www/html/ -R
+systemctl restart httpd
+```
+
+
   
 
   
