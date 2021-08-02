@@ -294,6 +294,30 @@ yum install -y git tmux
 yum install -y ansible
 ```
 
+##### Create Nginx Launch Template:
+  
+- Follow same steps as above; choose the Nginx AMI; Nginx security group, enable auto-assign IP, and configure userdata:
+```
+#!/bin/bash
+yum install -y nginx
+systemctl start nginx
+systemctl enable nginx
+git clone https://github.com/tshenoy19/project15-config.git
+mv /project15-config/reverse.conf /etc/nginx/
+mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf-distro
+cd /etc/nginx/
+touch nginx.conf
+sed -n 'w nginx.conf' reverse.conf
+systemctl restart nginx
+rm -rf reverse.conf
+rm -rf /project15-config
+```
+The above repository in the userdata was forked from https://github.com/Livingstone95/ACS-project-config.git and renamed. 
+  
+The reverse.conf file was modified to use the custom server name and internal load balancer DNS name.
+  
+
+  
 
   
 
