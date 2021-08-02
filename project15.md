@@ -89,9 +89,56 @@ TLS certificates are required to handle secured connectivity to the Application 
   
   
 ![Screen Shot 2021-08-02 at 10 26 26 AM](https://user-images.githubusercontent.com/44268796/127877242-73ad9923-023d-4c31-a104-48c6d1e3ce80.png)
+  
+This project utilizes EFS service and mount filesystems on the Nginx and Webservers to store data.
+
+1. Create an EFS filesystem
+2. Create an EFS mount target per AZ in the VPC, associate it with both subnets dedicated for data layer. Mount the EFS in both AZ in the same private subnets as the webservers (private-subnet-01 and private-subnet-02)
+3. Associate the Security groups created earlier for data layer.
+4. Create two separate EFS access points- one for wordpress and one for tooling. (Give it a name and leave all other settings as default). Set the POSIX user and Group ID to root(0) and permissions to 0755
+ 
+![Screen Shot 2021-08-02 at 10 50 12 AM](https://user-images.githubusercontent.com/44268796/127880713-ab84edab-ef52-4883-806d-d91593fe6508.png)
+  
+![Screen Shot 2021-08-02 at 10 53 49 AM](https://user-images.githubusercontent.com/44268796/127881251-37030c1f-91a6-40a6-b8d5-3e696c5d85ad.png)
+
+![Screen Shot 2021-08-02 at 10 56 32 AM](https://user-images.githubusercontent.com/44268796/127881639-91ce3c68-0dcf-4172-a91c-6b363862aa5e.png)
+
+![Screen Shot 2021-08-02 at 10 57 03 AM](https://user-images.githubusercontent.com/44268796/127881702-5d236ddd-75a7-4c05-ad09-0c82d3d87b7d.png)
 
   
-#### Proceed With Compute Resources
+  
+#### Setup RDS
+  
+##### Create a KMS key from Key Management Service (KMS) to be used to encrypt the database instance
+
+- On KMS Console, choose Symmetric and Click Next. Assign an Alias. 
+- Select user with admin privileges as the key administrator
+- Click Create Key
+  
+![Screen Shot 2021-08-02 at 11 23 29 AM](https://user-images.githubusercontent.com/44268796/127885682-cc99a306-f915-4fcd-a99e-7b2eb61ad5ba.png)
+
+ 
+##### Create DB Subnet Group
+  
+On the RDS Management Console, create a DB subnet group with the two private subnets(10.0.5.0/24 and 10.0.7.0/24) in the two Availability Zones.
+  
+![Screen Shot 2021-08-02 at 11 28 07 AM](https://user-images.githubusercontent.com/44268796/127886143-c54d8856-d345-405c-89af-bcea1a39ce2d.png)
+
+    
+##### Create RDS
+- Click on Create Database
+- Select MySQL
+- Choose Free Tier from the Templates
+- Enter a name for the DB 
+- Create Master username and passsword
+- Select the VPC, select the subnet group that was created earlier and the database security group
+- Scroll down to Additional configuration
+- Enter initial database name 
+- Scroll down and click Create database
+
+![Screen Shot 2021-08-02 at 11 37 54 AM](https://user-images.githubusercontent.com/44268796/127887350-5423fc44-5841-4d5e-af45-fe0d4a5b077a.png)
+  
+ #### Proceed With Compute Resources
 
 Configure compute resources inside the VPC. The recources related to compute are:
 
@@ -107,6 +154,26 @@ Configure the Public Subnets as follows so the instances can be assigned a publi
 - Select the public subnet for the VPC. By default, the name created by the VPC wizard is Public subnet.
 - Choose Actions, Modify auto-assign IP settings.
 - Select the Enable auto-assign public IPv4 address check box, and then choose Save.
+  
+
+#### Launch templates 
+##### First create three AMIs for Nginx server, Bastion server and Webserver.
+- Launch 3 EC2 instances (Red Hat Free Tier) with default settings and a security group that allows access from all traffic (0.0.0.0/0)
+  
+![Screen Shot 2021-08-02 at 11 49 59 AM](https://user-images.githubusercontent.com/44268796/127889000-303a96ca-5ce6-4ab3-9d48-ed0ef465073d.png)
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
 #### Set Up Compute Resources for Nginx
   
@@ -354,62 +421,6 @@ NOTE: This process must be repeated for both WordPress and Tooling websites.
 ![Screen Shot 2021-07-08 at 2 45 32 PM](https://user-images.githubusercontent.com/44268796/124974743-27a76800-dffb-11eb-97cf-7be7ace9b622.png)
 
 #### Setup EFS
-  
-This project utilizes EFS service and mount filesystems on the Nginx and Webservers to store data.
-
-1. Create an EFS filesystem
-2. Create an EFS mount target per AZ in the VPC, associate it with both subnets dedicated for data layer. Mount the EFS in both AZ in the same private subnets as the webservers (private-subnet-01 and private-subnet-02)
-3. Associate the Security groups created earlier for data layer.
-4. Create two separate EFS access points- one for wordpress and one for tooling. (Give it a name and leave all other settings as default). Set the POSIX user and Group ID to root(0) and permissions to 0755
- 
-![Screen Shot 2021-08-02 at 10 50 12 AM](https://user-images.githubusercontent.com/44268796/127880713-ab84edab-ef52-4883-806d-d91593fe6508.png)
-  
-![Screen Shot 2021-08-02 at 10 53 49 AM](https://user-images.githubusercontent.com/44268796/127881251-37030c1f-91a6-40a6-b8d5-3e696c5d85ad.png)
-
-![Screen Shot 2021-08-02 at 10 56 32 AM](https://user-images.githubusercontent.com/44268796/127881639-91ce3c68-0dcf-4172-a91c-6b363862aa5e.png)
-
-![Screen Shot 2021-08-02 at 10 57 03 AM](https://user-images.githubusercontent.com/44268796/127881702-5d236ddd-75a7-4c05-ad09-0c82d3d87b7d.png)
-
-  
-  
-#### Setup RDS
-  
-##### Create a KMS key from Key Management Service (KMS) to be used to encrypt the database instance
-
-- On IAM, create two AWS Service roles for RDS administrative privileges- A Service Role for RDS and another Role for RDS monitoring
-- On KMS Console, choose Symmetric and Click Next. Assign an Alias. 
-- Select the two roles to assign administrative RDS privileges
-- Click Create Key
-  
-![Screen Shot 2021-07-09 at 11 33 52 AM](https://user-images.githubusercontent.com/44268796/125103360-457fd600-e0aa-11eb-969b-92c952b64d62.png)
-
-![Screen Shot 2021-07-09 at 11 34 37 AM](https://user-images.githubusercontent.com/44268796/125103384-4a448a00-e0aa-11eb-8e96-d42bc9af7c02.png)
- 
-##### Create DB Subnet Group
-  
-On the RDS Management Console, create a DB subnet group with two private subnets in the two Availability Zones
-  
-![Screen Shot 2021-07-09 at 10 29 12 AM](https://user-images.githubusercontent.com/44268796/125093820-b4583180-e0a0-11eb-8fed-3b505be60066.png)
-  
-##### Create RDS
-- Click on Create Database
-- Select MySQL
-- Choose Dev/Test from the Templates
-- Enter a name for the DB 
-- Create Master username and passsword
-- Choose the smallest possible instance to keep the costs low (db.t3.micro etc.,)
-- Select "Do not create a standby instance" option
-- Select the VPC, select the subnet group that was created earlier and the database security group
-- Scroll down to Additional configuration
-- Enter initial database name (but i'll personally recommend you connect to it from your webservers and create required databases)
-- Leave everything else, scroll down to Encryption and select the KMS key you created
-- Scroll down and click Create database
-
-![Screen Shot 2021-07-09 at 11 43 27 AM](https://user-images.githubusercontent.com/44268796/125104000-ea9aae80-e0aa-11eb-8b00-6a12d9e0a81a.png)
-
-  
-
-  
   
 
   
