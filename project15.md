@@ -85,9 +85,11 @@ TLS certificates are required to handle secured connectivity to the Application 
   
 - Webservers: The security group should allow SSH from bastion host, HTTP and HTTPS from the internal ALB only.
   
-- Data Layer: Access to the Data layer, which is comprised of Amazon Relational Database Service (RDS) and Amazon Elastic File System (EFS) must be carefully designed - only webservers should be able to connect to RDS, while Nginx and Webservers will have access to EFS Mountpoint.
+- Data Layer: Access to the Data layer, which is comprised of Amazon Relational Database Service (RDS) and Amazon Elastic File System (EFS) must be carefully designed - webservers need to mount the file system and connect to the RDS database, bastion host needs to have SQL access to the RDS to use the MYSQL client
   
-![Screen Shot 2021-07-06 at 2 59 35 PM](https://user-images.githubusercontent.com/44268796/124653018-cc467000-de6a-11eb-915b-94cb0466e022.png)
+  
+![Screen Shot 2021-08-02 at 10 26 26 AM](https://user-images.githubusercontent.com/44268796/127877242-73ad9923-023d-4c31-a104-48c6d1e3ce80.png)
+
   
 #### Proceed With Compute Resources
 
