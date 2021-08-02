@@ -358,14 +358,20 @@ NOTE: This process must be repeated for both WordPress and Tooling websites.
 This project utilizes EFS service and mount filesystems on the Nginx and Webservers to store data.
 
 1. Create an EFS filesystem
-2. Create an EFS mount target per AZ in the VPC, associate it with both subnets dedicated for data layer
+2. Create an EFS mount target per AZ in the VPC, associate it with both subnets dedicated for data layer. Mount the EFS in both AZ in the same private subnets as the webservers (private-subnet-01 and private-subnet-02)
 3. Associate the Security groups created earlier for data layer.
-4. Create an EFS access point. (Give it a name and leave all other settings as default)
+4. Create two separate EFS access points- one for wordpress and one for tooling. (Give it a name and leave all other settings as default). Set the POSIX user and Group ID to root(0) and permissions to 0755
  
-![Screen Shot 2021-07-08 at 2 57 17 PM](https://user-images.githubusercontent.com/44268796/124976085-cbddde80-dffc-11eb-9f8e-00af28c0a1bd.png)
+![Screen Shot 2021-08-02 at 10 50 12 AM](https://user-images.githubusercontent.com/44268796/127880713-ab84edab-ef52-4883-806d-d91593fe6508.png)
+  
+![Screen Shot 2021-08-02 at 10 53 49 AM](https://user-images.githubusercontent.com/44268796/127881251-37030c1f-91a6-40a6-b8d5-3e696c5d85ad.png)
 
-![Screen Shot 2021-07-08 at 2 58 30 PM](https://user-images.githubusercontent.com/44268796/124976209-f760c900-dffc-11eb-9769-0570cbb71eb1.png)
+![Screen Shot 2021-08-02 at 10 56 32 AM](https://user-images.githubusercontent.com/44268796/127881639-91ce3c68-0dcf-4172-a91c-6b363862aa5e.png)
 
+![Screen Shot 2021-08-02 at 10 57 03 AM](https://user-images.githubusercontent.com/44268796/127881702-5d236ddd-75a7-4c05-ad09-0c82d3d87b7d.png)
+
+  
+  
 #### Setup RDS
   
 ##### Create a KMS key from Key Management Service (KMS) to be used to encrypt the database instance
