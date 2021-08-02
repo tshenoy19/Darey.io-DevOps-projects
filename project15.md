@@ -424,7 +424,17 @@ CREATE DATABASE toolingdb;
 ![Screen Shot 2021-08-02 at 4 58 34 PM](https://user-images.githubusercontent.com/44268796/127923016-c1414f00-245d-4f08-bf0e-65c97eba1059.png)
   
 
-  
+                                                                                                                   
+##### Create four A records that points to the external load balancer as follows: 
+                                                                                                                    
+![Screen Shot 2021-08-02 at 5 04 37 PM](https://user-images.githubusercontent.com/44268796/127923658-e0aa13df-2032-4c8a-bcf9-e089bcd6eb1f.png)
+                                                                                                                  
+![Screen Shot 2021-08-02 at 5 07 20 PM](https://user-images.githubusercontent.com/44268796/127924047-78e9d8ba-0651-41c9-abdb-f66bc1cef10e.png)
+
+                                                                                                                    
+![Screen Shot 2021-08-02 at 5 07 28 PM](https://user-images.githubusercontent.com/44268796/127923987-e3008979-ab15-4f87-9c78-492ec9d15143.png)
+                                                                                                                  
+![Screen Shot 2021-08-02 at 5 12 33 PM](https://user-images.githubusercontent.com/44268796/127924490-9f72fd68-1461-473c-9757-497b4bb6989b.png)  
 
 
 
