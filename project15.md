@@ -375,22 +375,52 @@ systemctl restart httpd
 ![Screen Shot 2021-08-02 at 4 29 03 PM](https://user-images.githubusercontent.com/44268796/127919843-35d16af8-7776-4267-a69c-e95ac4d7c896.png)
                                                                                                                     
  
+#### Create Auto Scaling Groups
                                                                                                                     
+##### Create Bastion Auto Scaling Group                                                                                                                    
+- Choose the bastion launch template and the two public subnets
+- Pick the no load balancer option 
+- Set Target Tracking Scaling Policy with CPU at 90%                                                                                                                   
+- Set SNS Topic notifications                                                                                                                   
+- Create the Auto Scaling Group
+                                                                                                                 
+##### Create the Nginx Auto Scaling Group                                                                                                                    
+- Choose the Nginx launch template and the two public subnets
+- Select existing load balancer and choose the Nginx Target Group
+- Set Target Tracking Scaling Policy with CPU at 90%                                                                                                                   
+- Set SNS Topic notifications                                                                                                                   
+- Create the Auto Scaling Group                                                                                                              
+
+#### Create and Configure the WordPress DB from the Bastion server 
                                                                                                                     
+Connect to the Bastion server with SSH. 
+Now connect to the RDS database:
+```
+mysql -h project15-database.ca3bnrom1lfd.us-east-1.rds.amazonaws.com -u project15admin -p !
+                                                                                                                   
+```
+In MySQL, create a database called "toolingdb"  
+```
+CREATE DATABASE toolingdb; 
+```
+[Screen Shot 2021-08-02 at 4 50 20 PM](https://user-images.githubusercontent.com/44268796/127922107-687a76bf-5147-4e21-9d81-7e69166c9b35.png)
+
+##### Create WordPress Auto Scaling Group:
+- Choose the WordPress launch template and two private subnets (1 and 2)
+- Select existing load balancer and choose the WordPress Target Group
+- Set Target Tracking Scaling Policy with CPU at 90%                                                                                                                   
+- Set SNS Topic notifications                                                                                                                   
+- Create the Auto Scaling Group                                                                                                                  
                                                                                                                     
+##### Create Tooling Auto Scaling Group
+- Choose the tooling launch template and two private subnets (1 and 2)
+- Select existing load balancer and choose the Tooling Target Group
+- Set Target Tracking Scaling Policy with CPU at 90%                                                                                                                   
+- Set SNS Topic notifications                                                                                                                   
+- Create the Auto Scaling Group                                                                                                                   
                                                                                                                     
-                                                                                                                
-
-  
-
-  
-
-  
-
-
-
-  
-
+                                                                                                                  
+![Screen Shot 2021-08-02 at 4 58 34 PM](https://user-images.githubusercontent.com/44268796/127923016-c1414f00-245d-4f08-bf0e-65c97eba1059.png)
   
 
   
