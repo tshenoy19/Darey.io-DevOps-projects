@@ -157,278 +157,154 @@ Configure the Public Subnets as follows so the instances can be assigned a publi
   
 
 #### Launch templates 
-##### First create three AMIs for Nginx server, Bastion server and Webserver.
+##### First create three EC2 instance for Nginx server, Bastion server and Webserver.
 - Launch 3 EC2 instances (Red Hat Free Tier) with default settings and a security group that allows access from all traffic (0.0.0.0/0)
   
 ![Screen Shot 2021-08-02 at 11 49 59 AM](https://user-images.githubusercontent.com/44268796/127889000-303a96ca-5ce6-4ab3-9d48-ed0ef465073d.png)
 
+##### Set up the Bastion server:
   
+Install the following:
+```
+yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm 
+yum install -y dnf-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm 
+yum install wget vim python3 telnet htop git mysql net-tools chrony -y 
+systemctl start chronyd
+systemctl enable chronyd
+```
+  
+##### Set up the Nginx server for AMI installation:
+```
+yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+yum install -y dnf-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+yum install wget vim python3 telnet htop git mysql net-tools chrony -y
+systemctl start chronyd
+systemctl enable chronyd
+```
+Configure Selinux policies with the following. These policies are required for the webserver to function properly:
+```
+setsebool -P httpd_can_network_connect=1
+setsebool -P httpd_can_network_connect_db=1
+setsebool -P httpd_execmem=1
+setsebool -P httpd_use_nfs 1  
+```
+Install amazon EFS utils for mounting the target on the Elastic file system:
+```
+git clone https://github.com/aws/efs-utils
+cd efs-utils
+yum install -y make
+yum install -y rpm-build
+make rpm 
+yum install -y  ./build/amazon-efs-utils*rpm
+```
+Install self-signed certificate for Nginx instance:
+```
+sudo mkdir /etc/ssl/private
+sudo chmod 700 /etc/ssl/private
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/ACS.key -out /etc/ssl/certs/ACS.crt
+sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+```  
+##### Set up of webserver instance for AMI:
+```
+yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+yum install -y dnf-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+yum install wget vim python3 telnet htop git mysql net-tools chrony -y
+systemctl start chronyd
+systemctl enable chronyd
+```
+Configure Selinux policies:
+```
+setsebool -P httpd_can_network_connect=1
+setsebool -P httpd_can_network_connect_db=1
+setsebool -P httpd_execmem=1
+setsebool -P httpd_use_nfs 1
+```
+Install EFS utils:
+```
+git clone https://github.com/aws/efs-utils
+cd efs-utils
+yum install -y make
+yum install -y rpm-build
+make rpm 
+yum install -y  ./build/amazon-efs-utils*rpm
+``` 
+# Setting up self-signed certificate for the Apache webserver instance:
+```
+yum install -y mod_ssl
+openssl req -newkey rsa:2048 -nodes -keyout /etc/pki/tls/private/ACS.key -x509 -days 365 -out /etc/pki/tls/certs/ACS.crt
+vi /etc/httpd/conf.d/ssl.conf
+``` 
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-#### Set Up Compute Resources for Nginx
-  
-##### Provision EC2 Instances for Nginx
+Modify the file with the key name and certificate name: 
+![Screen Shot 2021-08-02 at 2 18 13 PM](https://user-images.githubusercontent.com/44268796/127906077-8fb2d831-b81b-4078-9dcb-c1bec12b2496.png)
 
-Create an EC2 Instance based on CentOS Amazon Machine Image (AMI) in any 2 Availability Zones (AZ) in any AWS Region (it is recommended to use the Region that is closest to customers). Use EC2 instance of T2 family (e.g. t2.micro or similar)
+#### Create AMIs from the Nginx, Bastion and Webserver Instances
   
-Ensure that it has the following software installed:
-- python
-- ntp
-- net-tools
-- vim
-- wget
-- telnet
-- epel-release
-- htop
-  
-A shell script with the below installation commands would be useful as the same software will be needed to be installed on many servers in this project. 
-  
-```
-sudo yum install python3
-sudo dnf install chrony
-sudo systemctl start chronyd
-sudo systemctl status chronyd
-sudo systemctl enable chronyd
-sudo yum install net-tools
-sudo yum install vim
-sudo yum install wget
-sudo yum install telnet
-sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-sudo dnf update
-sudo rpm -qa | grep epel
-sudo dnf --disablerepo="*" --enablerepo="epel" list available
-sudo dnf install htop
-```
-  
-##### Create an AMI out of the EC2 instance
-  
-![Screen Shot 2021-07-06 at 4 25 16 PM](https://user-images.githubusercontent.com/44268796/124662376-c22a6e80-de76-11eb-9a2e-160ca195ce3e.png)
-  
-##### Prepare Launch Template For Nginx (One Per Subnet)
-  
-1. Make use of the AMI to set up a launch template
-2. Ensure the Instances are launched into a public subnet
-3. Assign appropriate security group
-4. Configure Userdata to update yum package repository and install nginx:
-```
-#!/bin/bash
-yum install -y  https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-yum install -y yum-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
-yum install -y nginx
-systemctl start nginx
-systemctl enable nginx
-yum module reset php -y
-yum module enable php:remi-7.4 -y
-yum install -y php php7.4-zip php-common php-mbstring php-opcache php-intl php-xml php-gd php-curl php-mysqlnd php-fpm php-json
-systemctl start php-fpm
-systemctl enable php-fpm
-yum install -y git
-git clone https://github.com/tshenoy19/project15-conf.git
-mv project15-conf/reverse /etc/nginx/
-mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf-distro
-cd /etc/nginx/
-touch nginx.conf
-sed -n 'w nginx.conf' reverse
-rm -rf reverse
-systemctl restart nginx
-```
-  
-![Screen Shot 2021-07-06 at 4 30 26 PM](https://user-images.githubusercontent.com/44268796/124662967-7a581700-de77-11eb-8636-5e318091191c.png)
-  
-![Screen Shot 2021-07-06 at 4 41 16 PM](https://user-images.githubusercontent.com/44268796/124664130-fd2da180-de78-11eb-93b2-7398da8cb747.png)
-  
-##### Configure Target Groups
+![Screen Shot 2021-08-02 at 2 44 30 PM](https://user-images.githubusercontent.com/44268796/127908855-55383cd9-4591-46a1-814a-f72315d95286.png)
+
+#### Create three Target Group for Nginx server, WordPress server and Tooling server respectively with the same settings:
 
 1. Select Instances as the target type
 2. Ensure the protocol HTTPS on secure TLS port 443
 3. Ensure that the health check path is /healthstatus
-4. Register Nginx Instances as targets
-5. Ensure that health check passes for the target group
   
-![Screen Shot 2021-07-06 at 4 44 25 PM](https://user-images.githubusercontent.com/44268796/124664427-6f9e8180-de79-11eb-8a00-85f3d96942b0.png)
+![Screen Shot 2021-08-02 at 2 50 33 PM](https://user-images.githubusercontent.com/44268796/127909457-f7e8e516-0f9e-4844-aa03-5b4ae47f90c8.png)
 
-##### Configure Autoscaling For Nginx
-
-1. Select the right launch template
-2. Select the VPC
-3. Select both public subnets
-4. Enable Application Load Balancer for the Auto Scaling Group (ASG)
-5. Select the target group you created before
-6. Ensure that the health checks are for both EC2 and ALB
-7. The desired capacity is 2
-8. Minimum capacity is 2
-9. Maximum capacity is 4
-10. Set scale out if CPU utilization reaches 90%
-11.Ensure there is an SNS topic to send scaling notifications
+#### Create Load Balancer using the Target Groups created
   
+##### Create the External Application Load Balancer:
+- Choose the right VPC
+- Choose public subnets 1 and 2
+- Select HTTPS protocol
+- Select the Nginx target group
+- Create the Load Balancer
   
-![Screen Shot 2021-07-07 at 10 21 57 AM](https://user-images.githubusercontent.com/44268796/124776111-2dbf1b00-df0d-11eb-8ccb-66e2adee397b.png)
+![Screen Shot 2021-08-02 at 2 57 49 PM](https://user-images.githubusercontent.com/44268796/127910189-1aee2cbd-4ad1-4b37-91b4-e550d3c1bd88.png)
 
-![Screen Shot 2021-07-07 at 10 24 46 AM](https://user-images.githubusercontent.com/44268796/124776642-9ad2b080-df0d-11eb-86e5-44278d07c490.png)
   
+##### Create the Internal Application Load Balancer:
+- Choose the right VPC
+- Choose private subnets 1 and 2
+- Ensure that it is facing internally
+- Select HTTPS protocol
+- Select the WordPress Target Group as default target group (Tooling will be configured soon)
+- Create the Load Balancer
+ 
+  ![Screen Shot 2021-08-02 at 3 02 53 PM](https://user-images.githubusercontent.com/44268796/127910680-2208427b-27cf-45d5-85d4-a40060e88b2b.png)
+
+ To configure the Internal Load Balancer to forward traffic to Tooling webserver, add a new rule and configure to forward the traffic to Tooling Target Group as below:
   
-#### Set Up Compute Resources for Bastion
-
-##### Provision the EC2 Instances for Bastion
-
-1. Create an EC2 Instance based on RHEL 8 Amazon Machine Image (AMI) per each Availability Zone in the same Region and same AZ where you created Nginx server
-2. Ensure that it has the following software installed
-- python
-- ntp
-- net-tools
-- vim
-- wget
-- telnet
-- epel-release
-- htop
-3. Associate an Elastic IP with each of the Bastion EC2 Instances
-4. Create an AMI out of the EC2 instance
-
-![Screen Shot 2021-07-07 at 11 13 57 AM](https://user-images.githubusercontent.com/44268796/124784962-6f06f900-df14-11eb-87dc-2500625514a5.png)
+![Screen Shot 2021-08-02 at 3 07 59 PM](https://user-images.githubusercontent.com/44268796/127911319-0bc4278d-3bff-4719-9951-0da7e0a9c671.png)
   
+![Screen Shot 2021-08-02 at 3 10 46 PM](https://user-images.githubusercontent.com/44268796/127911455-ef1fa201-b64d-473e-8ea9-0536d8e8c565.png)
+  
+#### Create Launch Templates: 
 
-##### Prepare Launch Template For Bastion (One per subnet)
+##### Create Bastion Launch Template:
+
 - Make use of the AMI to set up a launch template
-- Ensure the Instances are launched into a public subnet
+- Ensure the Instances are launched into a public subnet 
 - Assign appropriate security group
+- Create a Network Interface and also enable the "auto-assign public IP" feature
 - Configure Userdata to update yum package repository and install Ansible and git
 ```
-#!/bin/bash
-yum install -y  https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-yum install -y yum-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
-yum install -y mysql
-yum install -y git
+#!/bin/bash 
+yum install -y mysql 
+yum install -y git tmux 
 yum install -y ansible
 ```
 
-![Screen Shot 2021-07-08 at 11 29 49 AM](https://user-images.githubusercontent.com/44268796/124949715-d178fb80-dfdf-11eb-9004-6f38a175c803.png)
-
-##### Configure Target Groups
-- Select Instances as the target type
-- Ensure the protocol is TCP on port 22
-- Register Bastion Instances as targets
-- Ensure that health check passes for the target group
-  
-![Screen Shot 2021-07-08 at 11 33 57 AM](https://user-images.githubusercontent.com/44268796/124950446-6b40a880-dfe0-11eb-91f0-8f6a5a939819.png)
-  
-##### Configure Autoscaling For Bastion
-1. Select the right launch template
-2. Select the VPC
-3. Select both public subnets
-4. Enable Application Load Balancer for the AutoScalingGroup (ASG)
-5. Select the target group you created before
-6. Ensure that you have health checks for both EC2 and ALB
-7. The desired capacity is 2
-8. Minimum capacity is 2
-9. Maximum capacity is 4
-10. Set scale out if CPU utilization reaches 90%
-11. Ensure there is an SNS topic to send scaling notifications
-  
-![Screen Shot 2021-07-07 at 11 30 33 AM](https://user-images.githubusercontent.com/44268796/124787753-c017ec80-df16-11eb-9fa6-9b55f1868ea3.png)
-  
-#### Set Up Compute Resources for Webservers
-  
-##### Provision the EC2 Instances for Webservers
-
-We will need to create 2 separate launch templates for both the WordPress and Tooling websites
-
-Create an EC2 Instance (Centos) each for WordPress and Tooling websites per Availability Zone (in the same Region).
-Ensure that it has the following software installed:
-- python
-- ntp
-- net-tools
-- vim
-- wget
-- telnet
-- epel-release
-- htop
-- php
-
-Create an AMI out of the EC2 instance
-  
-![Screen Shot 2021-07-08 at 2 03 57 PM](https://user-images.githubusercontent.com/44268796/124969999-6508f700-dff5-11eb-8265-dc84705a28f2.png)
-
-  
-##### Prepare Launch Template For Webservers (One per subnet)
-1. Make use of the AMI to set up a launch template
-2. Ensure the Instances are launched into a public subnet
-3. Assign appropriate security group
-4. Configure Userdata to update yum package repository and install wordpress (Only required on the WordPress launch template)
-
-The user data for the WordPress webserver launch template is below:
-```
-#!/bin/bash
-yum update -y
-yum install -y httpd
-systemctl start httpd
-systemctl enable httpd
-yum install -y git
-yum install -y mysql
-yum install -y php php-fpm php-mysqlnd
-wget http://wordpress.org/latest.tar.gz
-tar xzvf latest.tar.gz
-systemctl restart httpd
-```
-
-
-Repeat the same steps for launch template for the Tooling server with the user data below:
-```
-#!/bin/bash
-yum update -y
-yum install -y httpd
-systemctl start httpd
-systemctl enable httpd
-yum install -y git
-yum install -y mysql
-yum install -y php php-{mysqlnd,cli,gd,common,mbstring,fpm,json}
-systemctl restart httpd
-```
-  
-![Screen Shot 2021-07-08 at 2 11 30 PM](https://user-images.githubusercontent.com/44268796/124970822-671f8580-dff6-11eb-97d6-0fc531ae5e2e.png)
-  
-##### Create two separate Target Groups for WordPress servers and Tooling servers
-  
-![Screen Shot 2021-07-08 at 2 34 03 PM](https://user-images.githubusercontent.com/44268796/124973545-a9969180-dff9-11eb-94c5-a630738e8494.png)
-
- 
-##### Application Load Balancer To Route Traffic To Web Servers
-
-Since the webservers are configured for auto-scaling, there is going to be a problem if servers get dynamically scalled out or in. Nginx will not know about the new IP addresses, or the ones that get removed. Hence, Nginx will not know where to direct the traffic.
-
-To solve this problem, we must use a load balancer. But this time, it will be an internal load balancer. Not Internet facing since the webservers are within a private subnet, and we do not want direct access to them.
-
-- Create an Internal ALB
-- Ensure that it listens on HTTPS protocol (TCP port 443)
-- Ensure the ALB is created within the appropriate VPC | AZ | Subnets
-- Choose the Certificate from ACM
-- Select Security Group
-- Select webserver Instances as the target group
-- Ensure that health check passes for the target group
-NOTE: This process must be repeated for both WordPress and Tooling websites.
-  
-![Screen Shot 2021-07-08 at 2 46 16 PM](https://user-images.githubusercontent.com/44268796/124974832-4443a000-dffb-11eb-9eb8-1d9ed00cd1d7.png) 
-  
-![Screen Shot 2021-07-08 at 2 45 32 PM](https://user-images.githubusercontent.com/44268796/124974743-27a76800-dffb-11eb-97cf-7be7ace9b622.png)
-
-#### Setup EFS
-  
 
   
 
 
 
+  
 
   
+
+  
+
 
 
 
