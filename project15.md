@@ -75,13 +75,15 @@ TLS certificates are required to handle secured connectivity to the Application 
 
 9. Create a Security Group for:
   
- - Nginx Servers: Access to Nginx should only be allowed from a Application Load balancer (ALB). At this point, a load balancer has not been created, therefore  the rules will be updatedlater. For now, just create it and put some dummy records as a place holder.
+ - Nginx Servers: Access to Nginx should only be allowed from a  External Application Load balancer (ALB). At this point, a load balancer has not been created, therefore  the rules will be updatedlater. For now, just create it and put some dummy records as a place holder.
 
 - Bastion Servers: Access to the Bastion servers should be allowed only from workstations that need to SSH into the bastion servers. Hence,  use the workstation public IP address. To get this information, simply go to terminal and type curl www.canhazip.com
   
-- Application Load Balancer: ALB will be available from the Internet
+- External Application Load Balancer: The External ALB will be available from the Internet and also will allow SSH from the bastion host.
   
-- Webservers: Access to Webservers should only be allowed from the Nginx servers. Since the servers have not been created yet, just put some dummy records as a place holder for now.
+- Internal Application Load Balancer: This ALB will only allow HTTP and HTTPS traffic from the Nginx Reverse Proxy Servers.
+  
+- Webservers: The security group should allow SSH from bastion host, HTTP and HTTPS from the internal ALB only.
   
 - Data Layer: Access to the Data layer, which is comprised of Amazon Relational Database Service (RDS) and Amazon Elastic File System (EFS) must be carefully designed - only webservers should be able to connect to RDS, while Nginx and Webservers will have access to EFS Mountpoint.
   
