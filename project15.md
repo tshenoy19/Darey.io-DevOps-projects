@@ -402,6 +402,7 @@ mysql -h project15-database.ca3bnrom1lfd.us-east-1.rds.amazonaws.com -u project1
 In MySQL, create a database called "toolingdb"  
 ```
 CREATE DATABASE toolingdb; 
+CREATE DATABASE wordpressdb;                                                                                                                    
 ```
 ![Screen Shot 2021-08-02 at 4 59 58 PM](https://user-images.githubusercontent.com/44268796/127923252-d233acd2-df1f-4a22-86ee-e5fb67dc66e5.png)
 
