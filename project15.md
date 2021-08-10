@@ -316,6 +316,68 @@ The above repository in the userdata was forked from https://github.com/Livingst
   
 The reverse.conf file was modified to use the custom server name and internal load balancer DNS name. Since the Nginx servers will be acting as reverse proxy and directing traffic to the internal load balancer, this configuration is necessary. 
   
+```
+user nginx;
+worker_processes auto;
+error_log /var/log/nginx/error.log;
+pid /run/nginx.pid;
+
+# Load dynamic modules. See /usr/share/doc/nginx/README.dynamic.
+include /usr/share/nginx/modules/*.conf;
+
+events {
+    worker_connections 1024;
+}
+
+http {
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  /var/log/nginx/access.log  main;
+
+    sendfile            on;
+    tcp_nopush          on;
+    tcp_nodelay         on;
+    keepalive_timeout   65;
+    types_hash_max_size 2048;
+
+    
+    default_type        application/octet-stream;
+
+    # Load modular configuration files from the /etc/nginx/conf.d directory.
+    # See http://nginx.org/en/docs/ngx_core_module.html#include
+    # for more information.
+    include /etc/nginx/conf.d/*.conf;
+
+     server {
+        listen       80;
+        listen       443 http2 ssl;
+        listen       [::]:443 http2 ssl;
+        root          /var/www/html;
+        server_name  *.nycflowershop.online;
+        
+        
+        ssl_certificate /etc/ssl/certs/ACS.crt;
+        ssl_certificate_key /etc/ssl/private/ACS.key;
+        ssl_dhparam /etc/ssl/certs/dhparam.pem;
+
+      
+
+        location /healthstatus {
+        access_log off;
+        return 200;
+       }
+    
+         
+        location / {
+            proxy_set_header             Host $host;
+            proxy_pass                   https://ACS-int-ALB-1329970378.us-east-1.elb.amazonaws.com;
+           }
+    }
+}
+```
+  
 ##### Create Webserver launch template:
 Choose the Webserver AMI, private subnet and webserver security group. Create a network interface. Edit the userdata with custom values (update with the DB endpoint, username, password, accesspoint for WordPress in EFS):
 ```
