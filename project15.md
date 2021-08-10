@@ -437,22 +437,30 @@ CREATE DATABASE wordpressdb;
 ![Screen Shot 2021-08-02 at 5 12 33 PM](https://user-images.githubusercontent.com/44268796/127924490-9f72fd68-1461-473c-9757-497b4bb6989b.png)  
 
 ![Screen Shot 2021-08-02 at 4 15 33 PM](https://user-images.githubusercontent.com/44268796/128255494-53203009-5728-4c43-817f-270fb1f31c07.png)
+                                                                                                                    
+                                                                                                                    
+                                                                                                                    
+#### Check the endpoints for Tooling and Wordpress to see if the application is loading:
+                                                                                                                    
+
+![Screen Shot 2021-08-10 at 11 47 44 AM](https://user-images.githubusercontent.com/44268796/128895458-7d02de05-71e8-446f-a778-6e4b704318cf.png)
 
 
-
-
+![Screen Shot 2021-08-10 at 11 48 16 AM](https://user-images.githubusercontent.com/44268796/128895472-f0696304-e12c-44c3-9395-006c71821625.png)
   
 
+![Screen Shot 2021-08-10 at 11 48 26 AM](https://user-images.githubusercontent.com/44268796/128895490-2222ea0d-7d54-48f8-89f5-e971cfe10487.png)
 
+                                                                                                                      
+##### Blockers:
+1. The internal load balancer was initially Internet facing and hence, the connection was not established between Nginx and the webservers. It had to be recreated to be internal facing and placed in the private subnets.
+2. The health checks failed repeatedly for Nginx servers. Increasing the intervals and allowing some time helped resolve this issue.                                                                                                                    
   
+##### Resources: 
   
-
+https://darey.io 
   
-  
-  
-  
-  
-  
+https://github.com/Livingstone95/ACS-project-config 
   
   
   
